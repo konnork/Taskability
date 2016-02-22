@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		70CDB1561C7AA1BE007D830C /* WeightKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 70CDB1551C7AA1BE007D830C /* WeightKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		70CDB15A1C7AA1BE007D830C /* WeightKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70CDB1531C7AA1BE007D830C /* WeightKit.framework */; };
+		70CDB15B1C7AA1BE007D830C /* WeightKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 70CDB1531C7AA1BE007D830C /* WeightKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		70CDB1611C7AA284007D830C /* WeightItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CDB1601C7AA284007D830C /* WeightItem.swift */; };
 		70D1A15E1C7A5DF1004A3932 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D1A15D1C7A5DF1004A3932 /* AppDelegate.swift */; };
 		70D1A1601C7A5DF1004A3932 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D1A15F1C7A5DF1004A3932 /* ViewController.swift */; };
 		70D1A1631C7A5DF1004A3932 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70D1A1611C7A5DF1004A3932 /* Main.storyboard */; };
@@ -14,7 +18,35 @@
 		70D1A1681C7A5DF1004A3932 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70D1A1661C7A5DF1004A3932 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		70CDB1581C7AA1BE007D830C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 70D1A1521C7A5DF1004A3932 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 70CDB1521C7AA1BE007D830C;
+			remoteInfo = WeightKit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		70CDB15F1C7AA1BE007D830C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				70CDB15B1C7AA1BE007D830C /* WeightKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		70CDB1531C7AA1BE007D830C /* WeightKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WeightKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		70CDB1551C7AA1BE007D830C /* WeightKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeightKit.h; sourceTree = "<group>"; };
+		70CDB1571C7AA1BE007D830C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		70CDB1601C7AA284007D830C /* WeightItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeightItem.swift; sourceTree = "<group>"; };
 		70D1A15A1C7A5DF1004A3932 /* Weight Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Weight Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		70D1A15D1C7A5DF1004A3932 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		70D1A15F1C7A5DF1004A3932 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -25,20 +57,39 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		70D1A1571C7A5DF1004A3932 /* Frameworks */ = {
+		70CDB14F1C7AA1BE007D830C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		70D1A1571C7A5DF1004A3932 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				70CDB15A1C7AA1BE007D830C /* WeightKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		70CDB1541C7AA1BE007D830C /* WeightKit */ = {
+			isa = PBXGroup;
+			children = (
+				70CDB1551C7AA1BE007D830C /* WeightKit.h */,
+				70CDB1601C7AA284007D830C /* WeightItem.swift */,
+				70CDB1571C7AA1BE007D830C /* Info.plist */,
+			);
+			path = WeightKit;
+			sourceTree = "<group>";
+		};
 		70D1A1511C7A5DF1004A3932 = {
 			isa = PBXGroup;
 			children = (
 				70D1A15C1C7A5DF1004A3932 /* Weight Tracker */,
+				70CDB1541C7AA1BE007D830C /* WeightKit */,
 				70D1A15B1C7A5DF1004A3932 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -47,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				70D1A15A1C7A5DF1004A3932 /* Weight Tracker.app */,
+				70CDB1531C7AA1BE007D830C /* WeightKit.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -66,7 +118,36 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		70CDB1501C7AA1BE007D830C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				70CDB1561C7AA1BE007D830C /* WeightKit.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		70CDB1521C7AA1BE007D830C /* WeightKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 70CDB15C1C7AA1BE007D830C /* Build configuration list for PBXNativeTarget "WeightKit" */;
+			buildPhases = (
+				70CDB14E1C7AA1BE007D830C /* Sources */,
+				70CDB14F1C7AA1BE007D830C /* Frameworks */,
+				70CDB1501C7AA1BE007D830C /* Headers */,
+				70CDB1511C7AA1BE007D830C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WeightKit;
+			productName = WeightKit;
+			productReference = 70CDB1531C7AA1BE007D830C /* WeightKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		70D1A1591C7A5DF1004A3932 /* Weight Tracker */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 70D1A16C1C7A5DF1004A3932 /* Build configuration list for PBXNativeTarget "Weight Tracker" */;
@@ -74,10 +155,12 @@
 				70D1A1561C7A5DF1004A3932 /* Sources */,
 				70D1A1571C7A5DF1004A3932 /* Frameworks */,
 				70D1A1581C7A5DF1004A3932 /* Resources */,
+				70CDB15F1C7AA1BE007D830C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				70CDB1591C7AA1BE007D830C /* PBXTargetDependency */,
 			);
 			name = "Weight Tracker";
 			productName = "Weight Tracker";
@@ -94,8 +177,13 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Connor Krupp";
 				TargetAttributes = {
+					70CDB1521C7AA1BE007D830C = {
+						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = ES8QUKA7R7;
+					};
 					70D1A1591C7A5DF1004A3932 = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = ES8QUKA7R7;
 					};
 				};
 			};
@@ -113,11 +201,19 @@
 			projectRoot = "";
 			targets = (
 				70D1A1591C7A5DF1004A3932 /* Weight Tracker */,
+				70CDB1521C7AA1BE007D830C /* WeightKit */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		70CDB1511C7AA1BE007D830C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		70D1A1581C7A5DF1004A3932 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -131,6 +227,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		70CDB14E1C7AA1BE007D830C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				70CDB1611C7AA284007D830C /* WeightItem.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		70D1A1561C7A5DF1004A3932 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -141,6 +245,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		70CDB1591C7AA1BE007D830C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 70CDB1521C7AA1BE007D830C /* WeightKit */;
+			targetProxy = 70CDB1581C7AA1BE007D830C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		70D1A1611C7A5DF1004A3932 /* Main.storyboard */ = {
@@ -162,6 +274,49 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		70CDB15D1C7AA1BE007D830C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = WeightKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.krupp.connor.WeightKit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		70CDB15E1C7AA1BE007D830C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = WeightKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.krupp.connor.WeightKit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		70D1A16A1C7A5DF1004A3932 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -249,6 +404,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "Weight Tracker/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.krupp.connor.Weight-Tracker";
@@ -260,6 +417,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "Weight Tracker/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.krupp.connor.Weight-Tracker";
@@ -270,6 +429,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		70CDB15C1C7AA1BE007D830C /* Build configuration list for PBXNativeTarget "WeightKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				70CDB15D1C7AA1BE007D830C /* Debug */,
+				70CDB15E1C7AA1BE007D830C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		70D1A1551C7A5DF1004A3932 /* Build configuration list for PBXProject "Weight Tracker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -286,6 +453,7 @@
 				70D1A16E1C7A5DF1004A3932 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
