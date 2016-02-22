@@ -1,5 +1,5 @@
 # Weight Tracker
-Showcase iOS app for tracking weight loss progress.
+Showcase iOS/Watch/OSX app for tracking weight loss progress.
 
 ### Why Weight Tracker?
 This whole project is to showcase my iOS Development abilities. Obviously, the app is not a novel idea, and it was not meant to be. Weight Tracker is a simple app - I want the focus to be on the implementation.
