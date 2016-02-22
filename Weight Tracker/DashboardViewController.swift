@@ -23,36 +23,44 @@ class DashboardViewController: UICollectionViewController {
 
     /// Temporarily initialized as array
     ///   will be more complex with iCloud/Healthkit
-    var weightData = [WeightItem]()
+    var weightController = [WeightItem]()
 
     // MARK: ViewController Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        for mass in 60..<100 {
-            weightData.append(WeightItem(mass: Double(mass)))
+        for mass in 60...100 {
+            weightController.append(WeightItem(mass: Double(mass)))
         }
 
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     // MARK: UICollectionViewDataSource
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return weightData.count
+        return weightController.count
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let weightCell = collectionView.dequeueReusableCellWithReuseIdentifier(MainStoryboard.CollectionViewCellIdentifiers.weightCell, forIndexPath: indexPath)
+        return collectionView.dequeueReusableCellWithReuseIdentifier(MainStoryboard.CollectionViewCellIdentifiers.weightCell, forIndexPath: indexPath) as! WeightCell
+    }
 
-        weightCell.backgroundColor = UIColor.redColor()
 
-        return weightCell
+    // MARK: UICollectionViewDelegate
+
+    override func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
+        switch cell {
+        case let weightCell as WeightCell:
+
+            let weightData = weightController[indexPath.row]
+            weightCell.label.text = "\(weightData.mass)"
+            weightCell.label.font = UIFont.preferredFontForTextStyle(UIFontTextStyleCallout)
+            weightCell.label.textColor = UIColor.redColor()
+
+        default:
+            fatalError("Invalid cell type in DashboardViewController")
+        }
     }
 }
 

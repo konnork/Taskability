@@ -11,6 +11,7 @@
 		70CDB15A1C7AA1BE007D830C /* WeightKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70CDB1531C7AA1BE007D830C /* WeightKit.framework */; };
 		70CDB15B1C7AA1BE007D830C /* WeightKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 70CDB1531C7AA1BE007D830C /* WeightKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		70CDB1611C7AA284007D830C /* WeightItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CDB1601C7AA284007D830C /* WeightItem.swift */; };
+		70CDB1641C7AB37B007D830C /* WeightCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CDB1631C7AB37B007D830C /* WeightCell.swift */; };
 		70D1A15E1C7A5DF1004A3932 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D1A15D1C7A5DF1004A3932 /* AppDelegate.swift */; };
 		70D1A1601C7A5DF1004A3932 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D1A15F1C7A5DF1004A3932 /* DashboardViewController.swift */; };
 		70D1A1631C7A5DF1004A3932 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70D1A1611C7A5DF1004A3932 /* Main.storyboard */; };
@@ -47,6 +48,7 @@
 		70CDB1551C7AA1BE007D830C /* WeightKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeightKit.h; sourceTree = "<group>"; };
 		70CDB1571C7AA1BE007D830C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		70CDB1601C7AA284007D830C /* WeightItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeightItem.swift; sourceTree = "<group>"; };
+		70CDB1631C7AB37B007D830C /* WeightCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeightCell.swift; sourceTree = "<group>"; };
 		70D1A15A1C7A5DF1004A3932 /* Weight Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Weight Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		70D1A15D1C7A5DF1004A3932 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		70D1A15F1C7A5DF1004A3932 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
@@ -85,6 +87,22 @@
 			path = WeightKit;
 			sourceTree = "<group>";
 		};
+		70CDB1621C7AB300007D830C /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				70D1A15F1C7A5DF1004A3932 /* DashboardViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		70CDB1651C7AB37F007D830C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				70CDB1631C7AB37B007D830C /* WeightCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		70D1A1511C7A5DF1004A3932 = {
 			isa = PBXGroup;
 			children = (
@@ -107,7 +125,8 @@
 			isa = PBXGroup;
 			children = (
 				70D1A15D1C7A5DF1004A3932 /* AppDelegate.swift */,
-				70D1A15F1C7A5DF1004A3932 /* DashboardViewController.swift */,
+				70CDB1621C7AB300007D830C /* View Controllers */,
+				70CDB1651C7AB37F007D830C /* Views */,
 				70D1A1611C7A5DF1004A3932 /* Main.storyboard */,
 				70D1A1641C7A5DF1004A3932 /* Assets.xcassets */,
 				70D1A1661C7A5DF1004A3932 /* LaunchScreen.storyboard */,
@@ -239,6 +258,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70CDB1641C7AB37B007D830C /* WeightCell.swift in Sources */,
 				70D1A1601C7A5DF1004A3932 /* DashboardViewController.swift in Sources */,
 				70D1A15E1C7A5DF1004A3932 /* AppDelegate.swift in Sources */,
 			);

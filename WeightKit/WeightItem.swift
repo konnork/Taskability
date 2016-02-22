@@ -13,7 +13,7 @@ public class WeightItem : NSObject {
     // MARK: Properties
 
     /// The mass for the weight item in kg
-    private var mass: Double
+    public var mass: Double
 
     /// The date for the weight item
     private var date: NSDate
