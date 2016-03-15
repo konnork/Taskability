@@ -12,7 +12,35 @@
 		7022B34D1C98A0750024F75B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7022B34B1C98A0750024F75B /* Main.storyboard */; };
 		7022B34F1C98A0750024F75B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7022B34E1C98A0750024F75B /* Assets.xcassets */; };
 		7022B3521C98A0750024F75B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7022B3501C98A0750024F75B /* LaunchScreen.storyboard */; };
+		7022B3611C98A3490024F75B /* TaskabilityKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 7022B3601C98A3490024F75B /* TaskabilityKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7022B3651C98A3490024F75B /* TaskabilityKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7022B35E1C98A3490024F75B /* TaskabilityKit.framework */; };
+		7022B3661C98A3490024F75B /* TaskabilityKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7022B35E1C98A3490024F75B /* TaskabilityKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7022B36C1C98A35F0024F75B /* TaskItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7022B36B1C98A35F0024F75B /* TaskItem.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7022B3631C98A3490024F75B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7022B33C1C98A0750024F75B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7022B35D1C98A3490024F75B;
+			remoteInfo = TaskabilityKit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7022B36A1C98A3490024F75B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7022B3661C98A3490024F75B /* TaskabilityKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		7022B3441C98A0750024F75B /* Taskability.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Taskability.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -22,10 +50,22 @@
 		7022B34E1C98A0750024F75B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7022B3511C98A0750024F75B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7022B3531C98A0750024F75B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7022B35E1C98A3490024F75B /* TaskabilityKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TaskabilityKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7022B3601C98A3490024F75B /* TaskabilityKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskabilityKit.h; sourceTree = "<group>"; };
+		7022B3621C98A3490024F75B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7022B36B1C98A35F0024F75B /* TaskItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		7022B3411C98A0750024F75B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7022B3651C98A3490024F75B /* TaskabilityKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7022B35A1C98A3490024F75B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -39,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				7022B3461C98A0750024F75B /* Taskability */,
+				7022B35F1C98A3490024F75B /* TaskabilityKit */,
 				7022B3451C98A0750024F75B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -47,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				7022B3441C98A0750024F75B /* Taskability.app */,
+				7022B35E1C98A3490024F75B /* TaskabilityKit.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -64,7 +106,28 @@
 			path = Taskability;
 			sourceTree = "<group>";
 		};
+		7022B35F1C98A3490024F75B /* TaskabilityKit */ = {
+			isa = PBXGroup;
+			children = (
+				7022B3601C98A3490024F75B /* TaskabilityKit.h */,
+				7022B36B1C98A35F0024F75B /* TaskItem.swift */,
+				7022B3621C98A3490024F75B /* Info.plist */,
+			);
+			path = TaskabilityKit;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		7022B35B1C98A3490024F75B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7022B3611C98A3490024F75B /* TaskabilityKit.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		7022B3431C98A0750024F75B /* Taskability */ = {
@@ -74,15 +137,35 @@
 				7022B3401C98A0750024F75B /* Sources */,
 				7022B3411C98A0750024F75B /* Frameworks */,
 				7022B3421C98A0750024F75B /* Resources */,
+				7022B36A1C98A3490024F75B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				7022B3641C98A3490024F75B /* PBXTargetDependency */,
 			);
 			name = Taskability;
 			productName = Taskability;
 			productReference = 7022B3441C98A0750024F75B /* Taskability.app */;
 			productType = "com.apple.product-type.application";
+		};
+		7022B35D1C98A3490024F75B /* TaskabilityKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7022B3671C98A3490024F75B /* Build configuration list for PBXNativeTarget "TaskabilityKit" */;
+			buildPhases = (
+				7022B3591C98A3490024F75B /* Sources */,
+				7022B35A1C98A3490024F75B /* Frameworks */,
+				7022B35B1C98A3490024F75B /* Headers */,
+				7022B35C1C98A3490024F75B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TaskabilityKit;
+			productName = TaskabilityKit;
+			productReference = 7022B35E1C98A3490024F75B /* TaskabilityKit.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -95,6 +178,9 @@
 				ORGANIZATIONNAME = "Connor Krupp";
 				TargetAttributes = {
 					7022B3431C98A0750024F75B = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+					7022B35D1C98A3490024F75B = {
 						CreatedOnToolsVersion = 7.2.1;
 					};
 				};
@@ -113,6 +199,7 @@
 			projectRoot = "";
 			targets = (
 				7022B3431C98A0750024F75B /* Taskability */,
+				7022B35D1C98A3490024F75B /* TaskabilityKit */,
 			);
 		};
 /* End PBXProject section */
@@ -128,6 +215,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7022B35C1C98A3490024F75B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -140,7 +234,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7022B3591C98A3490024F75B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7022B36C1C98A35F0024F75B /* TaskItem.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7022B3641C98A3490024F75B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7022B35D1C98A3490024F75B /* TaskabilityKit */;
+			targetProxy = 7022B3631C98A3490024F75B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		7022B34B1C98A0750024F75B /* Main.storyboard */ = {
@@ -250,6 +360,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Taskability/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.connorkrupp.Taskability;
@@ -262,10 +373,54 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Taskability/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.connorkrupp.Taskability;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		7022B3681C98A3490024F75B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = TaskabilityKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.connorkrupp.TaskabilityKit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		7022B3691C98A3490024F75B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = TaskabilityKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.connorkrupp.TaskabilityKit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -286,6 +441,14 @@
 			buildConfigurations = (
 				7022B3571C98A0750024F75B /* Debug */,
 				7022B3581C98A0750024F75B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		7022B3671C98A3490024F75B /* Build configuration list for PBXNativeTarget "TaskabilityKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7022B3681C98A3490024F75B /* Debug */,
+				7022B3691C98A3490024F75B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
