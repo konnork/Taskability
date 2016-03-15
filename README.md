@@ -13,18 +13,15 @@ I'm glad you asked:
 Supported Platforms
 * iPhone
 * iPad
-
--- TODO
-
-* Apple Watch
-* Mac OS X
+* Apple Watch (Future)
+* Mac OS X (Future's Future)
 
 Concepts and Classes:
 
 * UICollectionView
 * Auto Layout
 
--- TODO
+-- Coming Soon
 
 * UINavigationViewController
 * UISplitViewController
@@ -41,5 +38,4 @@ Concepts and Classes:
 * Protocols
 * Delegation
 * UIStackView
-* Storyboard References
 * Continuous Deployment
