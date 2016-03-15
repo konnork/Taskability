@@ -10,10 +10,8 @@
 		70CDB1561C7AA1BE007D830C /* WeightKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 70CDB1551C7AA1BE007D830C /* WeightKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70CDB15A1C7AA1BE007D830C /* WeightKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70CDB1531C7AA1BE007D830C /* WeightKit.framework */; };
 		70CDB15B1C7AA1BE007D830C /* WeightKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 70CDB1531C7AA1BE007D830C /* WeightKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		70CDB1611C7AA284007D830C /* WeightItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CDB1601C7AA284007D830C /* WeightItem.swift */; };
-		70CDB1641C7AB37B007D830C /* WeightCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CDB1631C7AB37B007D830C /* WeightCell.swift */; };
-		70CDB1681C7ABB2D007D830C /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 70CDB1661C7ABB2D007D830C /* LICENSE */; };
-		70CDB1691C7ABB2D007D830C /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 70CDB1671C7ABB2D007D830C /* README.md */; };
+		70CDB1611C7AA284007D830C /* HealthElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CDB1601C7AA284007D830C /* HealthElement.swift */; };
+		70CDB1641C7AB37B007D830C /* HealthCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CDB1631C7AB37B007D830C /* HealthCell.swift */; };
 		70D1A15E1C7A5DF1004A3932 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D1A15D1C7A5DF1004A3932 /* AppDelegate.swift */; };
 		70D1A1601C7A5DF1004A3932 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D1A15F1C7A5DF1004A3932 /* DashboardViewController.swift */; };
 		70D1A1631C7A5DF1004A3932 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70D1A1611C7A5DF1004A3932 /* Main.storyboard */; };
@@ -49,10 +47,8 @@
 		70CDB1531C7AA1BE007D830C /* WeightKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WeightKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		70CDB1551C7AA1BE007D830C /* WeightKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeightKit.h; sourceTree = "<group>"; };
 		70CDB1571C7AA1BE007D830C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		70CDB1601C7AA284007D830C /* WeightItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeightItem.swift; sourceTree = "<group>"; };
-		70CDB1631C7AB37B007D830C /* WeightCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeightCell.swift; sourceTree = "<group>"; };
-		70CDB1661C7ABB2D007D830C /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		70CDB1671C7ABB2D007D830C /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		70CDB1601C7AA284007D830C /* HealthElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthElement.swift; sourceTree = "<group>"; };
+		70CDB1631C7AB37B007D830C /* HealthCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthCell.swift; sourceTree = "<group>"; };
 		70D1A15A1C7A5DF1004A3932 /* Weight Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Weight Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		70D1A15D1C7A5DF1004A3932 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		70D1A15F1C7A5DF1004A3932 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
@@ -85,7 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				70CDB1551C7AA1BE007D830C /* WeightKit.h */,
-				70CDB1601C7AA284007D830C /* WeightItem.swift */,
+				70CDB1601C7AA284007D830C /* HealthElement.swift */,
 				70CDB1571C7AA1BE007D830C /* Info.plist */,
 			);
 			path = WeightKit;
@@ -102,7 +98,7 @@
 		70CDB1651C7AB37F007D830C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				70CDB1631C7AB37B007D830C /* WeightCell.swift */,
+				70CDB1631C7AB37B007D830C /* HealthCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -113,8 +109,6 @@
 				70D1A15C1C7A5DF1004A3932 /* Weight Tracker */,
 				70CDB1541C7AA1BE007D830C /* WeightKit */,
 				70D1A15B1C7A5DF1004A3932 /* Products */,
-				70CDB1661C7ABB2D007D830C /* LICENSE */,
-				70CDB1671C7ABB2D007D830C /* README.md */,
 			);
 			sourceTree = "<group>";
 		};
@@ -245,7 +239,6 @@
 			files = (
 				70D1A1681C7A5DF1004A3932 /* LaunchScreen.storyboard in Resources */,
 				70D1A1651C7A5DF1004A3932 /* Assets.xcassets in Resources */,
-				70CDB1681C7ABB2D007D830C /* LICENSE in Resources */,
 				70D1A1631C7A5DF1004A3932 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,7 +250,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70CDB1611C7AA284007D830C /* WeightItem.swift in Sources */,
+				70CDB1611C7AA284007D830C /* HealthElement.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,9 +258,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70CDB1641C7AB37B007D830C /* WeightCell.swift in Sources */,
+				70CDB1641C7AB37B007D830C /* HealthCell.swift in Sources */,
 				70D1A1601C7A5DF1004A3932 /* DashboardViewController.swift in Sources */,
-				70CDB1691C7ABB2D007D830C /* README.md in Sources */,
 				70D1A15E1C7A5DF1004A3932 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -464,6 +456,7 @@
 				70CDB15E1C7AA1BE007D830C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		70D1A1551C7A5DF1004A3932 /* Build configuration list for PBXProject "Weight Tracker" */ = {
 			isa = XCConfigurationList;

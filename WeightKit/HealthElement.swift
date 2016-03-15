@@ -1,5 +1,5 @@
 //
-//  WeightItem.swift
+//  HealthElement.swift
 //  Weight Tracker
 //
 //  Created by Connor Krupp on 21/02/2016.
@@ -8,14 +8,14 @@
 
 import Foundation
 
-public class WeightItem : NSObject {
+public class HealthElement : NSObject {
 
     // MARK: Properties
 
-    /// The mass for the weight item in kg
+    /// The mass for the health data in kg
     public var mass: Double
 
-    /// The date for the weight item
+    /// The date for the Health data
     private var date: NSDate
 
     /// The UUID for uniqueness between date items (beyond date)
@@ -56,7 +56,7 @@ public class WeightItem : NSObject {
 
     // returns true if and only if the UUIDs are equal
     override public func isEqual(object: AnyObject?) -> Bool {
-        if let item = object as? WeightItem {
+        if let item = object as? HealthElement {
             return UUID == item.UUID
         }
 

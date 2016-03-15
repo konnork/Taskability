@@ -15,7 +15,7 @@ class DashboardViewController: UICollectionViewController {
 
     struct MainStoryboard {
         struct CollectionViewCellIdentifiers {
-            static let weightCell = "weightCell"
+            static let healthCell = "healthCell"
         }
     }
 
@@ -23,7 +23,7 @@ class DashboardViewController: UICollectionViewController {
 
     /// Temporarily initialized as array
     ///   will be more complex with iCloud/Healthkit
-    var weightController = [WeightItem]()
+    var healthController = [HealthElement]()
 
     // MARK: ViewController Life Cycle
 
@@ -31,7 +31,7 @@ class DashboardViewController: UICollectionViewController {
         super.viewDidLoad()
 
         for mass in 60...100 {
-            weightController.append(WeightItem(mass: Double(mass)))
+            healthController.append(HealthElement(mass: Double(mass)))
         }
 
     }
@@ -39,11 +39,11 @@ class DashboardViewController: UICollectionViewController {
     // MARK: UICollectionViewDataSource
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return weightController.count
+        return healthController.count
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        return collectionView.dequeueReusableCellWithReuseIdentifier(MainStoryboard.CollectionViewCellIdentifiers.weightCell, forIndexPath: indexPath) as! WeightCell
+        return collectionView.dequeueReusableCellWithReuseIdentifier(MainStoryboard.CollectionViewCellIdentifiers.healthCell, forIndexPath: indexPath) as! HealthCell
     }
 
 
@@ -51,12 +51,12 @@ class DashboardViewController: UICollectionViewController {
 
     override func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
         switch cell {
-        case let weightCell as WeightCell:
+        case let healthCell as HealthCell:
 
-            let weightData = weightController[indexPath.row]
-            weightCell.label.text = "\(weightData.mass)"
-            weightCell.label.font = UIFont.preferredFontForTextStyle(UIFontTextStyleCallout)
-            weightCell.label.textColor = UIColor.redColor()
+            let healthData = healthController[indexPath.row]
+            healthCell.label.text = "\(healthData.mass)"
+            healthCell.label.font = UIFont.preferredFontForTextStyle(UIFontTextStyleCallout)
+            healthCell.label.textColor = UIColor.redColor()
 
         default:
             fatalError("Invalid cell type in DashboardViewController")

@@ -8,10 +8,12 @@
 
 import UIKit
 
-class WeightCell: UICollectionViewCell {
+class HealthCell: UICollectionViewCell {
 
     // MARK: Properties
 
     @IBOutlet weak var label: UILabel!
+
+
 
 }
