@@ -1,13 +1,103 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="JO0-ap-LVd">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--Work-->
+        <scene sceneID="ypJ-jj-JM5">
+            <objects>
+                <tableViewController id="CCi-3b-wkE" customClass="TaskListViewController" customModule="Taskability" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="28" sectionFooterHeight="28" id="DFu-dF-ONr">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.2666666667" green="0.24313725489999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="taskListItemCell" id="Kyp-QF-dfU" customClass="TaskListItemTableViewCell" customModule="Taskability" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="600" height="90"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Kyp-QF-dfU" id="sHi-WT-dzi">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="89.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oJr-vt-Cfv">
+                                            <rect key="frame" x="80" y="34" width="85" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WoE-Qa-tUr">
+                                            <rect key="frame" x="20" y="25" width="40" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="WoE-Qa-tUr" secondAttribute="height" multiplier="1:1" id="TaC-dw-k8e"/>
+                                                <constraint firstAttribute="width" constant="40" id="kOV-77-G7W"/>
+                                            </constraints>
+                                            <state key="normal" image="TaskListItemCheckmark"/>
+                                            <connections>
+                                                <action selector="checkmarkTapped:" destination="CCi-3b-wkE" eventType="touchUpInside" id="cHz-fe-JJR"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="oJr-vt-Cfv" firstAttribute="centerY" secondItem="WoE-Qa-tUr" secondAttribute="centerY" id="17o-MC-LTG"/>
+                                        <constraint firstItem="oJr-vt-Cfv" firstAttribute="leading" secondItem="WoE-Qa-tUr" secondAttribute="trailing" constant="20" id="1kF-s5-tCU"/>
+                                        <constraint firstItem="WoE-Qa-tUr" firstAttribute="centerY" secondItem="sHi-WT-dzi" secondAttribute="centerY" id="K6K-lQ-qcH"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="WoE-Qa-tUr" secondAttribute="leading" id="MPJ-NJ-1Qu"/>
+                                        <constraint firstItem="WoE-Qa-tUr" firstAttribute="leading" secondItem="sHi-WT-dzi" secondAttribute="leading" constant="20" id="cAD-7w-NyF"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="MPJ-NJ-1Qu"/>
+                                        </mask>
+                                    </variation>
+                                </tableViewCellContentView>
+                                <inset key="separatorInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="checkmark" destination="WoE-Qa-tUr" id="HMT-96-KTG"/>
+                                    <outlet property="titleLabel" destination="oJr-vt-Cfv" id="paU-O8-es8"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="CCi-3b-wkE" id="N42-Tp-1aQ"/>
+                            <outlet property="delegate" destination="CCi-3b-wkE" id="ZU3-Vb-xuU"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Work" id="04t-yc-lKe"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DtS-wc-fXf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2077" y="-289"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Y9K-eM-tcr">
+            <objects>
+                <navigationController id="vjp-QN-SQL" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="TaskListsTab-Inactive" selectedImage="TaskListsTab-Active" id="LnZ-LZ-aS1">
+                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
+                    </tabBarItem>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="TFI-sn-ebY">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.2666666667" green="0.24313725489999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="CCi-3b-wkE" kind="relationship" relationship="rootViewController" id="Jnr-c9-mrW"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IrD-X1-oQN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1257" y="-289"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +105,119 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hsz-wv-SjL">
+                                <rect key="frame" x="47" y="74" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="" image="CalendarTab-Inactive" selectedImage="CalendarTab-Active" id="Mo6-A8-dIb">
+                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1257" y="388"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="mSi-DI-DmQ">
+            <objects>
+                <viewController id="TFR-up-IrS" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5zu-E3-ogF"/>
+                        <viewControllerLayoutGuide type="bottom" id="y21-cG-xon"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8jx-LQ-jW1">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="AddTaskItemTab" selectedImage="AddTaskItemTab" id="pHt-HR-O5J"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Zf-Jk-DnH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1257" y="1166"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="HIK-gp-98o">
+            <objects>
+                <viewController id="UjT-JM-Rlo" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="g9v-zJ-95f"/>
+                        <viewControllerLayoutGuide type="bottom" id="7px-nK-KTW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="46T-Tv-LhY">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="TimelineTab-Inactive" selectedImage="TimelineTab-Active" id="Iw8-1R-NFK">
+                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
+                    </tabBarItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XEG-xk-r48" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1252" y="1858"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="TNA-Ik-wZ2">
+            <objects>
+                <viewController id="6rr-8P-mdo" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4mt-81-Fqh"/>
+                        <viewControllerLayoutGuide type="bottom" id="ICT-81-tpy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zzf-Kd-JBu">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="SettingsTab-Inactive" selectedImage="SettingsTab-Active" id="vq7-Ru-3PC">
+                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
+                    </tabBarItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nDd-Cs-HLg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1252" y="2614"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="MR1-hC-kxa">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="JO0-ap-LVd" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" barStyle="black" id="yyQ-D0-mOG">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.2666666667" green="0.24313725489999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="vjp-QN-SQL" kind="relationship" relationship="viewControllers" id="CMg-Gu-800"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="AFH-e3-GRd"/>
+                        <segue destination="TFR-up-IrS" kind="relationship" relationship="viewControllers" id="5vg-7j-HUT"/>
+                        <segue destination="UjT-JM-Rlo" kind="relationship" relationship="viewControllers" id="wsB-1t-WS1"/>
+                        <segue destination="6rr-8P-mdo" kind="relationship" relationship="viewControllers" id="9OV-hh-Vba"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hwN-jx-hov" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="445" y="394"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="AddTaskItemTab" width="45" height="46"/>
+        <image name="CalendarTab-Active" width="23" height="22"/>
+        <image name="CalendarTab-Inactive" width="23" height="22"/>
+        <image name="SettingsTab-Active" width="21" height="21"/>
+        <image name="SettingsTab-Inactive" width="21" height="21"/>
+        <image name="TaskListItemCheckmark" width="40" height="40"/>
+        <image name="TaskListsTab-Active" width="21" height="19"/>
+        <image name="TaskListsTab-Inactive" width="21" height="19"/>
+        <image name="TimelineTab-Active" width="23" height="24"/>
+        <image name="TimelineTab-Inactive" width="23" height="24"/>
+    </resources>
 </document>

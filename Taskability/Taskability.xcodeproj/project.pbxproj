@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		7022B3481C98A0750024F75B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7022B3471C98A0750024F75B /* AppDelegate.swift */; };
-		7022B34A1C98A0750024F75B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7022B3491C98A0750024F75B /* ViewController.swift */; };
 		7022B34D1C98A0750024F75B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7022B34B1C98A0750024F75B /* Main.storyboard */; };
 		7022B34F1C98A0750024F75B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7022B34E1C98A0750024F75B /* Assets.xcassets */; };
 		7022B3521C98A0750024F75B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7022B3501C98A0750024F75B /* LaunchScreen.storyboard */; };
@@ -16,6 +15,9 @@
 		7022B3651C98A3490024F75B /* TaskabilityKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7022B35E1C98A3490024F75B /* TaskabilityKit.framework */; };
 		7022B3661C98A3490024F75B /* TaskabilityKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7022B35E1C98A3490024F75B /* TaskabilityKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7022B36C1C98A35F0024F75B /* TaskItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7022B36B1C98A35F0024F75B /* TaskItem.swift */; };
+		7022B3751C98FB050024F75B /* TaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7022B3741C98FB050024F75B /* TaskListViewController.swift */; };
+		7022B37E1C9913220024F75B /* DemoTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7022B37D1C9913220024F75B /* DemoTasks.swift */; };
+		7022B3801C9913D80024F75B /* TaskListItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7022B37F1C9913D80024F75B /* TaskListItemTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,7 +47,6 @@
 /* Begin PBXFileReference section */
 		7022B3441C98A0750024F75B /* Taskability.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Taskability.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7022B3471C98A0750024F75B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7022B3491C98A0750024F75B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7022B34C1C98A0750024F75B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7022B34E1C98A0750024F75B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7022B3511C98A0750024F75B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -54,6 +55,9 @@
 		7022B3601C98A3490024F75B /* TaskabilityKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskabilityKit.h; sourceTree = "<group>"; };
 		7022B3621C98A3490024F75B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7022B36B1C98A35F0024F75B /* TaskItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskItem.swift; sourceTree = "<group>"; };
+		7022B3741C98FB050024F75B /* TaskListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListViewController.swift; sourceTree = "<group>"; };
+		7022B37D1C9913220024F75B /* DemoTasks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoTasks.swift; sourceTree = "<group>"; };
+		7022B37F1C9913D80024F75B /* TaskListItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListItemTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,8 +101,9 @@
 			isa = PBXGroup;
 			children = (
 				7022B3471C98A0750024F75B /* AppDelegate.swift */,
-				7022B3491C98A0750024F75B /* ViewController.swift */,
 				7022B34B1C98A0750024F75B /* Main.storyboard */,
+				7022B37A1C9912C90024F75B /* View Controllers */,
+				7022B37C1C9912F10024F75B /* Views */,
 				7022B34E1C98A0750024F75B /* Assets.xcassets */,
 				7022B3501C98A0750024F75B /* LaunchScreen.storyboard */,
 				7022B3531C98A0750024F75B /* Info.plist */,
@@ -111,9 +116,26 @@
 			children = (
 				7022B3601C98A3490024F75B /* TaskabilityKit.h */,
 				7022B36B1C98A35F0024F75B /* TaskItem.swift */,
+				7022B37D1C9913220024F75B /* DemoTasks.swift */,
 				7022B3621C98A3490024F75B /* Info.plist */,
 			);
 			path = TaskabilityKit;
+			sourceTree = "<group>";
+		};
+		7022B37A1C9912C90024F75B /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				7022B3741C98FB050024F75B /* TaskListViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		7022B37C1C9912F10024F75B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7022B37F1C9913D80024F75B /* TaskListItemTableViewCell.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,8 +251,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7022B34A1C98A0750024F75B /* ViewController.swift in Sources */,
+				7022B3801C9913D80024F75B /* TaskListItemTableViewCell.swift in Sources */,
 				7022B3481C98A0750024F75B /* AppDelegate.swift in Sources */,
+				7022B3751C98FB050024F75B /* TaskListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,6 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7022B36C1C98A35F0024F75B /* TaskItem.swift in Sources */,
+				7022B37E1C9913220024F75B /* DemoTasks.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,6 +467,7 @@
 				7022B3581C98A0750024F75B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7022B3671C98A3490024F75B /* Build configuration list for PBXNativeTarget "TaskabilityKit" */ = {
 			isa = XCConfigurationList;
@@ -451,6 +476,7 @@
 				7022B3691C98A3490024F75B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
