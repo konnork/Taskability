@@ -22,7 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.backgroundColor = UIColor(patternImage: image)
 
         UITabBar.appearance().tintColor = UIColor.whiteColor()
-        print(UITabBar.appearance().items)
 
         return true
     }

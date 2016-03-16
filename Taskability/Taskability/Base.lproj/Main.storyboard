@@ -136,7 +136,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="AddTaskItemTab" selectedImage="AddTaskItemTab" id="pHt-HR-O5J"/>
+                    <tabBarItem key="tabBarItem" tag="100" title="" image="AddTaskItemTab" id="pHt-HR-O5J">
+                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Zf-Jk-DnH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -184,10 +186,10 @@
             </objects>
             <point key="canvasLocation" x="1252" y="2614"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Taskability Tab Bar Controller-->
         <scene sceneID="MR1-hC-kxa">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="JO0-ap-LVd" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="JO0-ap-LVd" customClass="TaskabilityTabBarController" customModule="Taskability" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" barStyle="black" id="yyQ-D0-mOG">
                         <autoresizingMask key="autoresizingMask"/>

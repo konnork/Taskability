@@ -47,9 +47,10 @@ class TaskListViewController: UITableViewController {
         switch cell {
         case let cell as TaskListItemTableViewCell:
             cell.backgroundColor = UIColor.clearColor()
+            cell.selectionStyle = .None
             cell.titleLabel.text = taskItems[indexPath.row].title
-            cell.isComplete = taskItems[indexPath.row].isComplete
             cell.titleLabel.textColor = UIColor.whiteColor()
+            cell.isComplete = taskItems[indexPath.row].isComplete
         default:
             fatalError("Unknown Cell Type")
         }

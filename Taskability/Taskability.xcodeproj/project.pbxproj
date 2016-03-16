@@ -18,6 +18,7 @@
 		7022B3751C98FB050024F75B /* TaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7022B3741C98FB050024F75B /* TaskListViewController.swift */; };
 		7022B37E1C9913220024F75B /* DemoTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7022B37D1C9913220024F75B /* DemoTasks.swift */; };
 		7022B3801C9913D80024F75B /* TaskListItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7022B37F1C9913D80024F75B /* TaskListItemTableViewCell.swift */; };
+		70ABB1081C99367D00DB1CA4 /* TaskabilityTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70ABB1071C99367D00DB1CA4 /* TaskabilityTabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		7022B3741C98FB050024F75B /* TaskListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListViewController.swift; sourceTree = "<group>"; };
 		7022B37D1C9913220024F75B /* DemoTasks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoTasks.swift; sourceTree = "<group>"; };
 		7022B37F1C9913D80024F75B /* TaskListItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListItemTableViewCell.swift; sourceTree = "<group>"; };
+		70ABB1071C99367D00DB1CA4 /* TaskabilityTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskabilityTabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 		7022B37A1C9912C90024F75B /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				70ABB1071C99367D00DB1CA4 /* TaskabilityTabBarController.swift */,
 				7022B3741C98FB050024F75B /* TaskListViewController.swift */,
 			);
 			name = "View Controllers";
@@ -253,6 +256,7 @@
 			files = (
 				7022B3801C9913D80024F75B /* TaskListItemTableViewCell.swift in Sources */,
 				7022B3481C98A0750024F75B /* AppDelegate.swift in Sources */,
+				70ABB1081C99367D00DB1CA4 /* TaskabilityTabBarController.swift in Sources */,
 				7022B3751C98FB050024F75B /* TaskListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
