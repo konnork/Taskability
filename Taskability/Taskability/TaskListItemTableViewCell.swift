@@ -19,6 +19,11 @@ class TaskListItemTableViewCell: UITableViewCell {
     var isComplete = false {
         didSet {
             checkmark.setImage(UIImage(named: isComplete ? "TaskListItemCheckmark" : "TaskListItemEmptyCheckmark"), forState: .Normal)
+            titleLabel.textColor = isComplete ? UIColor.grayColor() : UIColor.darkTextColor()
+            if isComplete {
+                print("he")
+                titleLabel.attributedText = NSAttributedString(string: "test", attributes: [NSStrikethroughStyleAttributeName: NSUnderlineStyle.StyleThick.rawValue])
+            }
         }
     }
 }

@@ -10,23 +10,6 @@ import UIKit
 
 class TaskabilityTabBarController: UITabBarController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        for tabItem in tabBar.items! {
-            if tabItem.tag == 100 {
-                tabItem.image?.imageWithRenderingMode(.AlwaysOriginal)
-            }
-        }
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
 

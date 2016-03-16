@@ -13,15 +13,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
-        UIGraphicsBeginImageContext(self.window!.frame.size)
-        UIImage(named: "WindowBackground")!.drawInRect(self.window!.bounds)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        self.window?.backgroundColor = UIColor(patternImage: image)
-
-        UITabBar.appearance().tintColor = UIColor.whiteColor()
+        UITabBar.appearance().tintColor = UIColor.blackColor()
 
         return true
     }

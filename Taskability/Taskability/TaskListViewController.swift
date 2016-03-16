@@ -27,7 +27,6 @@ class TaskListViewController: UITableViewController {
     // MARK: View Controller Lifecycle
 
     override func viewDidLoad() {
-        tableView.backgroundColor = UIColor.clearColor()
         taskItems = DemoTasks.foodItems
     }
 
@@ -46,11 +45,9 @@ class TaskListViewController: UITableViewController {
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         switch cell {
         case let cell as TaskListItemTableViewCell:
-            cell.backgroundColor = UIColor.clearColor()
             cell.selectionStyle = .None
-            cell.titleLabel.text = taskItems[indexPath.row].title
-            cell.titleLabel.textColor = taskItems[indexPath.row].isComplete ? UIColor.grayColor() : UIColor.whiteColor()
             cell.isComplete = taskItems[indexPath.row].isComplete
+            cell.titleLabel.text = taskItems[indexPath.row].title
         default:
             fatalError("Unknown Cell Type")
         }
