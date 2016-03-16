@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Work-->
@@ -65,7 +66,16 @@
                             <outlet property="delegate" destination="CCi-3b-wkE" id="ZU3-Vb-xuU"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Work" id="04t-yc-lKe"/>
+                    <navigationItem key="navigationItem" title="Work" id="04t-yc-lKe">
+                        <rightBarButtonItems>
+                            <barButtonItem image="SearchBarButton" style="plain" id="Gcy-C9-OSW">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </barButtonItem>
+                            <barButtonItem image="ShareBarButton" style="plain" id="p3X-c6-Drp">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DtS-wc-fXf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -214,8 +224,10 @@
         <image name="AddTaskItemTab" width="45" height="46"/>
         <image name="CalendarTab-Active" width="23" height="22"/>
         <image name="CalendarTab-Inactive" width="23" height="22"/>
+        <image name="SearchBarButton" width="22" height="22"/>
         <image name="SettingsTab-Active" width="21" height="21"/>
         <image name="SettingsTab-Inactive" width="21" height="21"/>
+        <image name="ShareBarButton" width="24" height="19"/>
         <image name="TaskListItemCheckmark" width="40" height="40"/>
         <image name="TaskListsTab-Active" width="21" height="19"/>
         <image name="TaskListsTab-Inactive" width="21" height="19"/>
