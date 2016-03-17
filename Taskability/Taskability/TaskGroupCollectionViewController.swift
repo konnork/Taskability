@@ -31,6 +31,7 @@ class TaskGroupCollectionViewController: UICollectionViewController {
     // MARK: View Lifecycle
 
     override func viewDidLoad() {
+        collectionView?.backgroundColor = UIColor(red: 245/255, green: 244/255, blue: 245/255, alpha: 1.0)
         taskGroups = DemoTasks.demoGroups
     }
 
@@ -47,7 +48,7 @@ class TaskGroupCollectionViewController: UICollectionViewController {
     // MARK: UICollectionViewDelegate
 
     override func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
-        cell.backgroundColor = UIColor.redColor()
+        cell.backgroundColor = UIColor.grayColor()
     }
 
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
