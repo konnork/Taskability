@@ -4,7 +4,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Food-->
@@ -23,40 +22,43 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="69.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oJr-vt-Cfv">
-                                            <rect key="frame" x="80" y="24" width="84" height="20.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oJr-vt-Cfv" customClass="StrikethroughLabel" customModule="Taskability" customModuleProvider="target">
+                                            <rect key="frame" x="95" y="24" width="84" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WoE-Qa-tUr">
-                                            <rect key="frame" x="20" y="15" width="40" height="40"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ayt-6A-2aj" customClass="Checkmark" customModule="Taskability" customModuleProvider="target">
+                                            <rect key="frame" x="20" y="10" width="50" height="50"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" secondItem="WoE-Qa-tUr" secondAttribute="height" multiplier="1:1" id="TaC-dw-k8e"/>
-                                                <constraint firstAttribute="width" constant="40" id="kOV-77-G7W"/>
+                                                <constraint firstAttribute="width" secondItem="Ayt-6A-2aj" secondAttribute="height" multiplier="1:1" id="3W2-FV-pca"/>
+                                                <constraint firstAttribute="width" constant="50" id="Wbx-Sl-gn4"/>
                                             </constraints>
-                                            <state key="normal" image="TaskListItemCheckmark"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isFilled" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="unfilledColor">
+                                                    <color key="value" red="0.78431372549019607" green="0.78431372549019607" blue="0.792156862745098" alpha="1" colorSpace="calibratedRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="filledColor">
+                                                    <color key="value" red="0.24313725490196078" green="0.80000000000000004" blue="0.71372549019607845" alpha="1" colorSpace="calibratedRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                             <connections>
-                                                <action selector="checkmarkTapped:" destination="CCi-3b-wkE" eventType="touchUpInside" id="cHz-fe-JJR"/>
+                                                <action selector="checkmarkTapped:" destination="CCi-3b-wkE" eventType="touchUpInside" id="HQT-iL-tav"/>
                                             </connections>
-                                        </button>
+                                        </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="oJr-vt-Cfv" firstAttribute="centerY" secondItem="WoE-Qa-tUr" secondAttribute="centerY" id="17o-MC-LTG"/>
-                                        <constraint firstItem="oJr-vt-Cfv" firstAttribute="leading" secondItem="WoE-Qa-tUr" secondAttribute="trailing" constant="20" id="1kF-s5-tCU"/>
-                                        <constraint firstItem="WoE-Qa-tUr" firstAttribute="centerY" secondItem="sHi-WT-dzi" secondAttribute="centerY" id="K6K-lQ-qcH"/>
-                                        <constraint firstAttribute="leadingMargin" secondItem="WoE-Qa-tUr" secondAttribute="leading" id="MPJ-NJ-1Qu"/>
-                                        <constraint firstItem="WoE-Qa-tUr" firstAttribute="leading" secondItem="sHi-WT-dzi" secondAttribute="leading" constant="20" id="cAD-7w-NyF"/>
+                                        <constraint firstItem="Ayt-6A-2aj" firstAttribute="centerY" secondItem="sHi-WT-dzi" secondAttribute="centerY" id="8c0-qE-hSm"/>
+                                        <constraint firstItem="Ayt-6A-2aj" firstAttribute="leading" secondItem="sHi-WT-dzi" secondAttribute="leading" constant="20" id="G5D-au-avE"/>
+                                        <constraint firstItem="oJr-vt-Cfv" firstAttribute="leading" secondItem="Ayt-6A-2aj" secondAttribute="trailing" constant="25" id="YWs-Ia-arx"/>
+                                        <constraint firstItem="oJr-vt-Cfv" firstAttribute="centerY" secondItem="Ayt-6A-2aj" secondAttribute="centerY" id="gvj-Ds-r7X"/>
                                     </constraints>
-                                    <variation key="default">
-                                        <mask key="constraints">
-                                            <exclude reference="MPJ-NJ-1Qu"/>
-                                        </mask>
-                                    </variation>
                                 </tableViewCellContentView>
                                 <inset key="separatorInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
                                 <connections>
-                                    <outlet property="checkmark" destination="WoE-Qa-tUr" id="HMT-96-KTG"/>
+                                    <outlet property="checkmark" destination="Ayt-6A-2aj" id="XR7-gq-Q7y"/>
                                     <outlet property="titleLabel" destination="oJr-vt-Cfv" id="paU-O8-es8"/>
                                 </connections>
                             </tableViewCell>
@@ -220,7 +222,6 @@
         <image name="CalendarTab-Inactive" width="23" height="22"/>
         <image name="SettingsTab-Active" width="21" height="21"/>
         <image name="SettingsTab-Inactive" width="21" height="21"/>
-        <image name="TaskListItemCheckmark" width="40" height="40"/>
         <image name="TaskListsTab-Active" width="21" height="19"/>
         <image name="TaskListsTab-Inactive" width="21" height="19"/>
         <image name="TimelineTab-Active" width="23" height="24"/>

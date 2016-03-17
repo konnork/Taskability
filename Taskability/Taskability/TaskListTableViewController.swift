@@ -67,7 +67,7 @@ class TaskListTableViewController: UITableViewController {
 
     // MARK: IBActions
 
-    @IBAction func checkmarkTapped(sender: UIButton) {
+    @IBAction func checkmarkTapped(sender: Checkmark) {
         let tapLocation = tableView.convertPoint(sender.bounds.origin, fromView: sender)
         if let indexPath = tableView.indexPathForRowAtPoint(tapLocation) {
             taskItems[indexPath.row].isComplete = !taskItems[indexPath.row].isComplete

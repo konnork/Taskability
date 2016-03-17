@@ -12,18 +12,16 @@ class TaskListItemTableViewCell: UITableViewCell {
 
     // MARK: Properties
 
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var titleLabel: StrikethroughLabel!
 
-    @IBOutlet weak var checkmark: UIButton!
+    @IBOutlet weak var checkmark: Checkmark!
 
     var isComplete = false {
         didSet {
-            checkmark.setImage(UIImage(named: isComplete ? "TaskListItemCheckmark" : "TaskListItemEmptyCheckmark"), forState: .Normal)
+            checkmark.isFilled = isComplete
+            titleLabel.shouldStrike = isComplete
             titleLabel.textColor = isComplete ? UIColor.grayColor() : UIColor.darkTextColor()
-            if isComplete {
-                print("he")
-                titleLabel.attributedText = NSAttributedString(string: "test", attributes: [NSStrikethroughStyleAttributeName: NSUnderlineStyle.StyleThick.rawValue])
-            }
+            titleLabel.text = "complete"
         }
     }
 }
