@@ -1,5 +1,5 @@
 //
-//  ListViewController.swift
+//  TaskListTableViewController.swift
 //  Taskability
 //
 //  Created by Connor Krupp on 15/03/2016.
@@ -9,7 +9,7 @@
 import UIKit
 import TaskabilityKit
 
-class TaskListViewController: UITableViewController {
+class TaskListTableViewController: UITableViewController {
 
     // MARK: Types
 
@@ -38,6 +38,18 @@ class TaskListViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         return tableView.dequeueReusableCellWithIdentifier(MainStoryboard.TableViewCellIdentifiers.taskListItemCell, forIndexPath: indexPath)
+    }
+
+    /// Temporary solution
+    /// Will replace by customizing TaskListItemTableViewCell to implemenet PanGestureRecognizer and an animated CAShapeLayer underneath
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        let deleteButton = UITableViewRowAction(style: .Default, title: "Delete", handler: { _, indexPath in
+            self.taskItems.removeAtIndex(indexPath.row)
+            self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        })
+        deleteButton.backgroundColor = UIColor(red: 80/255, green: 210/255, blue: 194/255, alpha: 1.0)
+
+        return [deleteButton]
     }
 
     // MARK: UITableViewDelegate

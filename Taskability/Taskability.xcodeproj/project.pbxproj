@@ -15,7 +15,7 @@
 		7022B3651C98A3490024F75B /* TaskabilityKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7022B35E1C98A3490024F75B /* TaskabilityKit.framework */; };
 		7022B3661C98A3490024F75B /* TaskabilityKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7022B35E1C98A3490024F75B /* TaskabilityKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7022B36C1C98A35F0024F75B /* TaskItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7022B36B1C98A35F0024F75B /* TaskItem.swift */; };
-		7022B3751C98FB050024F75B /* TaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7022B3741C98FB050024F75B /* TaskListViewController.swift */; };
+		7022B3751C98FB050024F75B /* TaskListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7022B3741C98FB050024F75B /* TaskListTableViewController.swift */; };
 		7022B37E1C9913220024F75B /* DemoTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7022B37D1C9913220024F75B /* DemoTasks.swift */; };
 		7022B3801C9913D80024F75B /* TaskListItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7022B37F1C9913D80024F75B /* TaskListItemTableViewCell.swift */; };
 		70ABB1081C99367D00DB1CA4 /* TaskabilityTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70ABB1071C99367D00DB1CA4 /* TaskabilityTabBarController.swift */; };
@@ -56,7 +56,7 @@
 		7022B3601C98A3490024F75B /* TaskabilityKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskabilityKit.h; sourceTree = "<group>"; };
 		7022B3621C98A3490024F75B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7022B36B1C98A35F0024F75B /* TaskItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskItem.swift; sourceTree = "<group>"; };
-		7022B3741C98FB050024F75B /* TaskListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListViewController.swift; sourceTree = "<group>"; };
+		7022B3741C98FB050024F75B /* TaskListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListTableViewController.swift; sourceTree = "<group>"; };
 		7022B37D1C9913220024F75B /* DemoTasks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoTasks.swift; sourceTree = "<group>"; };
 		7022B37F1C9913D80024F75B /* TaskListItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListItemTableViewCell.swift; sourceTree = "<group>"; };
 		70ABB1071C99367D00DB1CA4 /* TaskabilityTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskabilityTabBarController.swift; sourceTree = "<group>"; };
@@ -128,7 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				70ABB1071C99367D00DB1CA4 /* TaskabilityTabBarController.swift */,
-				7022B3741C98FB050024F75B /* TaskListViewController.swift */,
+				7022B3741C98FB050024F75B /* TaskListTableViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -257,7 +257,7 @@
 				7022B3801C9913D80024F75B /* TaskListItemTableViewCell.swift in Sources */,
 				7022B3481C98A0750024F75B /* AppDelegate.swift in Sources */,
 				70ABB1081C99367D00DB1CA4 /* TaskabilityTabBarController.swift in Sources */,
-				7022B3751C98FB050024F75B /* TaskListViewController.swift in Sources */,
+				7022B3751C98FB050024F75B /* TaskListTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
