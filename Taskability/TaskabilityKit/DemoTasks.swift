@@ -20,6 +20,9 @@ public struct DemoTasks {
         TaskItem(title: "Banana", isComplete: true),
         TaskItem(title: "Carrot", isComplete: false),
         TaskItem(title: "Donut", isComplete: false),
+        TaskItem(title: "Chips", isComplete: false),
+        TaskItem(title: "Salsa", isComplete: false),
+        TaskItem(title: "Ice Cream", isComplete: false),
         TaskItem(title: "Elephant Ear", isComplete: true)
     ]
 

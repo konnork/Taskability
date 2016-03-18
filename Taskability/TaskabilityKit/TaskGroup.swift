@@ -8,7 +8,14 @@
 
 import Foundation
 
-public struct TaskGroup {
+public class TaskGroup: NSObject, NSCoding {
+
+    // MARK: Types
+
+    struct PropertyKey {
+        static let titleKey = "title"
+        static let tasksKey = "tasks"
+    }
 
     // MARK: Properties
 
@@ -24,4 +31,17 @@ public struct TaskGroup {
         self.title = title
         self.tasks = tasks
     }
+
+    // MARK: NSCoding
+    
+    public required init(coder aDecoder: NSCoder) {
+        title = aDecoder.decodeObjectForKey(PropertyKey.titleKey) as! String
+        tasks = aDecoder.decodeObjectForKey(PropertyKey.tasksKey) as! [TaskItem]
+    }
+    
+    public func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(title, forKey: PropertyKey.titleKey)
+        aCoder.encodeObject(tasks, forKey: PropertyKey.tasksKey)
+    }
+
 }

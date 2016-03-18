@@ -23,11 +23,6 @@ public class TaskItem: NSObject, NSCoding {
         static let isCompleteKey = "isComplete"
     }
 
-    // MARK: Archiving Paths
-
-    static public let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
-    static public let ArchiveURL = DocumentsDirectory.URLByAppendingPathComponent("groups")
-
     /**
      Initializes a TaskItem instance with designated title
 

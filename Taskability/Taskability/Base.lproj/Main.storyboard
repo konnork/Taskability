@@ -14,9 +14,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableHeaderView" clipsSubviews="YES" contentMode="scaleToFill" id="dT3-kt-nco">
+                            <rect key="frame" x="0.0" y="64" width="600" height="160"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TaskGroupHeaderBackground" translatesAutoresizingMaskIntoConstraints="NO" id="uSP-g9-dxe">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="160"/>
+                                </imageView>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ZTZ-zh-Ztm">
+                                    <rect key="frame" x="25" y="44" width="138.5" height="72.5"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 Groups" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ykR-t5-ncx">
+                                            <rect key="frame" x="0.0" y="0.0" width="138.5" height="42"/>
+                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="35"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="17 Tasks" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YB0-nX-uqC">
+                                            <rect key="frame" x="0.0" y="52" width="65" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="uSP-g9-dxe" firstAttribute="height" secondItem="dT3-kt-nco" secondAttribute="height" id="6Yr-nn-bUI"/>
+                                <constraint firstItem="uSP-g9-dxe" firstAttribute="centerX" secondItem="dT3-kt-nco" secondAttribute="centerX" id="7nA-89-jp0"/>
+                                <constraint firstItem="ZTZ-zh-Ztm" firstAttribute="centerY" secondItem="dT3-kt-nco" secondAttribute="centerY" id="ELN-Qq-9Gn"/>
+                                <constraint firstItem="ZTZ-zh-Ztm" firstAttribute="leading" secondItem="dT3-kt-nco" secondAttribute="leading" constant="25" id="FkE-dk-pSA"/>
+                                <constraint firstItem="uSP-g9-dxe" firstAttribute="centerY" secondItem="dT3-kt-nco" secondAttribute="centerY" id="KEn-Ox-QZK"/>
+                                <constraint firstItem="uSP-g9-dxe" firstAttribute="width" secondItem="dT3-kt-nco" secondAttribute="width" id="mgD-lt-q07"/>
+                            </constraints>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="taskGroupCell" id="iuf-Iy-yeh" customClass="TaskGroupTableViewCell" customModule="Taskability" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="600" height="120"/>
+                                <rect key="frame" x="0.0" y="252" width="600" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iuf-Iy-yeh" id="o70-31-MzB">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="119.5"/>
@@ -288,6 +323,7 @@
         <image name="CalendarTabIcon" width="23" height="22"/>
         <image name="SettingsTab-Active" width="21" height="21"/>
         <image name="SettingsTab-Inactive" width="21" height="21"/>
+        <image name="TaskGroupHeaderBackground" width="750" height="400"/>
         <image name="TaskListsTab-Active" width="21" height="19"/>
         <image name="TaskListsTab-Inactive" width="21" height="19"/>
         <image name="TimelineTab-Active" width="23" height="24"/>

@@ -15,6 +15,7 @@ class TaskGroupsTableViewController: UITableViewController {
 
     struct MainStoryboard {
         struct CellIdentifiers {
+            static let taskGroupHeaderCell = "taskGroupHeaderCell"
             static let taskGroupCell = "taskGroupCell"
         }
 
@@ -35,7 +36,14 @@ class TaskGroupsTableViewController: UITableViewController {
 
         tableView.backgroundColor = UIColor(red: 248/255, green: 248/255, blue: 248/255, alpha: 1.0)
         tableView.tableFooterView = UIView()
-        taskGroups = DemoTasks.demoGroups
+
+        if let taskGroups = loadTaskGroups() {
+            self.taskGroups += taskGroups
+        } else {
+            self.taskGroups = DemoTasks.demoGroups
+            saveTaskGroups()
+        }
+
     }
 
     // MARK: UICollectionViewDataSource
@@ -45,7 +53,8 @@ class TaskGroupsTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCellWithIdentifier(MainStoryboard.CellIdentifiers.taskGroupCell, forIndexPath: indexPath)
+        let identifier = MainStoryboard.CellIdentifiers.taskGroupCell
+        return tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath)
     }
 
     // MARK: UICollectionViewDelegate
@@ -71,6 +80,20 @@ class TaskGroupsTableViewController: UITableViewController {
         default:
             fatalError("Unknown Segue")
         }
+    }
+
+    // MARK: NSCoding
+
+    func saveTaskGroups() {
+        let archiveUrl = try! NSFileManager().URLForDirectory(.DocumentDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: true).URLByAppendingPathComponent("taskGroups")
+
+        NSKeyedArchiver.archiveRootObject(taskGroups, toFile: archiveUrl.path!)
+    }
+
+    func loadTaskGroups() -> [TaskGroup]? {
+        let archiveUrl = try! NSFileManager().URLForDirectory(.DocumentDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: true).URLByAppendingPathComponent("taskGroups")
+
+        return NSKeyedUnarchiver.unarchiveObjectWithFile(archiveUrl.path!) as? [TaskGroup]
     }
 
 }

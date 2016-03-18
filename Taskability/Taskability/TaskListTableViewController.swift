@@ -77,7 +77,4 @@ class TaskListTableViewController: UITableViewController {
         }
     }
 
-    func loadTasks() -> [TaskItem]? {
-        return NSKeyedUnarchiver.unarchiveObjectWithFile(TaskItem.ArchiveURL.path!) as? [TaskItem]
-    }
 }
