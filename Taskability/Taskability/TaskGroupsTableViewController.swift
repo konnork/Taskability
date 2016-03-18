@@ -9,7 +9,7 @@
 import UIKit
 import TaskabilityKit
 
-class TaskGroupsTableViewController: UITableViewController {
+class TaskGroupsTableViewController: UITableViewController, TaskListTableViewControllerDelegate {
 
     // MARK: Types
 
@@ -40,6 +40,7 @@ class TaskGroupsTableViewController: UITableViewController {
         if let taskGroups = loadTaskGroups() {
             self.taskGroups += taskGroups
         } else {
+            print("loading default")
             self.taskGroups = DemoTasks.demoGroups
             saveTaskGroups()
         }
@@ -76,6 +77,7 @@ class TaskGroupsTableViewController: UITableViewController {
         case MainStoryboard.SegueIdentifier.showTaskList:
             let taskListTableViewController = segue.destinationViewController as! TaskListTableViewController
             self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+            taskListTableViewController.delegate = self
             taskListTableViewController.taskGroup = taskGroups[tableView.indexPathForSelectedRow!.row]
         default:
             fatalError("Unknown Segue")
@@ -85,15 +87,20 @@ class TaskGroupsTableViewController: UITableViewController {
     // MARK: NSCoding
 
     func saveTaskGroups() {
-        let archiveUrl = try! NSFileManager().URLForDirectory(.DocumentDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: true).URLByAppendingPathComponent("taskGroups")
-
-        NSKeyedArchiver.archiveRootObject(taskGroups, toFile: archiveUrl.path!)
+        NSKeyedArchiver.archiveRootObject(taskGroups, toFile: TaskGroup.ArchiveUrl.path!)
     }
 
     func loadTaskGroups() -> [TaskGroup]? {
-        let archiveUrl = try! NSFileManager().URLForDirectory(.DocumentDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: true).URLByAppendingPathComponent("taskGroups")
+        return NSKeyedUnarchiver.unarchiveObjectWithFile(TaskGroup.ArchiveUrl.path!) as? [TaskGroup]
+    }
 
-        return NSKeyedUnarchiver.unarchiveObjectWithFile(archiveUrl.path!) as? [TaskGroup]
+    // MARK: TaskListTableViewDelegate
+
+    func didRemoveTaskItem(taskItem: TaskItem, inTaskGroup taskGroup: TaskGroup) {
+        let selectedIndexPath = tableView.indexPathForSelectedRow!
+        taskGroups[selectedIndexPath.row] = taskGroup
+        tableView.reloadRowsAtIndexPaths([selectedIndexPath], withRowAnimation: .Automatic)
+        saveTaskGroups()
     }
 
 }

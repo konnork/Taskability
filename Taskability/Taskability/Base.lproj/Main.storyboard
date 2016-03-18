@@ -252,6 +252,52 @@
             </objects>
             <point key="canvasLocation" x="1257" y="1166"/>
         </scene>
+        <!--Add Task Item View Controller-->
+        <scene sceneID="lJr-xu-cdR">
+            <objects>
+                <viewController id="noT-0L-fLa" customClass="AddTaskItemViewController" customModule="Taskability" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="SJT-tl-pku"/>
+                        <viewControllerLayoutGuide type="bottom" id="w9C-Yc-Kbr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vB1-E0-Efy">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="siy-Mx-Dkx">
+                                <rect key="frame" x="38" y="112" width="244" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vaf-L1-UhR">
+                                <rect key="frame" x="236" y="268" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BCI-rm-A9x">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="2lf-13-f7w">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="T53-dt-th1">
+                                            <connections>
+                                                <action selector="cancelAction:" destination="noT-0L-fLa" id="OLC-Tc-GRY"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="BCI-rm-A9x" firstAttribute="top" secondItem="SJT-tl-pku" secondAttribute="bottom" constant="-20" id="oJr-rw-qel"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="BCI-rm-A9x" secondAttribute="trailing" constant="-20" id="uGX-ua-aoR"/>
+                            <constraint firstItem="BCI-rm-A9x" firstAttribute="leading" secondItem="vB1-E0-Efy" secondAttribute="leadingMargin" constant="-20" id="xuM-Rc-13s"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BwF-cC-m2d" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="632" y="-337"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="HIK-gp-98o">
             <objects>
@@ -311,6 +357,7 @@
                         <segue destination="TFR-up-IrS" kind="relationship" relationship="viewControllers" id="5vg-7j-HUT"/>
                         <segue destination="UjT-JM-Rlo" kind="relationship" relationship="viewControllers" id="wsB-1t-WS1"/>
                         <segue destination="6rr-8P-mdo" kind="relationship" relationship="viewControllers" id="9OV-hh-Vba"/>
+                        <segue destination="noT-0L-fLa" kind="presentation" identifier="addTaskItem" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="t5J-yS-NpC"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hwN-jx-hov" userLabel="First Responder" sceneMemberID="firstResponder"/>

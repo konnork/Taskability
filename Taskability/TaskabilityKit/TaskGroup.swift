@@ -17,6 +17,11 @@ public class TaskGroup: NSObject, NSCoding {
         static let tasksKey = "tasks"
     }
 
+    // MARK: Archiving Paths
+
+    static let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
+    static public let ArchiveUrl = DocumentsDirectory.URLByAppendingPathComponent("taskGroups")
+
     // MARK: Properties
 
     public var tasks = [TaskItem]()

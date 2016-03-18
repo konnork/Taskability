@@ -9,6 +9,10 @@
 import UIKit
 import TaskabilityKit
 
+protocol TaskListTableViewControllerDelegate: class {
+    func didRemoveTaskItem(taskItem: TaskItem, inTaskGroup taskGroup: TaskGroup)
+}
+
 class TaskListTableViewController: UITableViewController {
 
     // MARK: Types
@@ -23,6 +27,8 @@ class TaskListTableViewController: UITableViewController {
     // MARK: Properties
 
     var taskGroup: TaskGroup!
+
+    weak var delegate: TaskListTableViewControllerDelegate?
 
     // MARK: View Lifecycle
 
@@ -46,12 +52,18 @@ class TaskListTableViewController: UITableViewController {
     /// Will replace by customizing TaskListItemTableViewCell to implemenet PanGestureRecognizer and an animated CAShapeLayer underneath
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         let deleteButton = UITableViewRowAction(style: .Default, title: "Delete", handler: { _, indexPath in
-            self.taskGroup.tasks.removeAtIndex(indexPath.row)
-            self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            self.deleteTaskItemAtIndexPath(indexPath)
         })
         deleteButton.backgroundColor = UIColor(red: 80/255, green: 210/255, blue: 194/255, alpha: 1.0)
 
         return [deleteButton]
+    }
+
+    func deleteTaskItemAtIndexPath(indexPath: NSIndexPath) {
+        let taskDeleted = self.taskGroup.tasks[indexPath.row]
+        self.taskGroup.tasks.removeAtIndex(indexPath.row)
+        self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        self.delegate?.didRemoveTaskItem(taskDeleted, inTaskGroup: self.taskGroup)
     }
 
     // MARK: UITableViewDelegate

@@ -23,6 +23,7 @@
 		7022B3751C98FB050024F75B /* TaskListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7022B3741C98FB050024F75B /* TaskListTableViewController.swift */; };
 		7022B37E1C9913220024F75B /* DemoTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7022B37D1C9913220024F75B /* DemoTasks.swift */; };
 		7022B3801C9913D80024F75B /* TaskListItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7022B37F1C9913D80024F75B /* TaskListItemTableViewCell.swift */; };
+		7026B8931C9C7C5E0074ACD8 /* AddTaskItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7026B8921C9C7C5E0074ACD8 /* AddTaskItemViewController.swift */; };
 		70ABB1081C99367D00DB1CA4 /* TaskabilityTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70ABB1071C99367D00DB1CA4 /* TaskabilityTabBarController.swift */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +70,7 @@
 		7022B3741C98FB050024F75B /* TaskListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListTableViewController.swift; sourceTree = "<group>"; };
 		7022B37D1C9913220024F75B /* DemoTasks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoTasks.swift; sourceTree = "<group>"; };
 		7022B37F1C9913D80024F75B /* TaskListItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListItemTableViewCell.swift; sourceTree = "<group>"; };
+		7026B8921C9C7C5E0074ACD8 /* AddTaskItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTaskItemViewController.swift; sourceTree = "<group>"; };
 		70ABB1071C99367D00DB1CA4 /* TaskabilityTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskabilityTabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -141,6 +143,7 @@
 				70ABB1071C99367D00DB1CA4 /* TaskabilityTabBarController.swift */,
 				7017DEF71C9B10B0007CEEEA /* TaskGroupsTableViewController.swift */,
 				7022B3741C98FB050024F75B /* TaskListTableViewController.swift */,
+				7026B8921C9C7C5E0074ACD8 /* AddTaskItemViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 				7022B3801C9913D80024F75B /* TaskListItemTableViewCell.swift in Sources */,
 				7017DEFC1C9B43F0007CEEEA /* TaskGroupTableViewCell.swift in Sources */,
 				7022B3481C98A0750024F75B /* AppDelegate.swift in Sources */,
+				7026B8931C9C7C5E0074ACD8 /* AddTaskItemViewController.swift in Sources */,
 				7017DEF61C9AA1EC007CEEEA /* StrikethroughLabel.swift in Sources */,
 				70ABB1081C99367D00DB1CA4 /* TaskabilityTabBarController.swift in Sources */,
 				7017DEF41C9A8CE5007CEEEA /* Checkmark.swift in Sources */,
