@@ -27,6 +27,8 @@ class TaskListTableViewController: UITableViewController {
     // MARK: View Lifecycle
 
     override func viewDidLoad() {
+        tableView.tableFooterView = UIView()
+        tableView.backgroundColor = UIColor(red: 248/255, green: 248/255, blue: 248/255, alpha: 1.0)
         self.title = taskGroup.title
     }
 
@@ -73,5 +75,9 @@ class TaskListTableViewController: UITableViewController {
             taskGroup.tasks[indexPath.row].isComplete = !taskGroup.tasks[indexPath.row].isComplete
             tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
         }
+    }
+
+    func loadTasks() -> [TaskItem]? {
+        return NSKeyedUnarchiver.unarchiveObjectWithFile(TaskItem.ArchiveURL.path!) as? [TaskItem]
     }
 }
