@@ -9,6 +9,10 @@
 import UIKit
 import TaskabilityKit
 
+protocol TaskListTableViewControllerDelegate: class {
+    func didRemoveTaskItem(taskItem: TaskItem, inTaskGroup taskGroup: TaskGroup)
+}
+
 class TaskListTableViewController: UITableViewController {
 
     // MARK: Types
@@ -22,18 +26,22 @@ class TaskListTableViewController: UITableViewController {
 
     // MARK: Properties
 
-    var taskItems = [TaskItem]()
+    var taskGroup: TaskGroup!
 
-    // MARK: View Controller Lifecycle
+    weak var delegate: TaskListTableViewControllerDelegate?
+
+    // MARK: View Lifecycle
 
     override func viewDidLoad() {
-        taskItems = DemoTasks.foodItems
+        tableView.tableFooterView = UIView()
+        tableView.backgroundColor = UIColor(red: 248/255, green: 248/255, blue: 248/255, alpha: 1.0)
+        self.title = taskGroup.title
     }
 
     // MARK: UITableViewDataSource
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return taskItems.count
+        return taskGroup.tasks.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -44,12 +52,18 @@ class TaskListTableViewController: UITableViewController {
     /// Will replace by customizing TaskListItemTableViewCell to implemenet PanGestureRecognizer and an animated CAShapeLayer underneath
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         let deleteButton = UITableViewRowAction(style: .Default, title: "Delete", handler: { _, indexPath in
-            self.taskItems.removeAtIndex(indexPath.row)
-            self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            self.deleteTaskItemAtIndexPath(indexPath)
         })
         deleteButton.backgroundColor = UIColor(red: 80/255, green: 210/255, blue: 194/255, alpha: 1.0)
 
         return [deleteButton]
+    }
+
+    func deleteTaskItemAtIndexPath(indexPath: NSIndexPath) {
+        let taskDeleted = self.taskGroup.tasks[indexPath.row]
+        self.taskGroup.tasks.removeAtIndex(indexPath.row)
+        self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        self.delegate?.didRemoveTaskItem(taskDeleted, inTaskGroup: self.taskGroup)
     }
 
     // MARK: UITableViewDelegate
@@ -58,8 +72,8 @@ class TaskListTableViewController: UITableViewController {
         switch cell {
         case let cell as TaskListItemTableViewCell:
             cell.selectionStyle = .None
-            cell.isComplete = taskItems[indexPath.row].isComplete
-            cell.titleLabel.text = taskItems[indexPath.row].title
+            cell.isComplete = taskGroup.tasks[indexPath.row].isComplete
+            cell.titleLabel.text = taskGroup.tasks[indexPath.row].title
         default:
             fatalError("Unknown Cell Type")
         }
@@ -70,8 +84,9 @@ class TaskListTableViewController: UITableViewController {
     @IBAction func checkmarkTapped(sender: Checkmark) {
         let tapLocation = tableView.convertPoint(sender.bounds.origin, fromView: sender)
         if let indexPath = tableView.indexPathForRowAtPoint(tapLocation) {
-            taskItems[indexPath.row].isComplete = !taskItems[indexPath.row].isComplete
+            taskGroup.tasks[indexPath.row].isComplete = !taskGroup.tasks[indexPath.row].isComplete
             tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
         }
     }
+
 }

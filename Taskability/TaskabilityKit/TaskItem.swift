@@ -8,29 +8,20 @@
 
 import Foundation
 
-public struct TaskItem {
+public class TaskItem: NSObject, NSCoding {
 
     // MARK: Properties
 
     /// Title and subtitle describing the task
     public var title: String
-    public var subtitle: String?
-
-    /// When is this task your main focus?
-    public var startDate: NSDate?
-    public var endDate: NSDate?
-
-    /// String representation of task location
-    public var location: String?
-
-    /// Array of reminder dates for push notifications
-    public var reminders = [NSDate]()
 
     /// Is this item completed?
     public var isComplete = false
 
-    /// Unique Identifier
-    private var UUID = NSUUID()
+    struct PropertyKey {
+        static let titleKey = "title"
+        static let isCompleteKey = "isComplete"
+    }
 
     /**
      Initializes a TaskItem instance with designated title
@@ -38,8 +29,8 @@ public struct TaskItem {
       - parameter title: Title of this TaskItem
     */
 
-    public init(title: String) {
-        self.title = title
+    public convenience init(title: String) {
+        self.init(title: title, isComplete: false)
     }
 
     /**
@@ -52,6 +43,23 @@ public struct TaskItem {
     public init(title: String, isComplete: Bool) {
         self.title = title
         self.isComplete = isComplete
+
+        super.init()
+    }
+
+
+    // MARK: NSCoding
+
+    public func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(title, forKey: PropertyKey.titleKey)
+        aCoder.encodeBool(isComplete, forKey: PropertyKey.isCompleteKey)
+    }
+
+    required convenience public init?(coder aDecoder: NSCoder) {
+        let title = aDecoder.decodeObjectForKey(PropertyKey.titleKey) as! String
+        let isComplete = aDecoder.decodeBoolForKey(PropertyKey.isCompleteKey)
+
+        self.init(title: title, isComplete: isComplete)
     }
 
 }

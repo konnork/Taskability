@@ -21,7 +21,6 @@ class TaskListItemTableViewCell: UITableViewCell {
             checkmark.isFilled = isComplete
             titleLabel.shouldStrike = isComplete
             titleLabel.textColor = isComplete ? UIColor.grayColor() : UIColor.darkTextColor()
-            titleLabel.text = "complete"
         }
     }
 }

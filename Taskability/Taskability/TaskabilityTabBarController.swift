@@ -8,10 +8,12 @@
 
 import UIKit
 
-class TaskabilityTabBarController: UITabBarController {
+class TaskabilityTabBarController: UITabBarController, UITabBarControllerDelegate {
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
+
+        self.delegate = self
 
         var tabBarFrame = tabBar.frame
         tabBarFrame.size.height = 67
@@ -20,14 +22,18 @@ class TaskabilityTabBarController: UITabBarController {
 
         if let tabBarItems = tabBar.items {
             let addTaskTabBarImage = UIImage(named: "AddTaskItemTab")?.imageWithRenderingMode(.AlwaysOriginal)
-            let centerItemIndex = tabBarItems.count / 2 // Integer division, 5/2 == 2
+            let centerItemIndex = tabBarItems.count / 2 // Integer division, 5/2 == 2 -> center of 5 elements
             tabBarItems[centerItemIndex].image = addTaskTabBarImage
             tabBarItems[centerItemIndex].selectedImage = addTaskTabBarImage
         }
     }
 
-    override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
-        print(tabBar.selectedItem?.tag)
+    func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool {
+        if tabBar.selectedItem?.tag == 100 {
+            performSegueWithIdentifier("addTaskItem", sender: self)
+            return false
+        }
+        return true
     }
 
 }
