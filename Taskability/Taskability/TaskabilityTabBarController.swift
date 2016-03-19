@@ -22,7 +22,7 @@ class TaskabilityTabBarController: UITabBarController, UITabBarControllerDelegat
 
         if let tabBarItems = tabBar.items {
             let addTaskTabBarImage = UIImage(named: "AddTaskItemTab")?.imageWithRenderingMode(.AlwaysOriginal)
-            let centerItemIndex = tabBarItems.count / 2 // Integer division, 5/2 == 2
+            let centerItemIndex = tabBarItems.count / 2 // Integer division, 5/2 == 2 -> center of 5 elements
             tabBarItems[centerItemIndex].image = addTaskTabBarImage
             tabBarItems[centerItemIndex].selectedImage = addTaskTabBarImage
         }

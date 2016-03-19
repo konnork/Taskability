@@ -26,6 +26,9 @@ class TaskGroupsTableViewController: UITableViewController, TaskListTableViewCon
 
     // MARK: Properties
 
+    @IBOutlet weak var headerTitle: UILabel!
+    @IBOutlet weak var headerSubtitle: UILabel!
+    
     var taskGroups = [TaskGroup]()
 
 
@@ -37,14 +40,16 @@ class TaskGroupsTableViewController: UITableViewController, TaskListTableViewCon
         tableView.backgroundColor = UIColor(red: 248/255, green: 248/255, blue: 248/255, alpha: 1.0)
         tableView.tableFooterView = UIView()
 
+    }
+
+    override func viewWillAppear(animated: Bool) {
         if let taskGroups = loadTaskGroups() {
-            self.taskGroups += taskGroups
-        } else {
-            print("loading default")
-            self.taskGroups = DemoTasks.demoGroups
-            saveTaskGroups()
+            self.taskGroups = taskGroups
         }
 
+        headerTitle.text = "\(taskGroups.count) Groups"
+        headerSubtitle.text = "\(taskGroups.reduce(0) { $0 + $1.tasks.count }) Tasks"
+        tableView.reloadData()
     }
 
     // MARK: UICollectionViewDataSource
