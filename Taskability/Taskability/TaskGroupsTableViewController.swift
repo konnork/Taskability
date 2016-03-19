@@ -83,6 +83,7 @@ class TaskGroupsTableViewController: UITableViewController, TaskListTableViewCon
             let taskListTableViewController = segue.destinationViewController as! TaskListTableViewController
             self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
             taskListTableViewController.delegate = self
+            selectedIndexPath = tableView.indexPathForSelectedRow!
             taskListTableViewController.taskGroup = taskGroups[tableView.indexPathForSelectedRow!.row]
         default:
             fatalError("Unknown Segue")
@@ -101,8 +102,14 @@ class TaskGroupsTableViewController: UITableViewController, TaskListTableViewCon
 
     // MARK: TaskListTableViewDelegate
 
+    var selectedIndexPath = NSIndexPath()
     func didRemoveTaskItem(taskItem: TaskItem, inTaskGroup taskGroup: TaskGroup) {
-        let selectedIndexPath = tableView.indexPathForSelectedRow!
+        taskGroups[selectedIndexPath.row] = taskGroup
+        tableView.reloadRowsAtIndexPaths([selectedIndexPath], withRowAnimation: .Automatic)
+        saveTaskGroups()
+    }
+
+    func didUpdateTaskItem(taskItem: TaskItem, inTaskGroup taskGroup: TaskGroup) {
         taskGroups[selectedIndexPath.row] = taskGroup
         tableView.reloadRowsAtIndexPaths([selectedIndexPath], withRowAnimation: .Automatic)
         saveTaskGroups()

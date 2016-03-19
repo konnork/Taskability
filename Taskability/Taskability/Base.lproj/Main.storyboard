@@ -367,7 +367,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ne2-uy-Mze">
                                                     <rect key="frame" x="30" y="10" width="540" height="50"/>
                                                     <subviews>
-                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="TITLE" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nTR-7L-0ZR">
+                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="TITLE" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nTR-7L-0ZR" customClass="CKTextField" customModule="Taskability" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="540" height="50"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="50" id="zW5-zI-rJJ"/>
@@ -395,7 +395,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bgJ-BV-Ahm">
                                                     <rect key="frame" x="30" y="10" width="540" height="50"/>
                                                     <subviews>
-                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="GROUP" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ohk-Dx-YK7">
+                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="GROUP" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ohk-Dx-YK7" customClass="CKTextField" customModule="Taskability" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="540" height="50"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="50" id="brY-P8-MdX"/>

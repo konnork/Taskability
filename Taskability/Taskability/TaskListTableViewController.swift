@@ -11,6 +11,7 @@ import TaskabilityKit
 
 protocol TaskListTableViewControllerDelegate: class {
     func didRemoveTaskItem(taskItem: TaskItem, inTaskGroup taskGroup: TaskGroup)
+    func didUpdateTaskItem(taskItem: TaskItem, inTaskGroup taskGroup: TaskGroup)
 }
 
 class TaskListTableViewController: UITableViewController {
@@ -86,6 +87,7 @@ class TaskListTableViewController: UITableViewController {
         if let indexPath = tableView.indexPathForRowAtPoint(tapLocation) {
             taskGroup.tasks[indexPath.row].isComplete = !taskGroup.tasks[indexPath.row].isComplete
             tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            self.delegate?.didUpdateTaskItem(taskGroup.tasks[indexPath.row], inTaskGroup: self.taskGroup)
         }
     }
 
