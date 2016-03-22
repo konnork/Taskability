@@ -9,7 +9,8 @@
 import Foundation
 import CoreData
 
-class TaskItem: NSManagedObject {
+@objc(TaskItem)
+public class TaskItem: NSManagedObject {
 
     @NSManaged var title: String?
     @NSManaged var isComplete: NSNumber?

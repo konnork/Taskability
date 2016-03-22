@@ -9,7 +9,8 @@
 import Foundation
 import CoreData
 
-class TaskGroup: NSManagedObject {
+@objc(TaskGroup)
+public class TaskGroup: NSManagedObject {
 
     @NSManaged var title: String?
     @NSManaged var tasks: TaskItem?
