@@ -42,24 +42,8 @@ class AddTaskTableViewController: UITableViewController {
     }
 
     @IBAction func doneAction(sender: UIBarButtonItem) {
-        saveTask(TaskItem(title: titleTextField.text!))
         dismissViewControllerAnimated(true, completion: nil)
     }
 
-    // Just bootstrapping this
-    func saveTask(task: TaskItem) {
-        var taskGroups = NSKeyedUnarchiver.unarchiveObjectWithFile(TaskGroup.ArchiveUrl.path!) as? [TaskGroup]
-        if let groups = taskGroups {
-            if let index = groups.indexOf({ $0.title == groupTextField.text!}) {
-                taskGroups![index].tasks.append(task)
-            } else {
-                taskGroups!.append(TaskGroup(title: groupTextField.text!, tasks: [task]))
-            }
-        } else {
-            taskGroups = [TaskGroup(title: groupTextField.text!, tasks: [task])]
-        }
 
-        NSKeyedArchiver.archiveRootObject(taskGroups!, toFile: TaskGroup.ArchiveUrl.path!)
-
-    }
 }

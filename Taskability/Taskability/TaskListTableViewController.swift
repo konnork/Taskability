@@ -10,8 +10,8 @@ import UIKit
 import TaskabilityKit
 
 protocol TaskListTableViewControllerDelegate: class {
-    func didRemoveTaskItem(taskItem: TaskItem, inTaskGroup taskGroup: TaskGroup)
-    func didUpdateTaskItem(taskItem: TaskItem, inTaskGroup taskGroup: TaskGroup)
+    //func didRemoveTaskItem(taskItem: TaskItem, inTaskGroup taskGroup: TaskGroup)
+    //func didUpdateTaskItem(taskItem: TaskItem, inTaskGroup taskGroup: TaskGroup)
 }
 
 class TaskListTableViewController: UITableViewController {
@@ -27,8 +27,6 @@ class TaskListTableViewController: UITableViewController {
 
     // MARK: Properties
 
-    var taskGroup: TaskGroup!
-
     weak var delegate: TaskListTableViewControllerDelegate?
 
     // MARK: View Lifecycle
@@ -36,13 +34,12 @@ class TaskListTableViewController: UITableViewController {
     override func viewDidLoad() {
         tableView.tableFooterView = UIView()
         tableView.backgroundColor = UIColor(red: 248/255, green: 248/255, blue: 248/255, alpha: 1.0)
-        self.title = taskGroup.title
     }
 
     // MARK: UITableViewDataSource
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return taskGroup.tasks.count
+        return 0
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -61,10 +58,6 @@ class TaskListTableViewController: UITableViewController {
     }
 
     func deleteTaskItemAtIndexPath(indexPath: NSIndexPath) {
-        let taskDeleted = self.taskGroup.tasks[indexPath.row]
-        self.taskGroup.tasks.removeAtIndex(indexPath.row)
-        self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-        self.delegate?.didRemoveTaskItem(taskDeleted, inTaskGroup: self.taskGroup)
     }
 
     // MARK: UITableViewDelegate
@@ -73,8 +66,6 @@ class TaskListTableViewController: UITableViewController {
         switch cell {
         case let cell as TaskListItemTableViewCell:
             cell.selectionStyle = .None
-            cell.isComplete = taskGroup.tasks[indexPath.row].isComplete
-            cell.titleLabel.text = taskGroup.tasks[indexPath.row].title
         default:
             fatalError("Unknown Cell Type")
         }
@@ -85,9 +76,6 @@ class TaskListTableViewController: UITableViewController {
     @IBAction func checkmarkTapped(sender: Checkmark) {
         let tapLocation = tableView.convertPoint(sender.bounds.origin, fromView: sender)
         if let indexPath = tableView.indexPathForRowAtPoint(tapLocation) {
-            taskGroup.tasks[indexPath.row].isComplete = !taskGroup.tasks[indexPath.row].isComplete
-            tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-            self.delegate?.didUpdateTaskItem(taskGroup.tasks[indexPath.row], inTaskGroup: self.taskGroup)
         }
     }
 

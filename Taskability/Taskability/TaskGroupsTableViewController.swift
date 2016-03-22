@@ -29,9 +29,6 @@ class TaskGroupsTableViewController: UITableViewController, TaskListTableViewCon
     @IBOutlet weak var headerTitle: UILabel!
     @IBOutlet weak var headerSubtitle: UILabel!
     
-    var taskGroups = [TaskGroup]()
-
-
     // MARK: View Lifecycle
 
     override func viewDidLoad() {
@@ -43,19 +40,14 @@ class TaskGroupsTableViewController: UITableViewController, TaskListTableViewCon
     }
 
     override func viewWillAppear(animated: Bool) {
-        if let taskGroups = loadTaskGroups() {
-            self.taskGroups = taskGroups
-        }
 
-        headerTitle.text = "\(taskGroups.count) Groups"
-        headerSubtitle.text = "\(taskGroups.reduce(0) { $0 + $1.tasks.count }) Tasks"
         tableView.reloadData()
     }
 
     // MARK: UICollectionViewDataSource
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return taskGroups.count
+        return 0
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -68,8 +60,7 @@ class TaskGroupsTableViewController: UITableViewController, TaskListTableViewCon
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         switch cell {
         case let cell as TaskGroupTableViewCell:
-            cell.titleLabel.text = taskGroups[indexPath.row].title
-            cell.itemCountLabel.text = "\(taskGroups[indexPath.row].tasks.count) ITEMS"
+            break
         default:
             fatalError("Unknown cell type")
         }
@@ -80,39 +71,10 @@ class TaskGroupsTableViewController: UITableViewController, TaskListTableViewCon
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch segue.identifier! {
         case MainStoryboard.SegueIdentifier.showTaskList:
-            let taskListTableViewController = segue.destinationViewController as! TaskListTableViewController
             self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
-            taskListTableViewController.delegate = self
-            selectedIndexPath = tableView.indexPathForSelectedRow!
-            taskListTableViewController.taskGroup = taskGroups[tableView.indexPathForSelectedRow!.row]
         default:
             fatalError("Unknown Segue")
         }
-    }
-
-    // MARK: NSCoding
-
-    func saveTaskGroups() {
-        NSKeyedArchiver.archiveRootObject(taskGroups, toFile: TaskGroup.ArchiveUrl.path!)
-    }
-
-    func loadTaskGroups() -> [TaskGroup]? {
-        return NSKeyedUnarchiver.unarchiveObjectWithFile(TaskGroup.ArchiveUrl.path!) as? [TaskGroup]
-    }
-
-    // MARK: TaskListTableViewDelegate
-
-    var selectedIndexPath = NSIndexPath()
-    func didRemoveTaskItem(taskItem: TaskItem, inTaskGroup taskGroup: TaskGroup) {
-        taskGroups[selectedIndexPath.row] = taskGroup
-        tableView.reloadRowsAtIndexPaths([selectedIndexPath], withRowAnimation: .Automatic)
-        saveTaskGroups()
-    }
-
-    func didUpdateTaskItem(taskItem: TaskItem, inTaskGroup taskGroup: TaskGroup) {
-        taskGroups[selectedIndexPath.row] = taskGroup
-        tableView.reloadRowsAtIndexPaths([selectedIndexPath], withRowAnimation: .Automatic)
-        saveTaskGroups()
     }
 
 }
