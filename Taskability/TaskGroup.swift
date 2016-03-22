@@ -13,6 +13,10 @@ import CoreData
 public class TaskGroup: NSManagedObject {
 
     @NSManaged var title: String?
-    @NSManaged var tasks: TaskItem?
-    
+    @NSManaged var tasks: [TaskItem]?
+
+    func count() -> Int {
+        return tasks?.count ?? 0
+    }
+
 }

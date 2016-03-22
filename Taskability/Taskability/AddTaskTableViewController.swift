@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 import TaskabilityKit
 
 class AddTaskTableViewController: UITableViewController {
@@ -42,8 +43,32 @@ class AddTaskTableViewController: UITableViewController {
     }
 
     @IBAction func doneAction(sender: UIBarButtonItem) {
+        let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).dataController.managedObjectContext
+
+        let task = NSEntityDescription.insertNewObjectForEntityForName("TaskItem", inManagedObjectContext: managedObjectContext) as! TaskItem
+        task.setValue("Task", forKey: "title")
+        task.setValue(retrieveGroup(), forKey: "taskGroup")
+
+        do {
+            try managedObjectContext.save()
+            print("saved")
+        } catch let error as NSError  {
+            print("Could not save \(error), \(error.userInfo)")
+        }
+
         dismissViewControllerAnimated(true, completion: nil)
     }
 
+    func retrieveGroup() -> TaskGroup {
+        let moc = (UIApplication.sharedApplication().delegate as! AppDelegate).dataController.managedObjectContext
+        let taskGroups = NSFetchRequest(entityName: "TaskGroup")
+        taskGroups.predicate = NSPredicate(format: "title == %@", "Food")
+        do {
+            let taskGroups = try moc.executeFetchRequest(taskGroups) as! [TaskGroup]
+            return taskGroups.first!
+        } catch {
+            fatalError("Failed to fetch employees: \(error)")
+        }
+    }
 
 }

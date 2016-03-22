@@ -29,6 +29,8 @@ class TaskGroupsTableViewController: UITableViewController, TaskListTableViewCon
 
     @IBOutlet weak var headerTitle: UILabel!
     @IBOutlet weak var headerSubtitle: UILabel!
+
+    var taskGroups = [TaskGroup]()
     
     // MARK: View Lifecycle
 
@@ -38,17 +40,7 @@ class TaskGroupsTableViewController: UITableViewController, TaskListTableViewCon
         tableView.backgroundColor = UIColor(red: 248/255, green: 248/255, blue: 248/255, alpha: 1.0)
         tableView.tableFooterView = UIView()
 
-        let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).dataController.managedObjectContext
-
-        let group = NSEntityDescription.insertNewObjectForEntityForName("TaskGroup", inManagedObjectContext: managedObjectContext) as! TaskGroup
-
-        group.setValue("Food", forKey: "title")
-
-        do {
-            try managedObjectContext.save()
-        } catch let error as NSError  {
-            print("Could not save \(error), \(error.userInfo)")
-        }
+        loadData()
 
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "loadData")
 
@@ -60,19 +52,18 @@ class TaskGroupsTableViewController: UITableViewController, TaskListTableViewCon
 
         do {
             let fetchedGroups = try moc.executeFetchRequest(groupsFetch) as! [TaskGroup]
-            for group in fetchedGroups {
-                print(group.valueForKey("title"))
-            }
+            taskGroups = fetchedGroups
         } catch {
             fatalError("Failed to fetch employees: \(error)")
         }
     }
 
 
+
     // MARK: UICollectionViewDataSource
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return taskGroups.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -85,6 +76,7 @@ class TaskGroupsTableViewController: UITableViewController, TaskListTableViewCon
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         switch cell {
         case let cell as TaskGroupTableViewCell:
+            cell.titleLabel.text = self.taskGroups.first!.valueForKey("title") as! String
             break
         default:
             fatalError("Unknown cell type")
