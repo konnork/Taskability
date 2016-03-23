@@ -44,4 +44,12 @@ class TaskabilityTabBarController: UITabBarController, UITabBarControllerDelegat
         return true
     }
 
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "addTaskItem" {
+            let addTaskNavigationController = segue.destinationViewController as! UINavigationController
+            let addTaskViewController = addTaskNavigationController.viewControllers.first as! AddTaskTableViewController
+            addTaskViewController.dataController = dataController
+        }
+    }
+
 }

@@ -29,6 +29,12 @@ public class TaskGroup: NSManagedObject {
         item.creationDate = NSDate()
         item.title = title
 
+        do {
+            try managedObjectContext.save()
+        } catch {
+            fatalError("Error saving TaskGroup")
+        }
         return item
     }
+
 }
