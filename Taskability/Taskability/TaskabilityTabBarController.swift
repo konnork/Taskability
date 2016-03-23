@@ -10,6 +10,14 @@ import UIKit
 
 class TaskabilityTabBarController: UITabBarController, UITabBarControllerDelegate {
 
+    var dataController: DataController!
+
+    override func viewDidLoad() {
+        let navigationController = viewControllers?.first as? UINavigationController
+        let taskGroupsViewController = navigationController?.viewControllers.first as? TaskGroupsTableViewController
+        taskGroupsViewController?.dataController = dataController
+    }
+
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
 
@@ -34,6 +42,14 @@ class TaskabilityTabBarController: UITabBarController, UITabBarControllerDelegat
             return false
         }
         return true
+    }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "addTaskItem" {
+            let addTaskNavigationController = segue.destinationViewController as! UINavigationController
+            let addTaskViewController = addTaskNavigationController.viewControllers.first as! AddTaskTableViewController
+            addTaskViewController.dataController = dataController
+        }
     }
 
 }

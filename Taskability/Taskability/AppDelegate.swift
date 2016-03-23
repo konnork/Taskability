@@ -12,11 +12,16 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var dataController: DataController!
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
         UITabBar.appearance().tintColor = UIColor.whiteColor()
+        dataController = DataController()
 
+        let tabBarController = window?.rootViewController as? TaskabilityTabBarController
+        tabBarController?.dataController = dataController
+        
         return true
     }
 
