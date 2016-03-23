@@ -26,17 +26,8 @@ class AddTaskTableViewController: UITableViewController {
         return dataController.managedObjectContext
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    // MARK: IBActions
 
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     @IBAction func cancelAction(sender: UIBarButtonItem) {
         dismissViewControllerAnimated(true, completion: nil)
     }
@@ -54,10 +45,13 @@ class AddTaskTableViewController: UITableViewController {
         dismissViewControllerAnimated(true, completion: nil)
     }
 
+    // MARK: Core Data Helpers
+
     func retrieveGroup() -> TaskGroup? {
         let taskGroupsFetchRequest = NSFetchRequest(entityName: "TaskGroup")
         taskGroupsFetchRequest.fetchLimit = 1
         taskGroupsFetchRequest.predicate = NSPredicate(format: "title == %@", groupTextField.text!)
+
         do {
             let taskGroups = try managedObjectContext.executeFetchRequest(taskGroupsFetchRequest) as! [TaskGroup]
             return taskGroups.first

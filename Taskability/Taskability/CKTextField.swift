@@ -55,10 +55,20 @@ class CKTextField: UITextField, UITextFieldDelegate {
         topConstraint.active = true
         bottomConstraint.active = false
 
-        UIView.animateWithDuration(0.4, animations: {
+        UIView.animateWithDuration(0.2, animations: {
             self.layoutIfNeeded()
         })
 
+    }
+
+    func textFieldDidEndEditing(textField: UITextField) {
+        self.layoutIfNeeded()
+        topConstraint.active = false
+        bottomConstraint.active = true
+
+        UIView.animateWithDuration(0.2, animations: {
+            self.layoutIfNeeded()
+        })
     }
 
 

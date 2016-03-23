@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 import TaskabilityKit
 
 protocol TaskListTableViewControllerDelegate: class {
@@ -14,7 +15,7 @@ protocol TaskListTableViewControllerDelegate: class {
     //func didUpdateTaskItem(taskItem: TaskItem, inTaskGroup taskGroup: TaskGroup)
 }
 
-class TaskListTableViewController: UITableViewController {
+class TaskListTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
 
     // MARK: Types
 
@@ -29,17 +30,33 @@ class TaskListTableViewController: UITableViewController {
 
     weak var delegate: TaskListTableViewControllerDelegate?
 
+    var fetchedResultsController: NSFetchedResultsController!
+
+    var managedObjectContext: NSManagedObjectContext {
+        return taskGroup.managedObjectContext!
+    }
+
+    var taskGroup: TaskGroup!
+
     // MARK: View Lifecycle
 
     override func viewDidLoad() {
+        initializeFetchedResultsController()
+
+        self.title = NSLocalizedString(taskGroup.valueForKey("title") as! String, comment: "Task Group Title")
         tableView.tableFooterView = UIView()
         tableView.backgroundColor = UIColor(red: 248/255, green: 248/255, blue: 248/255, alpha: 1.0)
     }
 
     // MARK: UITableViewDataSource
 
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return fetchedResultsController.sections!.count
+    }
+
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        let sections = fetchedResultsController.sections!
+        return sections[section].numberOfObjects
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -58,6 +75,8 @@ class TaskListTableViewController: UITableViewController {
     }
 
     func deleteTaskItemAtIndexPath(indexPath: NSIndexPath) {
+        managedObjectContext.deleteObject(fetchedResultsController.objectAtIndexPath(indexPath) as! TaskItem)
+        saveContext()
     }
 
     // MARK: UITableViewDelegate
@@ -66,6 +85,9 @@ class TaskListTableViewController: UITableViewController {
         switch cell {
         case let cell as TaskListItemTableViewCell:
             cell.selectionStyle = .None
+            let taskItem = fetchedResultsController.objectAtIndexPath(indexPath) as! TaskItem
+            cell.titleLabel.text = taskItem.valueForKey("title") as? String
+            cell.isComplete = taskItem.valueForKey("isComplete") as! Bool
         default:
             fatalError("Unknown Cell Type")
         }
@@ -76,7 +98,63 @@ class TaskListTableViewController: UITableViewController {
     @IBAction func checkmarkTapped(sender: Checkmark) {
         let tapLocation = tableView.convertPoint(sender.bounds.origin, fromView: sender)
         if let indexPath = tableView.indexPathForRowAtPoint(tapLocation) {
+            let taskItem = fetchedResultsController.objectAtIndexPath(indexPath) as! TaskItem
+            taskItem.setValue(!(taskItem.valueForKey("isComplete") as! Bool), forKey: "isComplete")
+            saveContext()
         }
     }
 
+    // MARK: NSFetchedResultsController
+
+    func initializeFetchedResultsController() {
+        let request = NSFetchRequest(entityName: "TaskItem")
+        let managedObjectContext = taskGroup.managedObjectContext!
+
+        request.predicate = NSPredicate(format: "taskGroup == %@", taskGroup)
+        request.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+
+        fetchedResultsController.delegate = self
+
+        do {
+            try fetchedResultsController.performFetch()
+        } catch {
+            fatalError("Failed to initialize FetchedResultsController: \(error)")
+        }
+    }
+
+    // MARK: NSFetchedResultsControllerDelegate
+
+    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+        tableView.beginUpdates()
+    }
+
+    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+        switch type {
+        case .Insert:
+            tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
+        case .Delete:
+            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+        case .Update:
+            tableView.reloadRowsAtIndexPaths([indexPath!], withRowAnimation: .Automatic)
+        case .Move:
+            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+            tableView.insertRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+        }
+    }
+
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        tableView.endUpdates()
+    }
+
+    // MARK: Core Data Helpers
+
+    func saveContext() {
+        do {
+            try managedObjectContext.save()
+        } catch {
+            fatalError("Error saving managedObjectContext \(error)")
+        }
+    }
 }

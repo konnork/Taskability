@@ -13,7 +13,8 @@ import CoreData
 public class TaskItem: NSManagedObject {
 
     @NSManaged var title: String!
-    @NSManaged var isComplete: NSNumber?
+    @NSManaged var isComplete: NSNumber!
+    @NSManaged var creationDate: NSDate!
     @NSManaged var subtitle: String?
     @NSManaged var startDate: NSDate?
     @NSManaged var endDate: NSDate?
@@ -27,6 +28,8 @@ public class TaskItem: NSManagedObject {
         let item = NSEntityDescription.insertNewObjectForEntityForName(self.entityName, inManagedObjectContext: managedObjectContext) as! TaskItem
 
         item.title = title
+        item.creationDate = NSDate()
+        item.isComplete = false
         item.taskGroup = taskGroup
         
         do {

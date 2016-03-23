@@ -23,11 +23,11 @@
 		7026B8931C9C7C5E0074ACD8 /* AddTaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7026B8921C9C7C5E0074ACD8 /* AddTaskTableViewController.swift */; };
 		7026B8951C9DA3400074ACD8 /* CKTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7026B8941C9DA3400074ACD8 /* CKTextField.swift */; };
 		706CEA671CA0EBFF00EFD7E1 /* Taskability.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 706CEA651CA0EBFF00EFD7E1 /* Taskability.xcdatamodeld */; };
-		706CEA681CA0EC1400EFD7E1 /* Taskability.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 706CEA651CA0EBFF00EFD7E1 /* Taskability.xcdatamodeld */; };
-		706CEA861CA0EFD000EFD7E1 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706CEA851CA0EFD000EFD7E1 /* DataController.swift */; };
 		706CEA891CA0F14A00EFD7E1 /* TaskItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706CEA7E1CA0ED3A00EFD7E1 /* TaskItem.swift */; };
 		706CEA8A1CA0F14E00EFD7E1 /* TaskGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706CEA801CA0ED3A00EFD7E1 /* TaskGroup.swift */; };
 		70ABB1081C99367D00DB1CA4 /* TaskabilityTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70ABB1071C99367D00DB1CA4 /* TaskabilityTabBarController.swift */; };
+		70B565201CA25CBC003D9193 /* Taskability.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 706CEA651CA0EBFF00EFD7E1 /* Taskability.xcdatamodeld */; };
+		70B565211CA25CC6003D9193 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706CEA851CA0EFD000EFD7E1 /* DataController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,8 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				7022B3601C98A3490024F75B /* TaskabilityKit.h */,
-				706CEA7E1CA0ED3A00EFD7E1 /* TaskItem.swift */,
-				706CEA801CA0ED3A00EFD7E1 /* TaskGroup.swift */,
+				70B5651D1CA25C5D003D9193 /* Models */,
 				7022B3621C98A3490024F75B /* Info.plist */,
 			);
 			path = TaskabilityKit;
@@ -164,6 +163,15 @@
 				7017DEF31C9A8CE5007CEEEA /* Checkmark.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		70B5651D1CA25C5D003D9193 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				706CEA7E1CA0ED3A00EFD7E1 /* TaskItem.swift */,
+				706CEA801CA0ED3A00EFD7E1 /* TaskGroup.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -280,15 +288,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				7017DEF81C9B10B0007CEEEA /* TaskGroupsTableViewController.swift in Sources */,
-				706CEA861CA0EFD000EFD7E1 /* DataController.swift in Sources */,
+				70B565211CA25CC6003D9193 /* DataController.swift in Sources */,
 				7022B3801C9913D80024F75B /* TaskListItemTableViewCell.swift in Sources */,
 				7017DEFC1C9B43F0007CEEEA /* TaskGroupTableViewCell.swift in Sources */,
-				706CEA681CA0EC1400EFD7E1 /* Taskability.xcdatamodeld in Sources */,
 				7022B3481C98A0750024F75B /* AppDelegate.swift in Sources */,
 				7026B8931C9C7C5E0074ACD8 /* AddTaskTableViewController.swift in Sources */,
 				7017DEF61C9AA1EC007CEEEA /* StrikethroughLabel.swift in Sources */,
 				70ABB1081C99367D00DB1CA4 /* TaskabilityTabBarController.swift in Sources */,
 				7026B8951C9DA3400074ACD8 /* CKTextField.swift in Sources */,
+				70B565201CA25CBC003D9193 /* Taskability.xcdatamodeld in Sources */,
 				7017DEF41C9A8CE5007CEEEA /* Checkmark.swift in Sources */,
 				7022B3751C98FB050024F75B /* TaskListTableViewController.swift in Sources */,
 			);

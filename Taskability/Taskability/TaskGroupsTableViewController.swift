@@ -25,6 +25,7 @@ class TaskGroupsTableViewController: UITableViewController, TaskListTableViewCon
         }
     }
 
+
     // MARK: Properties
 
     @IBOutlet weak var headerTitle: UILabel!
@@ -75,7 +76,6 @@ class TaskGroupsTableViewController: UITableViewController, TaskListTableViewCon
         case let cell as TaskGroupTableViewCell:
             let taskGroup = fetchedResultsController.objectAtIndexPath(indexPath) as! TaskGroup
             cell.titleLabel.text = taskGroup.valueForKey("title") as? String
-            break
         default:
             fatalError("Unknown cell type")
         }
@@ -87,6 +87,8 @@ class TaskGroupsTableViewController: UITableViewController, TaskListTableViewCon
         switch segue.identifier! {
         case MainStoryboard.SegueIdentifier.showTaskList:
             self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+            let taskListTableViewController = segue.destinationViewController as! TaskListTableViewController
+            taskListTableViewController.taskGroup = fetchedResultsController.objectAtIndexPath(tableView.indexPathForSelectedRow!) as! TaskGroup
         default:
             fatalError("Unknown Segue")
         }
@@ -99,7 +101,7 @@ class TaskGroupsTableViewController: UITableViewController, TaskListTableViewCon
         let managedObjectContext = self.dataController.managedObjectContext
         request.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
 
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: "rootCache")
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
 
         fetchedResultsController.delegate = self
 
@@ -108,5 +110,29 @@ class TaskGroupsTableViewController: UITableViewController, TaskListTableViewCon
         } catch {
             fatalError("Failed to initialize FetchedResultsController: \(error)")
         }
+    }
+
+    // MARK: NSFetchedResultsControllerDelegate
+
+    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+        tableView.beginUpdates()
+    }
+
+    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+        switch type {
+        case .Insert:
+            tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
+        case .Delete:
+            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+        case .Update:
+            tableView.reloadRowsAtIndexPaths([indexPath!], withRowAnimation: .Automatic)
+        case .Move:
+            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+            tableView.insertRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+        }
+    }
+
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        tableView.endUpdates()
     }
 }
