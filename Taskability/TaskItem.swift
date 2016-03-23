@@ -12,7 +12,7 @@ import CoreData
 @objc(TaskItem)
 public class TaskItem: NSManagedObject {
 
-    @NSManaged var title: String?
+    @NSManaged var title: String!
     @NSManaged var isComplete: NSNumber?
     @NSManaged var subtitle: String?
     @NSManaged var startDate: NSDate?

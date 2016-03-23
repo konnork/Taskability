@@ -19,6 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITabBar.appearance().tintColor = UIColor.whiteColor()
         dataController = DataController()
 
+        let tabBarController = window?.rootViewController as? TaskabilityTabBarController
+        tabBarController?.dataController = dataController
+        
         return true
     }
 

@@ -12,11 +12,23 @@ import CoreData
 @objc(TaskGroup)
 public class TaskGroup: NSManagedObject {
 
-    @NSManaged var title: String?
+    @NSManaged var creationDate: NSDate!
+    @NSManaged var title: String!
     @NSManaged var tasks: [TaskItem]?
+
+    public static let entityName = "TaskGroup"
 
     func count() -> Int {
         return tasks?.count ?? 0
     }
 
+    public class func insertTaskGroupWithTitle(title: String, inManagedObjectContext managedObjectContext: NSManagedObjectContext) -> TaskGroup {
+
+        let item = NSEntityDescription.insertNewObjectForEntityForName(self.entityName, inManagedObjectContext: managedObjectContext) as! TaskGroup
+
+        item.creationDate = NSDate()
+        item.title = title
+
+        return item
+    }
 }

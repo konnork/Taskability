@@ -16,6 +16,8 @@ class AddTaskTableViewController: UITableViewController {
     @IBOutlet weak var subtitleTextField: UITextField!
     @IBOutlet weak var groupTextField: UITextField!
 
+    var dataController: DataController!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -43,8 +45,7 @@ class AddTaskTableViewController: UITableViewController {
     }
 
     @IBAction func doneAction(sender: UIBarButtonItem) {
-        let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).dataController.managedObjectContext
-
+        let managedObjectContext = dataController.managedObjectContext
         let task = NSEntityDescription.insertNewObjectForEntityForName("TaskItem", inManagedObjectContext: managedObjectContext) as! TaskItem
         task.setValue("Task", forKey: "title")
         task.setValue(retrieveGroup(), forKey: "taskGroup")

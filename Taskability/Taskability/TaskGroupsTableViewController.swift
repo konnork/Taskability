@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import TaskabilityKit
 
-class TaskGroupsTableViewController: UITableViewController, TaskListTableViewControllerDelegate {
+class TaskGroupsTableViewController: UITableViewController, TaskListTableViewControllerDelegate, NSFetchedResultsControllerDelegate {
 
     // MARK: Types
 
@@ -30,40 +30,37 @@ class TaskGroupsTableViewController: UITableViewController, TaskListTableViewCon
     @IBOutlet weak var headerTitle: UILabel!
     @IBOutlet weak var headerSubtitle: UILabel!
 
+    /// Core Data Properties
+
+    var dataController: DataController!
+    var fetchedResultsController: NSFetchedResultsController!
+
+    var managedObjectContext: NSManagedObjectContext {
+        return dataController.managedObjectContext
+    }
+
     var taskGroups = [TaskGroup]()
-    
+
     // MARK: View Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        initializeFetchedResultsController()
+
         tableView.backgroundColor = UIColor(red: 248/255, green: 248/255, blue: 248/255, alpha: 1.0)
         tableView.tableFooterView = UIView()
-
-        loadData()
-
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "loadData")
-
     }
 
-    func loadData() {
-        let moc = (UIApplication.sharedApplication().delegate as! AppDelegate).dataController.managedObjectContext
-        let groupsFetch = NSFetchRequest(entityName: "TaskGroup")
+    // MARK: UITableViewDataSource
 
-        do {
-            let fetchedGroups = try moc.executeFetchRequest(groupsFetch) as! [TaskGroup]
-            taskGroups = fetchedGroups
-        } catch {
-            fatalError("Failed to fetch employees: \(error)")
-        }
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return fetchedResultsController.sections!.count
     }
-
-
-
-    // MARK: UICollectionViewDataSource
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return taskGroups.count
+        let sections = fetchedResultsController.sections!
+        return sections[section].numberOfObjects
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -71,12 +68,13 @@ class TaskGroupsTableViewController: UITableViewController, TaskListTableViewCon
         return tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath)
     }
 
-    // MARK: UICollectionViewDelegate
+    // MARK: UITableViewDelegate
 
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         switch cell {
         case let cell as TaskGroupTableViewCell:
-            cell.titleLabel.text = self.taskGroups.first!.valueForKey("title") as! String
+            let taskGroup = fetchedResultsController.objectAtIndexPath(indexPath) as! TaskGroup
+            cell.titleLabel.text = taskGroup.valueForKey("title") as? String
             break
         default:
             fatalError("Unknown cell type")
@@ -94,4 +92,21 @@ class TaskGroupsTableViewController: UITableViewController, TaskListTableViewCon
         }
     }
 
+    // MARK: FetchedResultsController
+
+    func initializeFetchedResultsController() {
+        let request = NSFetchRequest(entityName: "TaskGroup")
+        let managedObjectContext = self.dataController.managedObjectContext
+        request.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
+
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: "rootCache")
+
+        fetchedResultsController.delegate = self
+
+        do {
+            try fetchedResultsController.performFetch()
+        } catch {
+            fatalError("Failed to initialize FetchedResultsController: \(error)")
+        }
+    }
 }
