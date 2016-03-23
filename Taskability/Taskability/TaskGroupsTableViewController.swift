@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import CoreData
 import TaskabilityKit
 
-class TaskGroupsTableViewController: UITableViewController, TaskListTableViewControllerDelegate {
+class TaskGroupsTableViewController: UITableViewController, TaskListTableViewControllerDelegate, NSFetchedResultsControllerDelegate {
 
     // MARK: Types
 
@@ -24,38 +25,43 @@ class TaskGroupsTableViewController: UITableViewController, TaskListTableViewCon
         }
     }
 
+
     // MARK: Properties
 
     @IBOutlet weak var headerTitle: UILabel!
     @IBOutlet weak var headerSubtitle: UILabel!
-    
-    var taskGroups = [TaskGroup]()
 
+    /// Core Data Properties
+
+    var dataController: DataController!
+    var fetchedResultsController: NSFetchedResultsController!
+
+    var managedObjectContext: NSManagedObjectContext {
+        return dataController.managedObjectContext
+    }
+
+    var taskGroups = [TaskGroup]()
 
     // MARK: View Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        initializeFetchedResultsController()
+
         tableView.backgroundColor = UIColor(red: 248/255, green: 248/255, blue: 248/255, alpha: 1.0)
         tableView.tableFooterView = UIView()
-
     }
 
-    override func viewWillAppear(animated: Bool) {
-        if let taskGroups = loadTaskGroups() {
-            self.taskGroups = taskGroups
-        }
+    // MARK: UITableViewDataSource
 
-        headerTitle.text = "\(taskGroups.count) Groups"
-        headerSubtitle.text = "\(taskGroups.reduce(0) { $0 + $1.tasks.count }) Tasks"
-        tableView.reloadData()
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return fetchedResultsController.sections!.count
     }
-
-    // MARK: UICollectionViewDataSource
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return taskGroups.count
+        let sections = fetchedResultsController.sections!
+        return sections[section].numberOfObjects
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -63,13 +69,13 @@ class TaskGroupsTableViewController: UITableViewController, TaskListTableViewCon
         return tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath)
     }
 
-    // MARK: UICollectionViewDelegate
+    // MARK: UITableViewDelegate
 
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         switch cell {
         case let cell as TaskGroupTableViewCell:
-            cell.titleLabel.text = taskGroups[indexPath.row].title
-            cell.itemCountLabel.text = "\(taskGroups[indexPath.row].tasks.count) ITEMS"
+            let taskGroup = fetchedResultsController.objectAtIndexPath(indexPath) as! TaskGroup
+            cell.titleLabel.text = taskGroup.valueForKey("title") as? String
         default:
             fatalError("Unknown cell type")
         }
@@ -80,39 +86,53 @@ class TaskGroupsTableViewController: UITableViewController, TaskListTableViewCon
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch segue.identifier! {
         case MainStoryboard.SegueIdentifier.showTaskList:
-            let taskListTableViewController = segue.destinationViewController as! TaskListTableViewController
             self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
-            taskListTableViewController.delegate = self
-            selectedIndexPath = tableView.indexPathForSelectedRow!
-            taskListTableViewController.taskGroup = taskGroups[tableView.indexPathForSelectedRow!.row]
+            let taskListTableViewController = segue.destinationViewController as! TaskListTableViewController
+            taskListTableViewController.taskGroup = fetchedResultsController.objectAtIndexPath(tableView.indexPathForSelectedRow!) as! TaskGroup
         default:
             fatalError("Unknown Segue")
         }
     }
 
-    // MARK: NSCoding
+    // MARK: FetchedResultsController
 
-    func saveTaskGroups() {
-        NSKeyedArchiver.archiveRootObject(taskGroups, toFile: TaskGroup.ArchiveUrl.path!)
+    func initializeFetchedResultsController() {
+        let request = NSFetchRequest(entityName: "TaskGroup")
+        let managedObjectContext = self.dataController.managedObjectContext
+        request.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
+
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+
+        fetchedResultsController.delegate = self
+
+        do {
+            try fetchedResultsController.performFetch()
+        } catch {
+            fatalError("Failed to initialize FetchedResultsController: \(error)")
+        }
     }
 
-    func loadTaskGroups() -> [TaskGroup]? {
-        return NSKeyedUnarchiver.unarchiveObjectWithFile(TaskGroup.ArchiveUrl.path!) as? [TaskGroup]
+    // MARK: NSFetchedResultsControllerDelegate
+
+    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+        tableView.beginUpdates()
     }
 
-    // MARK: TaskListTableViewDelegate
-
-    var selectedIndexPath = NSIndexPath()
-    func didRemoveTaskItem(taskItem: TaskItem, inTaskGroup taskGroup: TaskGroup) {
-        taskGroups[selectedIndexPath.row] = taskGroup
-        tableView.reloadRowsAtIndexPaths([selectedIndexPath], withRowAnimation: .Automatic)
-        saveTaskGroups()
+    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+        switch type {
+        case .Insert:
+            tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
+        case .Delete:
+            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+        case .Update:
+            tableView.reloadRowsAtIndexPaths([indexPath!], withRowAnimation: .Automatic)
+        case .Move:
+            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+            tableView.insertRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+        }
     }
 
-    func didUpdateTaskItem(taskItem: TaskItem, inTaskGroup taskGroup: TaskGroup) {
-        taskGroups[selectedIndexPath.row] = taskGroup
-        tableView.reloadRowsAtIndexPaths([selectedIndexPath], withRowAnimation: .Automatic)
-        saveTaskGroups()
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        tableView.endUpdates()
     }
-
 }

@@ -7,59 +7,57 @@
 //
 
 import UIKit
+import CoreData
 import TaskabilityKit
 
 class AddTaskTableViewController: UITableViewController {
+
+    // MARK: Properties
 
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var subtitleTextField: UITextField!
     @IBOutlet weak var groupTextField: UITextField!
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    /// Core Data Properties
 
-        // Do any additional setup after loading the view.
+    var dataController: DataController!
+
+    var managedObjectContext: NSManagedObjectContext {
+        return dataController.managedObjectContext
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    // MARK: IBActions
 
     @IBAction func cancelAction(sender: UIBarButtonItem) {
         dismissViewControllerAnimated(true, completion: nil)
     }
 
     @IBAction func doneAction(sender: UIBarButtonItem) {
-        saveTask(TaskItem(title: titleTextField.text!))
+
+        let taskGroup: TaskGroup
+        if let group = retrieveGroup() {
+            taskGroup = group
+        } else {
+            taskGroup = TaskGroup.insertTaskGroupWithTitle(groupTextField.text!, inManagedObjectContext: managedObjectContext)
+        }
+
+        TaskItem.insertTaskItemWithTitle(titleTextField.text!, inTaskGroup: taskGroup, inManagedObjectContext: managedObjectContext)
         dismissViewControllerAnimated(true, completion: nil)
     }
 
-    // Just bootstrapping this
-    func saveTask(task: TaskItem) {
-        var taskGroups = NSKeyedUnarchiver.unarchiveObjectWithFile(TaskGroup.ArchiveUrl.path!) as? [TaskGroup]
-        if let groups = taskGroups {
-            if let index = groups.indexOf({ $0.title == groupTextField.text!}) {
-                taskGroups![index].tasks.append(task)
-            } else {
-                taskGroups!.append(TaskGroup(title: groupTextField.text!, tasks: [task]))
-            }
-        } else {
-            taskGroups = [TaskGroup(title: groupTextField.text!, tasks: [task])]
+    // MARK: Core Data Helpers
+
+    func retrieveGroup() -> TaskGroup? {
+        let taskGroupsFetchRequest = NSFetchRequest(entityName: "TaskGroup")
+        taskGroupsFetchRequest.fetchLimit = 1
+        taskGroupsFetchRequest.predicate = NSPredicate(format: "title == %@", groupTextField.text!)
+
+        do {
+            let taskGroups = try managedObjectContext.executeFetchRequest(taskGroupsFetchRequest) as! [TaskGroup]
+            return taskGroups.first
+        } catch {
+            fatalError("Failed to fetch employees: \(error)")
         }
-
-        NSKeyedArchiver.archiveRootObject(taskGroups!, toFile: TaskGroup.ArchiveUrl.path!)
-
     }
+
 }
