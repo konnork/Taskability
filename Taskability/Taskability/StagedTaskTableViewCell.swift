@@ -1,5 +1,5 @@
 //
-//  TaskListItemTableViewCell.swift
+//  StagedTaskTableViewCell.swift
 //  Taskability
 //
 //  Created by Connor Krupp on 16/03/2016.
@@ -8,12 +8,12 @@
 
 import UIKit
 
-class TaskListItemTableViewCell: UITableViewCell {
+class StagedTaskTableViewCell: UITableViewCell {
 
     // MARK: Properties
 
     @IBOutlet weak var titleLabel: StrikethroughLabel!
-
+    @IBOutlet weak var groupLabel: UILabel!
     @IBOutlet weak var checkmark: Checkmark!
 
     var isComplete = false {

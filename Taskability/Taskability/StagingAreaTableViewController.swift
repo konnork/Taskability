@@ -1,5 +1,5 @@
 //
-//  TaskGroupCollectionViewController.swift
+//  StagingAreaTableViewController.swift
 //  Taskability
 //
 //  Created by Connor Krupp on 17/03/2016.
@@ -10,26 +10,22 @@ import UIKit
 import CoreData
 import TaskabilityKit
 
-class TaskGroupsTableViewController: UITableViewController, TaskListTableViewControllerDelegate, NSFetchedResultsControllerDelegate {
+class StagingAreaTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
 
     // MARK: Types
 
     struct MainStoryboard {
         struct CellIdentifiers {
-            static let taskGroupHeaderCell = "taskGroupHeaderCell"
-            static let taskGroupCell = "taskGroupCell"
-        }
-
-        struct SegueIdentifier {
-            static let showTaskList = "showTaskList"
+            static let taskCell = "taskCell"
         }
     }
 
 
     // MARK: Properties
 
-    @IBOutlet weak var headerTitle: UILabel!
-    @IBOutlet weak var headerSubtitle: UILabel!
+    var stagedTaskItems: [TaskItem] {
+        return fetchedResultsController.fetchedObjects as! [TaskItem]
+    }
 
     /// Core Data Properties
 
@@ -40,8 +36,6 @@ class TaskGroupsTableViewController: UITableViewController, TaskListTableViewCon
         return dataController.managedObjectContext
     }
 
-    var taskGroups = [TaskGroup]()
-
     // MARK: View Lifecycle
 
     override func viewDidLoad() {
@@ -51,6 +45,8 @@ class TaskGroupsTableViewController: UITableViewController, TaskListTableViewCon
 
         tableView.backgroundColor = UIColor(red: 248/255, green: 248/255, blue: 248/255, alpha: 1.0)
         tableView.tableFooterView = UIView()
+
+        print(stagedTaskItems.count)
     }
 
     // MARK: UITableViewDataSource
@@ -65,39 +61,33 @@ class TaskGroupsTableViewController: UITableViewController, TaskListTableViewCon
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let identifier = MainStoryboard.CellIdentifiers.taskGroupCell
+        let identifier = MainStoryboard.CellIdentifiers.taskCell
         return tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath)
     }
 
     // MARK: UITableViewDelegate
 
-    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        switch cell {
-        case let cell as TaskGroupTableViewCell:
-            let taskGroup = fetchedResultsController.objectAtIndexPath(indexPath) as! TaskGroup
-            cell.titleLabel.text = taskGroup.valueForKey("title") as? String
-        default:
-            fatalError("Unknown cell type")
-        }
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 80
     }
 
-    // MARK: - Navigation
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        switch cell {
+        case let cell as StagedTaskTableViewCell:
+            cell.selectionStyle = .None
+            let taskItem = fetchedResultsController.objectAtIndexPath(indexPath) as! TaskItem
+            cell.titleLabel.text = taskItem.valueForKey("title") as? String
+            cell.isComplete = taskItem.valueForKey("isComplete") as! Bool
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        switch segue.identifier! {
-        case MainStoryboard.SegueIdentifier.showTaskList:
-            self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
-            let taskListTableViewController = segue.destinationViewController as! TaskListTableViewController
-            taskListTableViewController.taskGroup = fetchedResultsController.objectAtIndexPath(tableView.indexPathForSelectedRow!) as! TaskGroup
         default:
-            fatalError("Unknown Segue")
+            fatalError("Unknown cell type")
         }
     }
 
     // MARK: FetchedResultsController
 
     func initializeFetchedResultsController() {
-        let request = NSFetchRequest(entityName: "TaskGroup")
+        let request = NSFetchRequest(entityName: "TaskItem")
         let managedObjectContext = self.dataController.managedObjectContext
         request.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
 

@@ -18,7 +18,7 @@ public class TaskGroup: NSManagedObject {
 
     public static let entityName = "TaskGroup"
 
-    func count() -> Int {
+    public var count: Int {
         return tasks?.count ?? 0
     }
 
