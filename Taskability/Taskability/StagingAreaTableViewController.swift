@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import TaskabilityKit
 
-class StagingAreaTableViewController: UITableViewController, NSFetchedResultsControllerDelegate, UITextFieldDelegate {
+class StagingAreaTableViewController: UITableViewController, NSFetchedResultsControllerDelegate, UITextFieldDelegate, StagedTaskTableViewCellDelegate {
 
     // MARK: Types
 
@@ -76,6 +76,7 @@ class StagingAreaTableViewController: UITableViewController, NSFetchedResultsCon
             let taskItem = fetchedResultsController.objectAtIndexPath(indexPath) as! TaskItem
             cell.titleLabel.text = taskItem.valueForKey("title") as? String
             cell.isComplete = taskItem.valueForKey("isComplete") as! Bool
+            cell.delegate = self
         default:
             fatalError("Unknown cell type")
         }
@@ -99,7 +100,6 @@ class StagingAreaTableViewController: UITableViewController, NSFetchedResultsCon
         request.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
 
         fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
-
         fetchedResultsController.delegate = self
 
         do {
@@ -130,7 +130,18 @@ class StagingAreaTableViewController: UITableViewController, NSFetchedResultsCon
     }
 
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        try! managedObjectContext.save()
         tableView.endUpdates()
+    }
+
+    // MARK: StagedTaskTableViewCellDelegate
+
+    func checkmarkTapped(onCell cell: StagedTaskTableViewCell) {
+        let indexPath = tableView.indexPathForCell(cell)!
+        let taskItem = fetchedResultsController.objectAtIndexPath(indexPath) as! TaskItem
+        let completeKey = "isComplete"
+        let currentCompleteness = taskItem.valueForKey(completeKey) as! Bool
+        taskItem.setValue(!currentCompleteness, forKey: completeKey)
     }
 
     // MARK: UITextFieldDelegate

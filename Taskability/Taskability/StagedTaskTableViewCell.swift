@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol StagedTaskTableViewCellDelegate {
+    func checkmarkTapped(onCell cell: StagedTaskTableViewCell)
+}
+
 class StagedTaskTableViewCell: UITableViewCell {
 
     // MARK: Properties
@@ -16,11 +20,19 @@ class StagedTaskTableViewCell: UITableViewCell {
     @IBOutlet weak var groupLabel: UILabel!
     @IBOutlet weak var checkmark: Checkmark!
 
+    var delegate: StagedTaskTableViewCellDelegate?
+
     var isComplete = false {
         didSet {
             checkmark.isFilled = isComplete
             titleLabel.shouldStrike = isComplete
             titleLabel.textColor = isComplete ? UIColor.grayColor() : UIColor.darkTextColor()
         }
+    }
+
+    // MARK: Actions
+
+    @IBAction func checkmarkTapped() {
+        delegate?.checkmarkTapped(onCell: self)
     }
 }

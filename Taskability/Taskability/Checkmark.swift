@@ -45,7 +45,7 @@ class Checkmark: UIControl {
         self.layer.addSublayer(checkmarkLayer)
         checkmarkLayer.strokeColor = strokeColor
         checkmarkLayer.fillColor = nil
-        checkmarkLayer.lineWidth = 1.0
+        checkmarkLayer.lineWidth = 1.5
 
         let startX = self.bounds.midX + 11
         let startY = self.bounds.midY - 8
