@@ -49,6 +49,7 @@ class StagingAreaTableViewController: UITableViewController, NSFetchedResultsCon
         tableView.tableFooterView = UIView()
 
         newTaskTextField.delegate = self
+        addNewTaskTextFieldToolbar()
     }
 
     // MARK: UITableViewDataSource
@@ -147,9 +148,42 @@ class StagingAreaTableViewController: UITableViewController, NSFetchedResultsCon
     // MARK: UITextFieldDelegate
 
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
         TaskItem.insertTaskItemWithTitle(textField.text!, inTaskGroup: nil, inManagedObjectContext: managedObjectContext)
         textField.text = ""
         return true
+    }
+
+    // MARK: NewTaskTextField Toolbar Handler
+
+    func addNewTaskTextFieldToolbar() {
+        let toolBar = UIToolbar()
+        toolBar.barStyle = .Black
+
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: #selector(StagingAreaTableViewController.cancelAddingTasks))
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(StagingAreaTableViewController.doneAddingTasks))
+
+        toolBar.tintColor = UIColor.whiteColor()
+        toolBar.setItems([cancelButton, flexibleSpace, doneButton], animated: false)
+        toolBar.userInteractionEnabled = true
+        toolBar.sizeToFit()
+
+        newTaskTextField.inputAccessoryView = toolBar
+    }
+
+    func cancelAddingTasks() {
+        newTaskTextField.text = ""
+        newTaskTextField.resignFirstResponder()
+    }
+
+    func doneAddingTasks() {
+        if let newTaskText = newTaskTextField.text {
+            if !newTaskText.isEmpty {
+                TaskItem.insertTaskItemWithTitle(newTaskText, inTaskGroup: nil, inManagedObjectContext: managedObjectContext)
+                newTaskTextField.text = ""
+            }
+        }
+        
+        newTaskTextField.resignFirstResponder()
     }
 }
