@@ -81,6 +81,16 @@ class StagingAreaTableViewController: UITableViewController, NSFetchedResultsCon
         }
     }
 
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+           managedObjectContext.deleteObject(fetchedResultsController.objectAtIndexPath(indexPath) as! TaskItem)
+        }
+    }
+
     // MARK: FetchedResultsController
 
     func initializeFetchedResultsController() {
