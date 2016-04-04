@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import TaskabilityKit
 
-class StagingAreaTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+class StagingAreaTableViewController: UITableViewController, NSFetchedResultsControllerDelegate, UITextFieldDelegate {
 
     // MARK: Types
 
@@ -22,6 +22,8 @@ class StagingAreaTableViewController: UITableViewController, NSFetchedResultsCon
 
 
     // MARK: Properties
+
+    @IBOutlet weak var newTaskTextField: UITextField!
 
     var stagedTaskItems: [TaskItem] {
         return fetchedResultsController.fetchedObjects as! [TaskItem]
@@ -46,7 +48,7 @@ class StagingAreaTableViewController: UITableViewController, NSFetchedResultsCon
         tableView.backgroundColor = UIColor(red: 248/255, green: 248/255, blue: 248/255, alpha: 1.0)
         tableView.tableFooterView = UIView()
 
-        print(stagedTaskItems.count)
+        newTaskTextField.delegate = self
     }
 
     // MARK: UITableViewDataSource
@@ -67,10 +69,6 @@ class StagingAreaTableViewController: UITableViewController, NSFetchedResultsCon
 
     // MARK: UITableViewDelegate
 
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 80
-    }
-
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         switch cell {
         case let cell as StagedTaskTableViewCell:
@@ -78,7 +76,6 @@ class StagingAreaTableViewController: UITableViewController, NSFetchedResultsCon
             let taskItem = fetchedResultsController.objectAtIndexPath(indexPath) as! TaskItem
             cell.titleLabel.text = taskItem.valueForKey("title") as? String
             cell.isComplete = taskItem.valueForKey("isComplete") as! Bool
-
         default:
             fatalError("Unknown cell type")
         }
@@ -124,5 +121,14 @@ class StagingAreaTableViewController: UITableViewController, NSFetchedResultsCon
 
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
         tableView.endUpdates()
+    }
+
+    // MARK: UITextFieldDelegate
+
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        TaskItem.insertTaskItemWithTitle(textField.text!, inTaskGroup: nil, inManagedObjectContext: managedObjectContext)
+        textField.text = ""
+        return true
     }
 }
