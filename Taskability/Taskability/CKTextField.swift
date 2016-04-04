@@ -8,22 +8,34 @@
 
 import UIKit
 
+@IBDesignable
 class CKTextField: UITextField, UITextFieldDelegate {
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        delegate = self
+    @IBInspectable var placeholderFontSize: CGFloat = 10.0 {
+        didSet {
+            placeholderLabel.font = UIFont.systemFontOfSize(placeholderFontSize)
+        }
+    }
 
+    @IBInspectable var placeholderTextColor: UIColor = UIColor.grayColor() {
+        didSet {
+            placeholderLabel.textColor = placeholderTextColor
+        }
+    }
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        delegate = self
         layoutPlaceholderLabel()
     }
 
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        delegate = self
+    override func prepareForInterfaceBuilder() {
+        super.prepareForInterfaceBuilder()
 
+        delegate = self
         layoutPlaceholderLabel()
     }
-
 
     var placeholderLabel = UILabel()
 
@@ -31,20 +43,21 @@ class CKTextField: UITextField, UITextFieldDelegate {
     var bottomConstraint = NSLayoutConstraint()
 
     func layoutPlaceholderLabel() {
-        placeholderLabel.text = placeholder
-        placeholderLabel.translatesAutoresizingMaskIntoConstraints = false
+        placeholderLabel.text = self.placeholder
+        placeholderLabel.font = UIFont.systemFontOfSize(placeholderFontSize)
+        placeholderLabel.textColor = placeholderTextColor
+        placeholderLabel.sizeToFit()
         addSubview(placeholderLabel)
 
-        placeholderLabel.sizeToFit()
-        placeholderLabel.font = UIFont.systemFontOfSize(12.0)
+        placeholderLabel.translatesAutoresizingMaskIntoConstraints = false
 
         topConstraint = placeholderLabel.topAnchor.constraintEqualToAnchor(self.topAnchor)
-        bottomConstraint = placeholderLabel.bottomAnchor.constraintEqualToAnchor(self.bottomAnchor, constant: -10)
+        bottomConstraint = placeholderLabel.bottomAnchor.constraintEqualToAnchor(self.bottomAnchor)
+
         NSLayoutConstraint.activateConstraints([
             placeholderLabel.leadingAnchor.constraintEqualToAnchor(self.leadingAnchor),
             bottomConstraint
         ])
-
     }
 
     // Disable drawing of placeholder, as I will be drawing it myself
@@ -52,23 +65,29 @@ class CKTextField: UITextField, UITextFieldDelegate {
 
     func textFieldDidBeginEditing(textField: UITextField) {
 
-        topConstraint.active = true
-        bottomConstraint.active = false
-
-        UIView.animateWithDuration(0.2, animations: {
+        if textField.text!.isEmpty {
             self.layoutIfNeeded()
-        })
+            topConstraint.active = true
+            bottomConstraint.active = false
+
+            UIView.animateWithDuration(0.35, animations: {
+                self.layoutIfNeeded()
+            })
+        }
 
     }
 
     func textFieldDidEndEditing(textField: UITextField) {
-        self.layoutIfNeeded()
-        topConstraint.active = false
-        bottomConstraint.active = true
 
-        UIView.animateWithDuration(0.2, animations: {
+        if textField.text!.isEmpty {
             self.layoutIfNeeded()
-        })
+            topConstraint.active = false
+            bottomConstraint.active = true
+
+            UIView.animateWithDuration(0.35, animations: {
+                self.layoutIfNeeded()
+            })
+        }
     }
 
 

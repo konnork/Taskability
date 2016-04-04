@@ -23,7 +23,7 @@ public class TaskItem: NSManagedObject {
 
     static let entityName = "TaskItem"
 
-    public class func insertTaskItemWithTitle(title: String, inTaskGroup taskGroup: TaskGroup, inManagedObjectContext managedObjectContext: NSManagedObjectContext) -> TaskItem {
+    public class func insertTaskItemWithTitle(title: String, inTaskGroup taskGroup: TaskGroup?, inManagedObjectContext managedObjectContext: NSManagedObjectContext) -> TaskItem {
 
         let item = NSEntityDescription.insertNewObjectForEntityForName(self.entityName, inManagedObjectContext: managedObjectContext) as! TaskItem
 
