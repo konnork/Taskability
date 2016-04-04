@@ -18,23 +18,10 @@ Supported Platforms
 
 Concepts and Classes:
 
-* UICollectionView
-* Auto Layout
-
--- Coming Soon
-
+* Core Data
+* UITableViewController
 * UINavigationViewController
-* UISplitViewController
-* UI Testing
-* Unit Testing
-* Force Touch on Home Screen
-* NSCoding
-* Localization
-* iCloud
-* Gestures
-* Animations
-* xcassets
-* Protocols
-* Delegation
+* UITabBarController
+* Auto Layout
 * UIStackView
-* Continuous Deployment
+* Delegation
