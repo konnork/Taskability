@@ -49,6 +49,7 @@ class StagingAreaTableViewController: UITableViewController, NSFetchedResultsCon
         tableView.tableFooterView = UIView()
 
         newTaskTextField.delegate = self
+        newTaskTextField.attributedPlaceholder = NSAttributedString(string: newTaskTextField.placeholder!, attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
         addNewTaskTextFieldToolbar()
     }
 

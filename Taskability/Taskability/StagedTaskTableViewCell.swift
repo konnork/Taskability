@@ -24,7 +24,7 @@ class StagedTaskTableViewCell: UITableViewCell {
 
     var isComplete = false {
         didSet {
-            checkmark.isFilled = isComplete
+            checkmark.isChecked = isComplete
             titleLabel.shouldStrike = isComplete
             titleLabel.textColor = isComplete ? UIColor.grayColor() : UIColor.darkTextColor()
         }

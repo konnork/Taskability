@@ -11,57 +11,58 @@ import UIKit
 @IBDesignable
 class Checkmark: UIControl {
 
-    let checkmarkLayer = CAShapeLayer()
 
-    @IBInspectable var isFilled: Bool = false {
-        didSet {
-            checkmarkLayer.strokeColor = strokeColor
-        }
+    // MARK: IBInspectables
+
+    @IBInspectable var borderWidth: CGFloat = 1.0 {
+        didSet { setNeedsDisplay() }
     }
 
-    @IBInspectable var unfilledColor: UIColor = UIColor.blackColor() {
-        didSet {
-            checkmarkLayer.strokeColor = unfilledColor.CGColor
-        }
+    @IBInspectable var uncheckedColor: UIColor = UIColor.grayColor() {
+        didSet { setNeedsDisplay() }
     }
 
-    @IBInspectable var filledColor: UIColor = UIColor.blueColor() {
-        didSet {
-            checkmarkLayer.strokeColor = filledColor.CGColor
-        }
+    @IBInspectable var checkedColor: UIColor = UIColor.blueColor() {
+        didSet { setNeedsDisplay() }
     }
 
-    var strokeColor: CGColor {
-        return isFilled ? filledColor.CGColor : unfilledColor.CGColor
+    // MARK: Computed Properties
+
+    var viewCenter: CGPoint {
+        return convertPoint(center, fromView: superview)
     }
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-
-        layoutCheckmark()
+    var borderRadius: CGFloat {
+        return min(bounds.size.width, bounds.size.height) / 2 - borderWidth
     }
 
-    func layoutCheckmark() {
-        self.layer.addSublayer(checkmarkLayer)
-        checkmarkLayer.strokeColor = strokeColor
-        checkmarkLayer.fillColor = nil
-        checkmarkLayer.lineWidth = 1.5
+    // MARK: Properties
 
-        let startX = self.bounds.midX + 11
-        let startY = self.bounds.midY - 8
+    var isChecked = false {
+        didSet { setNeedsDisplay() }
+    }
 
-        let cornerX = startX - 15.0
-        let cornerY = startY + 15.0
+    // MARK: Drawing
 
-        let endX = cornerX - 7.0
-        let endY = cornerY - 7.0
+    override func drawRect(rect: CGRect) {
+        let border = UIBezierPath(arcCenter: viewCenter, radius: borderRadius, startAngle: 0, endAngle: CGFloat(2*M_PI), clockwise: true)
+
+        border.lineWidth = borderWidth
+        isChecked ? checkedColor.setFill() : uncheckedColor.setStroke()
+        isChecked ? border.fill() : border.stroke()
 
         let checkmarkPath = UIBezierPath()
-        checkmarkPath.moveToPoint(CGPoint(x: startX, y: startY))
-        checkmarkPath.addLineToPoint(CGPoint(x: cornerX, y: cornerY))
-        checkmarkPath.addLineToPoint(CGPoint(x: endX, y: endY))
-
-        checkmarkLayer.path = checkmarkPath.CGPath
+        checkmarkPath.lineWidth = 1.0
+        let offset = borderRadius/4
+        let longEdge = CGPoint(x: (viewCenter.x + borderRadius * sqrt(2)/2) - offset, y: (viewCenter.y - borderRadius * sqrt(2)/2) + offset)
+        let corner = CGPoint(x: viewCenter.x - offset, y: viewCenter.y + offset)
+        let shortEdge = CGPoint(x: 1.5*corner.x - 0.5*longEdge.x, y: (corner.y + longEdge.y)/2)
+        checkmarkPath.moveToPoint(longEdge)
+        checkmarkPath.addLineToPoint(corner)
+        checkmarkPath.addLineToPoint(shortEdge)
+        UIColor.whiteColor().setStroke()
+        checkmarkPath.stroke()
     }
+
 
 }
