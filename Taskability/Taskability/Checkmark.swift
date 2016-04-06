@@ -46,17 +46,26 @@ class Checkmark: UIControl {
 
     override func drawRect(rect: CGRect) {
         let border = UIBezierPath(arcCenter: viewCenter, radius: borderRadius, startAngle: 0, endAngle: CGFloat(2*M_PI), clockwise: true)
-
         border.lineWidth = borderWidth
         isChecked ? checkedColor.setFill() : uncheckedColor.setStroke()
         isChecked ? border.fill() : border.stroke()
 
         let checkmarkPath = UIBezierPath()
-        checkmarkPath.lineWidth = 1.0
-        let offset = borderRadius/4
-        let longEdge = CGPoint(x: (viewCenter.x + borderRadius * sqrt(2)/2) - offset, y: (viewCenter.y - borderRadius * sqrt(2)/2) + offset)
+        checkmarkPath.lineWidth = 2.0
+        //let offset = borderRadius/4
+
+        let offset = 0.2*borderRadius
+
+        let parametricX = viewCenter.x + borderRadius*CGFloat(cos(M_PI_4))
+        let parametricY = viewCenter.y - borderRadius*CGFloat(sin(M_PI_4))
+
+        let longEdge = CGPoint(x: parametricX - offset, y: parametricY + offset)
         let corner = CGPoint(x: viewCenter.x - offset, y: viewCenter.y + offset)
-        let shortEdge = CGPoint(x: 1.5*corner.x - 0.5*longEdge.x, y: (corner.y + longEdge.y)/2)
+
+        let widthDiff = longEdge.x - corner.x
+        let heightDiff = corner.y - longEdge.y
+
+        let shortEdge = CGPoint(x: corner.x - widthDiff/2, y: corner.y - heightDiff/2)
         checkmarkPath.moveToPoint(longEdge)
         checkmarkPath.addLineToPoint(corner)
         checkmarkPath.addLineToPoint(shortEdge)
