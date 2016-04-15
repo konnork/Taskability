@@ -25,6 +25,16 @@
 		70ABB1081C99367D00DB1CA4 /* TaskabilityTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70ABB1071C99367D00DB1CA4 /* TaskabilityTabBarController.swift */; };
 		70B565201CA25CBC003D9193 /* Taskability.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 706CEA651CA0EBFF00EFD7E1 /* Taskability.xcdatamodeld */; };
 		70B565211CA25CC6003D9193 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706CEA851CA0EFD000EFD7E1 /* DataController.swift */; };
+		70CD20FB1CC0837000F8780E /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70CD20F91CC0837000F8780E /* Interface.storyboard */; };
+		70CD20FD1CC0837000F8780E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70CD20FC1CC0837000F8780E /* Assets.xcassets */; };
+		70CD21041CC0837000F8780E /* TaskabilityWatch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 70CD21031CC0837000F8780E /* TaskabilityWatch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		70CD210B1CC0837000F8780E /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CD210A1CC0837000F8780E /* InterfaceController.swift */; };
+		70CD210D1CC0837000F8780E /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CD210C1CC0837000F8780E /* ExtensionDelegate.swift */; };
+		70CD210F1CC0837000F8780E /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CD210E1CC0837000F8780E /* NotificationController.swift */; };
+		70CD21111CC0837000F8780E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70CD21101CC0837000F8780E /* Assets.xcassets */; };
+		70CD21151CC0837000F8780E /* TaskabilityWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 70CD20F71CC0836F00F8780E /* TaskabilityWatch.app */; };
+		70CD211F1CC0851500F8780E /* TasksTableInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CD211E1CC0851500F8780E /* TasksTableInterfaceController.swift */; };
+		70CD21221CC0881D00F8780E /* TaskItemRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CD21211CC0881D00F8780E /* TaskItemRowController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +44,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 7022B35D1C98A3490024F75B;
 			remoteInfo = TaskabilityKit;
+		};
+		70CD21051CC0837000F8780E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7022B33C1C98A0750024F75B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 70CD21021CC0837000F8780E;
+			remoteInfo = "TaskabilityWatch Extension";
+		};
+		70CD21131CC0837000F8780E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7022B33C1C98A0750024F75B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 70CD20F61CC0836F00F8780E;
+			remoteInfo = TaskabilityWatch;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -47,6 +71,28 @@
 				7022B3661C98A3490024F75B /* TaskabilityKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		70CD211B1CC0837000F8780E /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				70CD21041CC0837000F8780E /* TaskabilityWatch Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		70CD211D1CC0837000F8780E /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				70CD21151CC0837000F8780E /* TaskabilityWatch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -71,6 +117,19 @@
 		706CEA801CA0ED3A00EFD7E1 /* TaskGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskGroup.swift; path = ../TaskGroup.swift; sourceTree = "<group>"; };
 		706CEA851CA0EFD000EFD7E1 /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		70ABB1071C99367D00DB1CA4 /* TaskabilityTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskabilityTabBarController.swift; sourceTree = "<group>"; };
+		70CD20F71CC0836F00F8780E /* TaskabilityWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskabilityWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		70CD20FA1CC0837000F8780E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		70CD20FC1CC0837000F8780E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		70CD20FE1CC0837000F8780E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		70CD21031CC0837000F8780E /* TaskabilityWatch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "TaskabilityWatch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		70CD21091CC0837000F8780E /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		70CD210A1CC0837000F8780E /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		70CD210C1CC0837000F8780E /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		70CD210E1CC0837000F8780E /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		70CD21101CC0837000F8780E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		70CD21121CC0837000F8780E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		70CD211E1CC0851500F8780E /* TasksTableInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TasksTableInterfaceController.swift; path = TaskabilityWatch/TasksTableInterfaceController.swift; sourceTree = "<group>"; };
+		70CD21211CC0881D00F8780E /* TaskItemRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskItemRowController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +148,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		70CD21001CC0837000F8780E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -97,6 +163,9 @@
 			children = (
 				7022B3461C98A0750024F75B /* Taskability */,
 				7022B35F1C98A3490024F75B /* TaskabilityKit */,
+				70CD21201CC0851F00F8780E /* Taskability WatchKit Extension */,
+				70CD20F81CC0837000F8780E /* TaskabilityWatch */,
+				70CD21071CC0837000F8780E /* TaskabilityWatch Extension */,
 				7022B3451C98A0750024F75B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -106,6 +175,8 @@
 			children = (
 				7022B3441C98A0750024F75B /* Taskability.app */,
 				7022B35E1C98A3490024F75B /* TaskabilityKit.framework */,
+				70CD20F71CC0836F00F8780E /* TaskabilityWatch.app */,
+				70CD21031CC0837000F8780E /* TaskabilityWatch Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -165,6 +236,46 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		70CD20F81CC0837000F8780E /* TaskabilityWatch */ = {
+			isa = PBXGroup;
+			children = (
+				70CD20F91CC0837000F8780E /* Interface.storyboard */,
+				70CD20FC1CC0837000F8780E /* Assets.xcassets */,
+				70CD20FE1CC0837000F8780E /* Info.plist */,
+			);
+			path = TaskabilityWatch;
+			sourceTree = "<group>";
+		};
+		70CD21071CC0837000F8780E /* TaskabilityWatch Extension */ = {
+			isa = PBXGroup;
+			children = (
+				70CD210A1CC0837000F8780E /* InterfaceController.swift */,
+				70CD210C1CC0837000F8780E /* ExtensionDelegate.swift */,
+				70CD210E1CC0837000F8780E /* NotificationController.swift */,
+				70CD21101CC0837000F8780E /* Assets.xcassets */,
+				70CD21121CC0837000F8780E /* Info.plist */,
+				70CD21081CC0837000F8780E /* Supporting Files */,
+			);
+			path = "TaskabilityWatch Extension";
+			sourceTree = "<group>";
+		};
+		70CD21081CC0837000F8780E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				70CD21091CC0837000F8780E /* PushNotificationPayload.apns */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		70CD21201CC0851F00F8780E /* Taskability WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				70CD211E1CC0851500F8780E /* TasksTableInterfaceController.swift */,
+				70CD21211CC0881D00F8780E /* TaskItemRowController.swift */,
+			);
+			name = "Taskability WatchKit Extension";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -187,11 +298,13 @@
 				7022B3411C98A0750024F75B /* Frameworks */,
 				7022B3421C98A0750024F75B /* Resources */,
 				7022B36A1C98A3490024F75B /* Embed Frameworks */,
+				70CD211D1CC0837000F8780E /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				7022B3641C98A3490024F75B /* PBXTargetDependency */,
+				70CD21141CC0837000F8780E /* PBXTargetDependency */,
 			);
 			name = Taskability;
 			productName = Taskability;
@@ -216,13 +329,47 @@
 			productReference = 7022B35E1C98A3490024F75B /* TaskabilityKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		70CD20F61CC0836F00F8780E /* TaskabilityWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 70CD211C1CC0837000F8780E /* Build configuration list for PBXNativeTarget "TaskabilityWatch" */;
+			buildPhases = (
+				70CD20F51CC0836F00F8780E /* Resources */,
+				70CD211B1CC0837000F8780E /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				70CD21061CC0837000F8780E /* PBXTargetDependency */,
+			);
+			name = TaskabilityWatch;
+			productName = TaskabilityWatch;
+			productReference = 70CD20F71CC0836F00F8780E /* TaskabilityWatch.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		70CD21021CC0837000F8780E /* TaskabilityWatch Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 70CD211A1CC0837000F8780E /* Build configuration list for PBXNativeTarget "TaskabilityWatch Extension" */;
+			buildPhases = (
+				70CD20FF1CC0837000F8780E /* Sources */,
+				70CD21001CC0837000F8780E /* Frameworks */,
+				70CD21011CC0837000F8780E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "TaskabilityWatch Extension";
+			productName = "TaskabilityWatch Extension";
+			productReference = 70CD21031CC0837000F8780E /* TaskabilityWatch Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		7022B33C1C98A0750024F75B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Connor Krupp";
 				TargetAttributes = {
@@ -231,6 +378,12 @@
 					};
 					7022B35D1C98A3490024F75B = {
 						CreatedOnToolsVersion = 7.2.1;
+					};
+					70CD20F61CC0836F00F8780E = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					70CD21021CC0837000F8780E = {
+						CreatedOnToolsVersion = 7.3;
 					};
 				};
 			};
@@ -249,6 +402,8 @@
 			targets = (
 				7022B3431C98A0750024F75B /* Taskability */,
 				7022B35D1C98A3490024F75B /* TaskabilityKit */,
+				70CD20F61CC0836F00F8780E /* TaskabilityWatch */,
+				70CD21021CC0837000F8780E /* TaskabilityWatch Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -268,6 +423,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		70CD20F51CC0836F00F8780E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				70CD20FD1CC0837000F8780E /* Assets.xcassets in Resources */,
+				70CD20FB1CC0837000F8780E /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		70CD21011CC0837000F8780E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				70CD21111CC0837000F8780E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,6 +472,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		70CD20FF1CC0837000F8780E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				70CD210F1CC0837000F8780E /* NotificationController.swift in Sources */,
+				70CD21221CC0881D00F8780E /* TaskItemRowController.swift in Sources */,
+				70CD211F1CC0851500F8780E /* TasksTableInterfaceController.swift in Sources */,
+				70CD210D1CC0837000F8780E /* ExtensionDelegate.swift in Sources */,
+				70CD210B1CC0837000F8780E /* InterfaceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -307,6 +491,16 @@
 			isa = PBXTargetDependency;
 			target = 7022B35D1C98A3490024F75B /* TaskabilityKit */;
 			targetProxy = 7022B3631C98A3490024F75B /* PBXContainerItemProxy */;
+		};
+		70CD21061CC0837000F8780E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 70CD21021CC0837000F8780E /* TaskabilityWatch Extension */;
+			targetProxy = 70CD21051CC0837000F8780E /* PBXContainerItemProxy */;
+		};
+		70CD21141CC0837000F8780E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 70CD20F61CC0836F00F8780E /* TaskabilityWatch */;
+			targetProxy = 70CD21131CC0837000F8780E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -325,6 +519,14 @@
 				7022B3511C98A0750024F75B /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		70CD20F91CC0837000F8780E /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				70CD20FA1CC0837000F8780E /* Base */,
+			);
+			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -482,6 +684,72 @@
 			};
 			name = Release;
 		};
+		70CD21161CC0837000F8780E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				IBSC_MODULE = TaskabilityWatch_Extension;
+				INFOPLIST_FILE = TaskabilityWatch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.connorkrupp.Taskability.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Debug;
+		};
+		70CD21171CC0837000F8780E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				IBSC_MODULE = TaskabilityWatch_Extension;
+				INFOPLIST_FILE = TaskabilityWatch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.connorkrupp.Taskability.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Release;
+		};
+		70CD21181CC0837000F8780E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				INFOPLIST_FILE = "TaskabilityWatch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.connorkrupp.Taskability.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Debug;
+		};
+		70CD21191CC0837000F8780E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				INFOPLIST_FILE = "TaskabilityWatch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.connorkrupp.Taskability.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -511,6 +779,22 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		70CD211A1CC0837000F8780E /* Build configuration list for PBXNativeTarget "TaskabilityWatch Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				70CD21181CC0837000F8780E /* Debug */,
+				70CD21191CC0837000F8780E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		70CD211C1CC0837000F8780E /* Build configuration list for PBXNativeTarget "TaskabilityWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				70CD21161CC0837000F8780E /* Debug */,
+				70CD21171CC0837000F8780E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 
