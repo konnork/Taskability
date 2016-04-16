@@ -31,13 +31,17 @@ class StagingAreaTableViewController: UITableViewController, NSFetchedResultsCon
         return fetchedResultsController.fetchedObjects as! [TaskItem]
     }
 
-    let taskGroups = ["Michigan Hackers", "Work", "Mars Rover", "Personal", "EECS 281", "EECS 370", "EECS 376", "EECS 398"]
+    var taskGroups: [TaskGroup] {
+        return taskGroupsFetchedResultsController.fetchedObjects as! [TaskGroup]
+    }
+
     var selectedTaskGroup: NSIndexPath?
 
     /// Core Data Properties
 
     var dataController: DataController!
     var fetchedResultsController: NSFetchedResultsController!
+    var taskGroupsFetchedResultsController: NSFetchedResultsController!
 
     var managedObjectContext: NSManagedObjectContext {
         return dataController.managedObjectContext
@@ -48,7 +52,7 @@ class StagingAreaTableViewController: UITableViewController, NSFetchedResultsCon
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        initializeFetchedResultsController()
+        initializeFetchedResultsControllers()
 
         tableView.backgroundColor = UIColor(red: 248/255, green: 248/255, blue: 248/255, alpha: 1.0)
         tableView.tableFooterView = UIView()
@@ -112,15 +116,27 @@ class StagingAreaTableViewController: UITableViewController, NSFetchedResultsCon
 
     // MARK: FetchedResultsController
 
-    func initializeFetchedResultsController() {
+    func initializeFetchedResultsControllers() {
         let request = NSFetchRequest(entityName: "TaskItem")
-        request.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+        let taskGroupRequest = NSFetchRequest(entityName: "TaskGroup")
 
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+        request.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+        taskGroupRequest.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: request,
+                                                              managedObjectContext: managedObjectContext,
+                                                              sectionNameKeyPath: nil, cacheName: nil)
+
+        taskGroupsFetchedResultsController = NSFetchedResultsController(fetchRequest: taskGroupRequest,
+                                                                        managedObjectContext: managedObjectContext,
+                                                                        sectionNameKeyPath: nil, cacheName: nil)
+
         fetchedResultsController.delegate = self
+        taskGroupsFetchedResultsController.delegate = self
 
         do {
             try fetchedResultsController.performFetch()
+            try taskGroupsFetchedResultsController.performFetch()
         } catch {
             fatalError("Failed to initialize FetchedResultsController: \(error)")
         }
@@ -169,7 +185,7 @@ class StagingAreaTableViewController: UITableViewController, NSFetchedResultsCon
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("taskGroupCell", forIndexPath: indexPath) as! ScrollMenuCollectionViewCell
-        cell.titleLabel.text = taskGroups[indexPath.row]
+        cell.titleLabel.text = taskGroups[indexPath.row].valueForKey("title") as? String
 
         return cell
     }
@@ -207,6 +223,10 @@ class StagingAreaTableViewController: UITableViewController, NSFetchedResultsCon
     }
 
     func resizeTableHeaderView(shouldExpand: Bool) {
+        if taskGroups.isEmpty {
+            return
+        }
+
         let animationDuration = 0.3
         let sizeAdjustment: CGFloat = 40
 
@@ -218,9 +238,6 @@ class StagingAreaTableViewController: UITableViewController, NSFetchedResultsCon
             self.tableView.tableHeaderView?.frame = newFrame
             self.tableView.tableHeaderView = self.tableView.tableHeaderView
             self.view.layoutIfNeeded()
-        }
-
-        func slideMenu() {
         }
 
         if shouldExpand {
@@ -247,18 +264,7 @@ class StagingAreaTableViewController: UITableViewController, NSFetchedResultsCon
     }
 
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-
-        let groupsFetch = NSFetchRequest(entityName: "TaskGroup")
-
-        groupsFetch.predicate = NSPredicate(format: "title == %@", textField.text!)
-        groupsFetch.fetchLimit = 1
-
-        let taskGroups = try! managedObjectContext.executeFetchRequest(groupsFetch) as! [TaskGroup]
-        let taskGroup = taskGroups.isEmpty ? nil : taskGroups.first
-
-        TaskItem.insertTaskItemWithTitle(textField.text!, inTaskGroup: taskGroup, inManagedObjectContext: managedObjectContext)
-        textField.text = ""
-
+        createTaskItem()
         return true
     }
 
@@ -286,18 +292,22 @@ class StagingAreaTableViewController: UITableViewController, NSFetchedResultsCon
     }
 
     func doneAddingTasks() {
-        if let newTaskText = newTaskTextField.text {
-            if !newTaskText.isEmpty {
-                createTaskItem(withTitle: newTaskText)
-                newTaskTextField.text = ""
-            }
-        }
-        
+        createTaskItem()
         newTaskTextField.resignFirstResponder()
     }
 
-    func createTaskItem(withTitle title: String) {
-        TaskItem.insertTaskItemWithTitle(title, inTaskGroup: nil, inManagedObjectContext: managedObjectContext)
+    func createTaskItem() {
+        let title = newTaskTextField.text!
+        if !title.isEmpty {
+            var taskGroup: TaskGroup? = nil
+            if let selectedTaskGroupIndexPath = selectedTaskGroup {
+                taskGroup = taskGroups[selectedTaskGroupIndexPath.row]
+            }
+
+            TaskItem.insertTaskItemWithTitle(title, inTaskGroup: taskGroup, inManagedObjectContext: managedObjectContext)
+            newTaskTextField.text = ""
+            selectedTaskGroup = nil
+        }
     }
 
 }
