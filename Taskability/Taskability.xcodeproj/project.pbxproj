@@ -35,6 +35,8 @@
 		70CD21151CC0837000F8780E /* TaskabilityWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 70CD20F71CC0836F00F8780E /* TaskabilityWatch.app */; };
 		70CD211F1CC0851500F8780E /* TasksTableInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CD211E1CC0851500F8780E /* TasksTableInterfaceController.swift */; };
 		70CD21221CC0881D00F8780E /* TaskItemRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CD21211CC0881D00F8780E /* TaskItemRowController.swift */; };
+		70CD212A1CC08B7B00F8780E /* TaskabilityUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CD21291CC08B7B00F8780E /* TaskabilityUITests.swift */; };
+		70EE81731CC2D44400DB7C7E /* ScrollMenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EE81721CC2D44400DB7C7E /* ScrollMenuCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +60,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 70CD20F61CC0836F00F8780E;
 			remoteInfo = TaskabilityWatch;
+		};
+		70CD212C1CC08B7B00F8780E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7022B33C1C98A0750024F75B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7022B3431C98A0750024F75B;
+			remoteInfo = Taskability;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -130,6 +139,10 @@
 		70CD21121CC0837000F8780E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		70CD211E1CC0851500F8780E /* TasksTableInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TasksTableInterfaceController.swift; path = TaskabilityWatch/TasksTableInterfaceController.swift; sourceTree = "<group>"; };
 		70CD21211CC0881D00F8780E /* TaskItemRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskItemRowController.swift; sourceTree = "<group>"; };
+		70CD21271CC08B7B00F8780E /* TaskabilityUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TaskabilityUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		70CD21291CC08B7B00F8780E /* TaskabilityUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskabilityUITests.swift; sourceTree = "<group>"; };
+		70CD212B1CC08B7B00F8780E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		70EE81721CC2D44400DB7C7E /* ScrollMenuCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollMenuCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +168,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		70CD21241CC08B7B00F8780E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -166,6 +186,7 @@
 				70CD21201CC0851F00F8780E /* Taskability WatchKit Extension */,
 				70CD20F81CC0837000F8780E /* TaskabilityWatch */,
 				70CD21071CC0837000F8780E /* TaskabilityWatch Extension */,
+				70CD21281CC08B7B00F8780E /* TaskabilityUITests */,
 				7022B3451C98A0750024F75B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -177,6 +198,7 @@
 				7022B35E1C98A3490024F75B /* TaskabilityKit.framework */,
 				70CD20F71CC0836F00F8780E /* TaskabilityWatch.app */,
 				70CD21031CC0837000F8780E /* TaskabilityWatch Extension.appex */,
+				70CD21271CC08B7B00F8780E /* TaskabilityUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -220,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				7022B37F1C9913D80024F75B /* StagedTaskTableViewCell.swift */,
+				70EE81721CC2D44400DB7C7E /* ScrollMenuCollectionViewCell.swift */,
 				7017DEF51C9AA1EC007CEEEA /* StrikethroughLabel.swift */,
 				7026B8941C9DA3400074ACD8 /* CKTextField.swift */,
 				7017DEF31C9A8CE5007CEEEA /* Checkmark.swift */,
@@ -274,6 +297,15 @@
 				70CD21211CC0881D00F8780E /* TaskItemRowController.swift */,
 			);
 			name = "Taskability WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		70CD21281CC08B7B00F8780E /* TaskabilityUITests */ = {
+			isa = PBXGroup;
+			children = (
+				70CD21291CC08B7B00F8780E /* TaskabilityUITests.swift */,
+				70CD212B1CC08B7B00F8780E /* Info.plist */,
+			);
+			path = TaskabilityUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -363,6 +395,24 @@
 			productReference = 70CD21031CC0837000F8780E /* TaskabilityWatch Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
 		};
+		70CD21261CC08B7B00F8780E /* TaskabilityUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 70CD212E1CC08B7B00F8780E /* Build configuration list for PBXNativeTarget "TaskabilityUITests" */;
+			buildPhases = (
+				70CD21231CC08B7B00F8780E /* Sources */,
+				70CD21241CC08B7B00F8780E /* Frameworks */,
+				70CD21251CC08B7B00F8780E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				70CD212D1CC08B7B00F8780E /* PBXTargetDependency */,
+			);
+			name = TaskabilityUITests;
+			productName = TaskabilityUITests;
+			productReference = 70CD21271CC08B7B00F8780E /* TaskabilityUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -385,6 +435,10 @@
 					70CD21021CC0837000F8780E = {
 						CreatedOnToolsVersion = 7.3;
 					};
+					70CD21261CC08B7B00F8780E = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = 7022B3431C98A0750024F75B;
+					};
 				};
 			};
 			buildConfigurationList = 7022B33F1C98A0750024F75B /* Build configuration list for PBXProject "Taskability" */;
@@ -404,6 +458,7 @@
 				7022B35D1C98A3490024F75B /* TaskabilityKit */,
 				70CD20F61CC0836F00F8780E /* TaskabilityWatch */,
 				70CD21021CC0837000F8780E /* TaskabilityWatch Extension */,
+				70CD21261CC08B7B00F8780E /* TaskabilityUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -443,6 +498,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		70CD21251CC08B7B00F8780E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -456,6 +518,7 @@
 				7022B3481C98A0750024F75B /* AppDelegate.swift in Sources */,
 				7017DEF61C9AA1EC007CEEEA /* StrikethroughLabel.swift in Sources */,
 				70ABB1081C99367D00DB1CA4 /* TaskabilityTabBarController.swift in Sources */,
+				70EE81731CC2D44400DB7C7E /* ScrollMenuCollectionViewCell.swift in Sources */,
 				7026B8951C9DA3400074ACD8 /* CKTextField.swift in Sources */,
 				70B565201CA25CBC003D9193 /* Taskability.xcdatamodeld in Sources */,
 				7017DEF41C9A8CE5007CEEEA /* Checkmark.swift in Sources */,
@@ -484,6 +547,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		70CD21231CC08B7B00F8780E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				70CD212A1CC08B7B00F8780E /* TaskabilityUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -501,6 +572,11 @@
 			isa = PBXTargetDependency;
 			target = 70CD20F61CC0836F00F8780E /* TaskabilityWatch */;
 			targetProxy = 70CD21131CC0837000F8780E /* PBXContainerItemProxy */;
+		};
+		70CD212D1CC08B7B00F8780E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7022B3431C98A0750024F75B /* Taskability */;
+			targetProxy = 70CD212C1CC08B7B00F8780E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -568,7 +644,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -607,7 +683,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -750,6 +826,32 @@
 			};
 			name = Release;
 		};
+		70CD212F1CC08B7B00F8780E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				INFOPLIST_FILE = TaskabilityUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.connorkrupp.TaskabilityUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Taskability;
+			};
+			name = Debug;
+		};
+		70CD21301CC08B7B00F8780E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				INFOPLIST_FILE = TaskabilityUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.connorkrupp.TaskabilityUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Taskability;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -787,6 +889,7 @@
 				70CD21191CC0837000F8780E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		70CD211C1CC0837000F8780E /* Build configuration list for PBXNativeTarget "TaskabilityWatch" */ = {
 			isa = XCConfigurationList;
@@ -795,6 +898,16 @@
 				70CD21171CC0837000F8780E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		70CD212E1CC08B7B00F8780E /* Build configuration list for PBXNativeTarget "TaskabilityUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				70CD212F1CC08B7B00F8780E /* Debug */,
+				70CD21301CC08B7B00F8780E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

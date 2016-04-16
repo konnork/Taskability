@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import TaskabilityKit
 
-class StagingAreaTableViewController: UITableViewController, NSFetchedResultsControllerDelegate, UITextFieldDelegate, StagedTaskTableViewCellDelegate {
+class StagingAreaTableViewController: UITableViewController, NSFetchedResultsControllerDelegate, UITextFieldDelegate, StagedTaskTableViewCellDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     // MARK: Types
 
@@ -24,10 +24,15 @@ class StagingAreaTableViewController: UITableViewController, NSFetchedResultsCon
     // MARK: Properties
 
     @IBOutlet weak var newTaskTextField: UITextField!
+    @IBOutlet weak var scrollMenuCollectionView: UICollectionView!
+    @IBOutlet weak var scrollMenuCollectionViewLeadingConstraint: NSLayoutConstraint!
 
     var stagedTaskItems: [TaskItem] {
         return fetchedResultsController.fetchedObjects as! [TaskItem]
     }
+
+    let taskGroups = ["Michigan Hackers", "Work", "Mars Rover", "Personal", "EECS 281", "EECS 370", "EECS 376", "EECS 398"]
+    var selectedTaskGroup: NSIndexPath?
 
     /// Core Data Properties
 
@@ -47,6 +52,10 @@ class StagingAreaTableViewController: UITableViewController, NSFetchedResultsCon
 
         tableView.backgroundColor = UIColor(red: 248/255, green: 248/255, blue: 248/255, alpha: 1.0)
         tableView.tableFooterView = UIView()
+
+        let flowLayout = scrollMenuCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        flowLayout.estimatedItemSize = CGSizeMake(100, 40)
+        scrollMenuCollectionViewLeadingConstraint.constant = self.view.bounds.width
 
         newTaskTextField.delegate = self
         newTaskTextField.attributedPlaceholder = NSAttributedString(string: newTaskTextField.placeholder!, attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
@@ -77,6 +86,13 @@ class StagingAreaTableViewController: UITableViewController, NSFetchedResultsCon
             cell.selectionStyle = .None
             let taskItem = fetchedResultsController.objectAtIndexPath(indexPath) as! TaskItem
             cell.titleLabel.text = taskItem.valueForKey("title") as? String
+
+            if let taskGroup = taskItem.valueForKey("taskGroup") as? TaskGroup {
+                cell.groupLabel.text = taskGroup.valueForKey("title") as? String
+            } else {
+                cell.groupLabel.text = "Ungrouped"
+            }
+
             cell.isComplete = taskItem.valueForKey("isComplete") as! Bool
             cell.delegate = self
         default:
@@ -98,8 +114,7 @@ class StagingAreaTableViewController: UITableViewController, NSFetchedResultsCon
 
     func initializeFetchedResultsController() {
         let request = NSFetchRequest(entityName: "TaskItem")
-        let managedObjectContext = self.dataController.managedObjectContext
-        request.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
+        request.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
 
         fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
         fetchedResultsController.delegate = self
@@ -146,11 +161,104 @@ class StagingAreaTableViewController: UITableViewController, NSFetchedResultsCon
         taskItem.setValue(!currentCompleteness, forKey: completeKey)
     }
 
+    // MARK: UICollectionViewDataSource
+
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return taskGroups.count
+    }
+
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("taskGroupCell", forIndexPath: indexPath) as! ScrollMenuCollectionViewCell
+        cell.titleLabel.text = taskGroups[indexPath.row]
+
+        return cell
+    }
+
+    // MARK: UICollectionViewDelegate
+
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        collectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: .CenteredHorizontally, animated: true)
+        if let oldIndexPath = selectedTaskGroup {
+            let cell = collectionView.cellForItemAtIndexPath(oldIndexPath) as! ScrollMenuCollectionViewCell
+            cell.backgroundColor = UIColor.whiteColor()
+            cell.titleLabel.textColor = UIColor.darkGrayColor()
+            if indexPath == oldIndexPath {
+                selectedTaskGroup = nil
+                return
+            }
+        }
+
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! ScrollMenuCollectionViewCell
+        cell.backgroundColor = UIColor.darkGrayColor()
+        cell.titleLabel.textColor = UIColor.whiteColor()
+
+        selectedTaskGroup = indexPath
+    }
+
+
     // MARK: UITextFieldDelegate
 
+    func textFieldDidBeginEditing(textField: UITextField) {
+        resizeTableHeaderView(true)
+    }
+
+    func textFieldDidEndEditing(textField: UITextField) {
+        resizeTableHeaderView(false)
+    }
+
+    func resizeTableHeaderView(shouldExpand: Bool) {
+        let animationDuration = 0.3
+        let sizeAdjustment: CGFloat = 40
+
+        let frame = self.tableView.tableHeaderView!.frame
+        let newFrame = CGRectMake(frame.origin.x, frame.origin.y, frame.width,
+                                  shouldExpand ? frame.height + sizeAdjustment : frame.height - sizeAdjustment)
+
+        func resizeHeader() {
+            self.tableView.tableHeaderView?.frame = newFrame
+            self.tableView.tableHeaderView = self.tableView.tableHeaderView
+            self.view.layoutIfNeeded()
+        }
+
+        func slideMenu() {
+        }
+
+        if shouldExpand {
+            UIView.animateWithDuration(animationDuration, animations: {
+                resizeHeader()
+                }, completion: { _ in
+                    self.scrollMenuCollectionViewLeadingConstraint.constant = 0
+                    UIView.animateWithDuration(animationDuration, animations: {
+                        self.view.layoutIfNeeded()
+                    })
+            })
+        } else {
+            self.scrollMenuCollectionViewLeadingConstraint.constant = self.view.bounds.width
+
+            UIView.animateWithDuration(animationDuration, animations: {
+                self.view.layoutIfNeeded()
+            }, completion: { _ in
+                UIView.animateWithDuration(animationDuration, animations: {
+                    resizeHeader()
+                })
+            })
+        }
+
+    }
+
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        TaskItem.insertTaskItemWithTitle(textField.text!, inTaskGroup: nil, inManagedObjectContext: managedObjectContext)
+
+        let groupsFetch = NSFetchRequest(entityName: "TaskGroup")
+
+        groupsFetch.predicate = NSPredicate(format: "title == %@", textField.text!)
+        groupsFetch.fetchLimit = 1
+
+        let taskGroups = try! managedObjectContext.executeFetchRequest(groupsFetch) as! [TaskGroup]
+        let taskGroup = taskGroups.isEmpty ? nil : taskGroups.first
+
+        TaskItem.insertTaskItemWithTitle(textField.text!, inTaskGroup: taskGroup, inManagedObjectContext: managedObjectContext)
         textField.text = ""
+
         return true
     }
 
@@ -180,11 +288,16 @@ class StagingAreaTableViewController: UITableViewController, NSFetchedResultsCon
     func doneAddingTasks() {
         if let newTaskText = newTaskTextField.text {
             if !newTaskText.isEmpty {
-                TaskItem.insertTaskItemWithTitle(newTaskText, inTaskGroup: nil, inManagedObjectContext: managedObjectContext)
+                createTaskItem(withTitle: newTaskText)
                 newTaskTextField.text = ""
             }
         }
         
         newTaskTextField.resignFirstResponder()
     }
+
+    func createTaskItem(withTitle title: String) {
+        TaskItem.insertTaskItemWithTitle(title, inTaskGroup: nil, inManagedObjectContext: managedObjectContext)
+    }
+
 }
