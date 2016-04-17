@@ -15,8 +15,11 @@ class StagingAreaTableViewController: UITableViewController, NSFetchedResultsCon
     // MARK: Types
 
     struct MainStoryboard {
-        struct CellIdentifiers {
+        struct TableViewCellIdentifiers {
             static let taskCell = "taskCell"
+        }
+        struct CollectionViewCellIdentifiers {
+            static let taskGroupCell = "taskGroupCell"
         }
     }
 
@@ -78,7 +81,7 @@ class StagingAreaTableViewController: UITableViewController, NSFetchedResultsCon
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let identifier = MainStoryboard.CellIdentifiers.taskCell
+        let identifier = MainStoryboard.TableViewCellIdentifiers.taskCell
         return tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath)
     }
 
@@ -117,29 +120,18 @@ class StagingAreaTableViewController: UITableViewController, NSFetchedResultsCon
     // MARK: FetchedResultsController
 
     func initializeFetchedResultsControllers() {
-        let request = NSFetchRequest(entityName: "TaskItem")
-        let taskGroupRequest = NSFetchRequest(entityName: "TaskGroup")
-
-        request.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
-        taskGroupRequest.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
-
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: request,
-                                                              managedObjectContext: managedObjectContext,
-                                                              sectionNameKeyPath: nil, cacheName: nil)
-
-        taskGroupsFetchedResultsController = NSFetchedResultsController(fetchRequest: taskGroupRequest,
-                                                                        managedObjectContext: managedObjectContext,
-                                                                        sectionNameKeyPath: nil, cacheName: nil)
-
+        let taskItemRequest = NSFetchRequest(entityName: "TaskItem")
+        taskItemRequest.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+        fetchedResultsController = TaskabilityCoreData.initializeFetchedResultsController(withFetchRequest: taskItemRequest,
+                                                                                          inManagedObjectContext: managedObjectContext)
         fetchedResultsController.delegate = self
-        taskGroupsFetchedResultsController.delegate = self
 
-        do {
-            try fetchedResultsController.performFetch()
-            try taskGroupsFetchedResultsController.performFetch()
-        } catch {
-            fatalError("Failed to initialize FetchedResultsController: \(error)")
-        }
+
+        let taskGroupRequest = NSFetchRequest(entityName: "TaskGroup")
+        taskGroupRequest.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+        taskGroupsFetchedResultsController = TaskabilityCoreData.initializeFetchedResultsController(withFetchRequest: taskGroupRequest,
+                                                                                                    inManagedObjectContext: managedObjectContext)
+        taskGroupsFetchedResultsController.delegate = self
     }
 
     // MARK: NSFetchedResultsControllerDelegate
@@ -184,7 +176,8 @@ class StagingAreaTableViewController: UITableViewController, NSFetchedResultsCon
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("taskGroupCell", forIndexPath: indexPath) as! ScrollMenuCollectionViewCell
+        let identifier = MainStoryboard.CollectionViewCellIdentifiers.taskGroupCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(identifier, forIndexPath: indexPath) as! ScrollMenuCollectionViewCell
         cell.titleLabel.text = taskGroups[indexPath.row].valueForKey("title") as? String
 
         return cell
@@ -304,7 +297,7 @@ class StagingAreaTableViewController: UITableViewController, NSFetchedResultsCon
                 taskGroup = taskGroups[selectedTaskGroupIndexPath.row]
             }
 
-            TaskItem.insertTaskItemWithTitle(title, inTaskGroup: taskGroup, inManagedObjectContext: managedObjectContext)
+            TaskabilityCoreData.insertTaskItemWithTitle(title, inTaskGroup: taskGroup, inManagedObjectContext: managedObjectContext)
             newTaskTextField.text = ""
             selectedTaskGroup = nil
         }

@@ -23,21 +23,4 @@ public class TaskItem: NSManagedObject {
 
     static let entityName = "TaskItem"
 
-    public class func insertTaskItemWithTitle(title: String, inTaskGroup taskGroup: TaskGroup?, inManagedObjectContext managedObjectContext: NSManagedObjectContext) -> TaskItem {
-
-        let item = NSEntityDescription.insertNewObjectForEntityForName(self.entityName, inManagedObjectContext: managedObjectContext) as! TaskItem
-
-        item.title = title
-        item.creationDate = NSDate()
-        item.isComplete = false
-        item.taskGroup = taskGroup
-        
-        do {
-            try managedObjectContext.save()
-        } catch {
-            fatalError("Error saving TaskGroup")
-        }
-
-        return item
-    }
 }

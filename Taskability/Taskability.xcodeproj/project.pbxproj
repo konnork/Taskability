@@ -37,6 +37,10 @@
 		70CD21221CC0881D00F8780E /* TaskItemRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CD21211CC0881D00F8780E /* TaskItemRowController.swift */; };
 		70CD212A1CC08B7B00F8780E /* TaskabilityUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CD21291CC08B7B00F8780E /* TaskabilityUITests.swift */; };
 		70EE81731CC2D44400DB7C7E /* ScrollMenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EE81721CC2D44400DB7C7E /* ScrollMenuCollectionViewCell.swift */; };
+		70EE81751CC32F8900DB7C7E /* TaskGroupCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EE81741CC32F8900DB7C7E /* TaskGroupCollectionViewController.swift */; };
+		70EE81781CC333F600DB7C7E /* TaskabilityCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EE81761CC330C100DB7C7E /* TaskabilityCoreData.swift */; };
+		70EE817A1CC33E5900DB7C7E /* TaskGroupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EE81791CC33E5900DB7C7E /* TaskGroupCollectionViewCell.swift */; };
+		70EE817C1CC34BF000DB7C7E /* AddTaskGroupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EE817B1CC34BF000DB7C7E /* AddTaskGroupCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,6 +147,10 @@
 		70CD21291CC08B7B00F8780E /* TaskabilityUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskabilityUITests.swift; sourceTree = "<group>"; };
 		70CD212B1CC08B7B00F8780E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		70EE81721CC2D44400DB7C7E /* ScrollMenuCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollMenuCollectionViewCell.swift; sourceTree = "<group>"; };
+		70EE81741CC32F8900DB7C7E /* TaskGroupCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskGroupCollectionViewController.swift; sourceTree = "<group>"; };
+		70EE81761CC330C100DB7C7E /* TaskabilityCoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskabilityCoreData.swift; path = ../Taskability/TaskabilityCoreData.swift; sourceTree = "<group>"; };
+		70EE81791CC33E5900DB7C7E /* TaskGroupCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskGroupCollectionViewCell.swift; sourceTree = "<group>"; };
+		70EE817B1CC34BF000DB7C7E /* AddTaskGroupCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTaskGroupCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,6 +242,7 @@
 			children = (
 				70ABB1071C99367D00DB1CA4 /* TaskabilityTabBarController.swift */,
 				7017DEF71C9B10B0007CEEEA /* StagingAreaTableViewController.swift */,
+				70EE81741CC32F8900DB7C7E /* TaskGroupCollectionViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -241,6 +250,8 @@
 		7022B37C1C9912F10024F75B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				70EE81791CC33E5900DB7C7E /* TaskGroupCollectionViewCell.swift */,
+				70EE817B1CC34BF000DB7C7E /* AddTaskGroupCollectionViewCell.swift */,
 				7022B37F1C9913D80024F75B /* StagedTaskTableViewCell.swift */,
 				70EE81721CC2D44400DB7C7E /* ScrollMenuCollectionViewCell.swift */,
 				7017DEF51C9AA1EC007CEEEA /* StrikethroughLabel.swift */,
@@ -253,6 +264,7 @@
 		70B5651D1CA25C5D003D9193 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				70EE81761CC330C100DB7C7E /* TaskabilityCoreData.swift */,
 				706CEA7E1CA0ED3A00EFD7E1 /* TaskItem.swift */,
 				706CEA801CA0ED3A00EFD7E1 /* TaskGroup.swift */,
 			);
@@ -515,13 +527,16 @@
 				7017DEF81C9B10B0007CEEEA /* StagingAreaTableViewController.swift in Sources */,
 				70B565211CA25CC6003D9193 /* DataController.swift in Sources */,
 				7022B3801C9913D80024F75B /* StagedTaskTableViewCell.swift in Sources */,
+				70EE817C1CC34BF000DB7C7E /* AddTaskGroupCollectionViewCell.swift in Sources */,
 				7022B3481C98A0750024F75B /* AppDelegate.swift in Sources */,
 				7017DEF61C9AA1EC007CEEEA /* StrikethroughLabel.swift in Sources */,
 				70ABB1081C99367D00DB1CA4 /* TaskabilityTabBarController.swift in Sources */,
 				70EE81731CC2D44400DB7C7E /* ScrollMenuCollectionViewCell.swift in Sources */,
 				7026B8951C9DA3400074ACD8 /* CKTextField.swift in Sources */,
 				70B565201CA25CBC003D9193 /* Taskability.xcdatamodeld in Sources */,
+				70EE817A1CC33E5900DB7C7E /* TaskGroupCollectionViewCell.swift in Sources */,
 				7017DEF41C9A8CE5007CEEEA /* Checkmark.swift in Sources */,
+				70EE81751CC32F8900DB7C7E /* TaskGroupCollectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,6 +546,7 @@
 			files = (
 				706CEA671CA0EBFF00EFD7E1 /* Taskability.xcdatamodeld in Sources */,
 				706CEA891CA0F14A00EFD7E1 /* TaskItem.swift in Sources */,
+				70EE81781CC333F600DB7C7E /* TaskabilityCoreData.swift in Sources */,
 				706CEA8A1CA0F14E00EFD7E1 /* TaskGroup.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
