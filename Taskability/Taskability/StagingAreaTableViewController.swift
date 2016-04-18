@@ -131,7 +131,6 @@ class StagingAreaTableViewController: UITableViewController, NSFetchedResultsCon
         taskGroupRequest.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
         taskGroupsFetchedResultsController = TaskabilityCoreData.initializeFetchedResultsController(withFetchRequest: taskGroupRequest,
                                                                                                     inManagedObjectContext: managedObjectContext)
-        taskGroupsFetchedResultsController.delegate = self
     }
 
     // MARK: NSFetchedResultsControllerDelegate
@@ -237,8 +236,8 @@ class StagingAreaTableViewController: UITableViewController, NSFetchedResultsCon
             UIView.animateWithDuration(animationDuration, animations: {
                 resizeHeader()
                 }, completion: { _ in
-                    self.scrollMenuCollectionViewLeadingConstraint.constant = 0
                     UIView.animateWithDuration(animationDuration, animations: {
+                        self.scrollMenuCollectionViewLeadingConstraint.constant = 0
                         self.view.layoutIfNeeded()
                     })
             })

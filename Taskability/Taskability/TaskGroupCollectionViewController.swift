@@ -12,7 +12,9 @@ import TaskabilityKit
 
 private let reuseIdentifier = "taskGroupCell"
 
-class TaskGroupCollectionViewController: UICollectionViewController, NSFetchedResultsControllerDelegate, UITextFieldDelegate {
+class TaskGroupCollectionViewController: UICollectionViewController, NSFetchedResultsControllerDelegate, UITextFieldDelegate, AddTaskGroupViewControllerDelegate {
+
+    // MARK: Properties
 
     /// Core Data Properties
 
@@ -27,6 +29,8 @@ class TaskGroupCollectionViewController: UICollectionViewController, NSFetchedRe
         return dataController.managedObjectContext
     }
 
+    // MARK: View Controller Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -39,6 +43,15 @@ class TaskGroupCollectionViewController: UICollectionViewController, NSFetchedRe
         flowLayout.minimumLineSpacing = 2.0
     }
 
+    // MARK: Segue Handling
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "toAddTaskGroupViewController" {
+            let addTaskGroupViewController = segue.destinationViewController as! AddTaskGroupViewController
+            addTaskGroupViewController.delegate = self
+        }
+    }
+
     // MARK: UICollectionViewDataSource
 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -47,35 +60,39 @@ class TaskGroupCollectionViewController: UICollectionViewController, NSFetchedRe
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let sections = fetchedResultsController.sections!
-        return sections[section].numberOfObjects + 1
+        return sections[section].numberOfObjects
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        if indexPath.row == collectionView.numberOfItemsInSection(indexPath.section) - 1 {
-            return collectionView.dequeueReusableCellWithReuseIdentifier("addTaskGroupCell", forIndexPath: indexPath) as! AddTaskGroupCollectionViewCell
-        } else {
-            return collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! TaskGroupCollectionViewCell
-        }
-
+        return collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! TaskGroupCollectionViewCell
     }
 
     override func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
         switch cell {
         case let cell as TaskGroupCollectionViewCell:
             cell.titleLabel.text = taskGroups[indexPath.row].valueForKey("title") as? String
-        case let cell as AddTaskGroupCollectionViewCell:
-            cell.titleTextField.delegate = self
         default:
             break
         }
     }
 
+    // MARK: NSFetchedResultsController Helpers
+
+    func setupFetchedResultsController() {
+        let taskGroupRequest = NSFetchRequest(entityName: "TaskGroup")
+        taskGroupRequest.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+        fetchedResultsController = TaskabilityCoreData.initializeFetchedResultsController(withFetchRequest: taskGroupRequest,
+                                                                                          inManagedObjectContext: managedObjectContext)
+        fetchedResultsController.delegate = self
+    }
+
     // MARK: NSFetchedResultsControllerDelegate
 
+    
     func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
         switch type {
         case .Insert:
-            collectionView!.insertItemsAtIndexPaths([newIndexPath!])
+            self.collectionView!.insertItemsAtIndexPaths([newIndexPath!])
         case .Delete:
             collectionView!.deleteItemsAtIndexPaths([indexPath!])
         case .Update:
@@ -90,14 +107,6 @@ class TaskGroupCollectionViewController: UICollectionViewController, NSFetchedRe
         try! managedObjectContext.save()
     }
 
-    func setupFetchedResultsController() {
-        let taskGroupRequest = NSFetchRequest(entityName: "TaskGroup")
-        taskGroupRequest.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
-        fetchedResultsController = TaskabilityCoreData.initializeFetchedResultsController(withFetchRequest: taskGroupRequest,
-                                                                                          inManagedObjectContext: managedObjectContext)
-        fetchedResultsController.delegate = self
-    }
-
     // MARK: UITextFieldDelegate
 
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -105,4 +114,17 @@ class TaskGroupCollectionViewController: UICollectionViewController, NSFetchedRe
         textField.resignFirstResponder()
         return true
     }
+
+    // MARK: AddTaskGroupViewControllerDelegate
+
+    func didCancelAddingTaskGroup() {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+
+    func didAddTaskGroupWithName(name: String) {
+        TaskabilityCoreData.insertTaskGroupWithTitle(name, inManagedObjectContext: managedObjectContext)
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+
+
 }
