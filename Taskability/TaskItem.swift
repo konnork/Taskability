@@ -12,15 +12,15 @@ import CoreData
 @objc(TaskItem)
 public class TaskItem: NSManagedObject {
 
-    @NSManaged var title: String!
-    @NSManaged var isComplete: NSNumber!
-    @NSManaged var creationDate: NSDate!
-    @NSManaged var subtitle: String?
-    @NSManaged var startDate: NSDate?
-    @NSManaged var endDate: NSDate?
-    @NSManaged var location: String?
-    @NSManaged var taskGroup: TaskGroup?
+    @NSManaged public var title: String!
+    @NSManaged public var isComplete: NSNumber!
+    @NSManaged public var creationDate: NSDate!
+    @NSManaged public var subtitle: String?
+    @NSManaged public var startDate: NSDate?
+    @NSManaged public var endDate: NSDate?
+    @NSManaged public var location: String?
+    @NSManaged public var project: Project?
 
-    static let entityName = "TaskItem"
+    public static let entityName = "TaskItem"
 
 }

@@ -1,5 +1,5 @@
 //
-//  TaskGroupCollectionViewCell.swift
+//  ProjectCollectionViewCell.swift
 //  Taskability
 //
 //  Created by Connor Krupp on 16/04/2016.
@@ -8,6 +8,6 @@
 
 import UIKit
 
-class TaskGroupCollectionViewCell: UICollectionViewCell {
+class ProjectCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
 }

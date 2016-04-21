@@ -34,11 +34,11 @@ class StagingAreaTableViewController: UITableViewController, NSFetchedResultsCon
         return fetchedResultsController.fetchedObjects as! [TaskItem]
     }
 
-    var taskGroups: [TaskGroup] {
-        return taskGroupsFetchedResultsController.fetchedObjects as! [TaskGroup]
+    var projects: [Project] {
+        return taskGroupsFetchedResultsController.fetchedObjects as! [Project]
     }
 
-    var selectedTaskGroup: NSIndexPath?
+    var selectedProject: NSIndexPath?
 
     /// Core Data Properties
 
@@ -101,7 +101,7 @@ class StagingAreaTableViewController: UITableViewController, NSFetchedResultsCon
             let taskItem = fetchedResultsController.objectAtIndexPath(indexPath) as! TaskItem
             cell.titleLabel.text = taskItem.valueForKey("title") as? String
 
-            if let taskGroup = taskItem.valueForKey("taskGroup") as? TaskGroup {
+            if let taskGroup = taskItem.project {
                 cell.groupLabel.text = taskGroup.valueForKey("title") as? String
             } else {
                 cell.groupLabel.text = "Ungrouped"
@@ -134,7 +134,7 @@ class StagingAreaTableViewController: UITableViewController, NSFetchedResultsCon
         fetchedResultsController.delegate = self
 
 
-        let taskGroupRequest = NSFetchRequest(entityName: "TaskGroup")
+        let taskGroupRequest = NSFetchRequest(entityName: "Project")
         taskGroupRequest.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
         taskGroupsFetchedResultsController = TaskabilityCoreData.initializeFetchedResultsController(withFetchRequest: taskGroupRequest,
                                                                                                     inManagedObjectContext: managedObjectContext)
@@ -178,13 +178,13 @@ class StagingAreaTableViewController: UITableViewController, NSFetchedResultsCon
     // MARK: UICollectionViewDataSource
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return taskGroups.count
+        return projects.count
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let identifier = MainStoryboard.CollectionViewCellIdentifiers.taskGroupCell
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(identifier, forIndexPath: indexPath) as! ScrollMenuCollectionViewCell
-        cell.titleLabel.text = taskGroups[indexPath.row].valueForKey("title") as? String
+        cell.titleLabel.text = projects[indexPath.row].title
 
         return cell
     }
@@ -193,12 +193,12 @@ class StagingAreaTableViewController: UITableViewController, NSFetchedResultsCon
 
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         collectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: .CenteredHorizontally, animated: true)
-        if let oldIndexPath = selectedTaskGroup {
+        if let oldIndexPath = selectedProject {
             let cell = collectionView.cellForItemAtIndexPath(oldIndexPath) as! ScrollMenuCollectionViewCell
             cell.backgroundColor = UIColor.whiteColor()
             cell.titleLabel.textColor = UIColor.darkGrayColor()
             if indexPath == oldIndexPath {
-                selectedTaskGroup = nil
+                selectedProject = nil
                 return
             }
         }
@@ -207,7 +207,7 @@ class StagingAreaTableViewController: UITableViewController, NSFetchedResultsCon
         cell.backgroundColor = UIColor.darkGrayColor()
         cell.titleLabel.textColor = UIColor.whiteColor()
 
-        selectedTaskGroup = indexPath
+        selectedProject = indexPath
     }
 
 
@@ -222,7 +222,7 @@ class StagingAreaTableViewController: UITableViewController, NSFetchedResultsCon
     }
 
     func resizeTableHeaderView(shouldExpand: Bool) {
-        if taskGroups.isEmpty {
+        if projects.isEmpty {
             return
         }
 
@@ -298,14 +298,14 @@ class StagingAreaTableViewController: UITableViewController, NSFetchedResultsCon
     func createTaskItem() {
         let title = newTaskTextField.text!
         if !title.isEmpty {
-            var taskGroup: TaskGroup? = nil
-            if let selectedTaskGroupIndexPath = selectedTaskGroup {
-                taskGroup = taskGroups[selectedTaskGroupIndexPath.row]
+            var project: Project? = nil
+            if let selectedProjectIndexPath = selectedProject {
+                project = projects[selectedProjectIndexPath.row]
             }
 
-            TaskabilityCoreData.insertTaskItemWithTitle(title, inTaskGroup: taskGroup, inManagedObjectContext: managedObjectContext)
+            TaskabilityCoreData.insertTaskItemWithTitle(title, inProject: project, inManagedObjectContext: managedObjectContext)
             newTaskTextField.text = ""
-            selectedTaskGroup = nil
+            selectedProject = nil
         }
     }
 

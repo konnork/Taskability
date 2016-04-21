@@ -10,7 +10,7 @@ import UIKit
 
 protocol AddTaskGroupViewControllerDelegate: class {
     func didCancelAddingTaskGroup()
-    func didAddTaskGroupWithName(name: String)
+    func didAddTaskGroupWithTitle(title: String)
 }
 
 class AddTaskGroupViewController: UIViewController {
@@ -24,6 +24,6 @@ class AddTaskGroupViewController: UIViewController {
     }
 
     @IBAction func addTaskGroup() {
-        delegate?.didAddTaskGroupWithName(taskGroupNameTextField.text!)
+        delegate?.didAddTaskGroupWithTitle(taskGroupNameTextField.text!)
     }
 }

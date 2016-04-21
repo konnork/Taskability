@@ -26,9 +26,9 @@ public class TaskabilityCoreData {
         return fetchedResultsController
     }
 
-    public class func insertTaskGroupWithTitle(title: String, inManagedObjectContext managedObjectContext: NSManagedObjectContext) -> TaskGroup {
+    public class func createProjectWithTitle(title: String, inManagedObjectContext managedObjectContext: NSManagedObjectContext) -> Project {
 
-        let item = NSEntityDescription.insertNewObjectForEntityForName(TaskGroup.entityName, inManagedObjectContext: managedObjectContext) as! TaskGroup
+        let item = NSEntityDescription.insertNewObjectForEntityForName(Project.entityName, inManagedObjectContext: managedObjectContext) as! Project
 
         item.creationDate = NSDate()
         item.title = title
@@ -42,14 +42,14 @@ public class TaskabilityCoreData {
         return item
     }
 
-    public class func insertTaskItemWithTitle(title: String, inTaskGroup taskGroup: TaskGroup?, inManagedObjectContext managedObjectContext: NSManagedObjectContext) -> TaskItem {
+    public class func insertTaskItemWithTitle(title: String, inProject project: Project?, inManagedObjectContext managedObjectContext: NSManagedObjectContext) -> TaskItem {
 
         let item = NSEntityDescription.insertNewObjectForEntityForName(TaskItem.entityName, inManagedObjectContext: managedObjectContext) as! TaskItem
 
         item.title = title
         item.creationDate = NSDate()
         item.isComplete = false
-        item.taskGroup = taskGroup
+        item.project = project
 
         do {
             try managedObjectContext.save()

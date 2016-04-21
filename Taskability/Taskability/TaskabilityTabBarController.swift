@@ -29,12 +29,9 @@ class TaskabilityTabBarController: UITabBarController, UITabBarControllerDelegat
     func passDataControllerToViewControllerAtIndex(index: Int) {
         let navigationController = viewControllers?[index] as? UINavigationController
         switch index {
-        case 0:
+        case 1:
             let stagingAreaViewController = navigationController?.viewControllers.first as? StagingAreaTableViewController
             stagingAreaViewController?.dataController = dataController
-        case 1:
-            let taskGroupsViewController = navigationController?.viewControllers.first as? TaskGroupCollectionViewController
-            taskGroupsViewController?.dataController = dataController
         default:
             break
         }
