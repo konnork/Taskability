@@ -69,6 +69,13 @@ class StagingAreaTableViewController: UITableViewController, NSFetchedResultsCon
         addNewTaskTextFieldToolbar()
     }
 
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "toTaskDetail" {
+            let taskDetailViewController = segue.destinationViewController as! TaskDetailViewController
+            taskDetailViewController.taskItem = fetchedResultsController.objectAtIndexPath(tableView.indexPathForSelectedRow!) as! TaskItem
+        }
+    }
+
     // MARK: UITableViewDataSource
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {

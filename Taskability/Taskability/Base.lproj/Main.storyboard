@@ -130,10 +130,10 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="105.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="uXL-ra-UGD">
+                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="uXL-ra-UGD">
                                             <rect key="frame" x="18" y="29" width="564" height="50"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Jf-ff-VRG" customClass="Checkmark" customModule="Taskability" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Jf-ff-VRG" customClass="Checkmark" customModule="Taskability" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="45" height="50"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -151,10 +151,10 @@
                                                         <action selector="checkmarkTapped" destination="vx7-4S-AkX" eventType="touchUpInside" id="dM7-ga-EQq"/>
                                                     </connections>
                                                 </view>
-                                                <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="hUs-82-QfZ">
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="hUs-82-QfZ">
                                                     <rect key="frame" x="61" y="0.0" width="503" height="50"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" misplaced="YES" text="Michigan Hackers Exec Meeting" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s2N-kd-Eh1" customClass="StrikethroughLabel" customModule="Taskability" customModuleProvider="target">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Michigan Hackers Exec Meeting" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s2N-kd-Eh1" customClass="StrikethroughLabel" customModule="Taskability" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="231" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -216,6 +216,7 @@
                                     <outlet property="checkmark" destination="0Jf-ff-VRG" id="9kn-zy-2JT"/>
                                     <outlet property="groupLabel" destination="myW-pL-Tfx" id="fiP-Pe-qqV"/>
                                     <outlet property="titleLabel" destination="s2N-kd-Eh1" id="dwC-DM-Tpn"/>
+                                    <segue destination="YIZ-aZ-YBD" kind="show" identifier="toTaskDetail" id="m7E-bl-ZzG"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -234,6 +235,39 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6rN-ae-SQg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1995" y="-361"/>
+        </scene>
+        <!--Task Detail View Controller-->
+        <scene sceneID="dYi-zC-gge">
+            <objects>
+                <viewController id="YIZ-aZ-YBD" customClass="TaskDetailViewController" customModule="Taskability" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ev7-k2-58n"/>
+                        <viewControllerLayoutGuide type="bottom" id="GSh-E9-yuK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="25P-bt-aFT">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LcP-ze-pD8">
+                                <rect key="frame" x="60" y="72" width="480" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="LcP-ze-pD8" firstAttribute="top" secondItem="ev7-k2-58n" secondAttribute="bottom" constant="8" id="YLb-Q5-Dut"/>
+                            <constraint firstItem="LcP-ze-pD8" firstAttribute="width" secondItem="25P-bt-aFT" secondAttribute="width" multiplier="0.8" id="jSc-X7-uiA"/>
+                            <constraint firstItem="LcP-ze-pD8" firstAttribute="centerX" secondItem="25P-bt-aFT" secondAttribute="centerX" id="sRo-ar-c9M"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="titleTextField" destination="LcP-ze-pD8" id="6Zf-gB-zno"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eEL-nM-7fS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2704" y="-361"/>
         </scene>
         <!--Groups-->
         <scene sceneID="puV-4E-Teu">
