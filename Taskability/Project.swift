@@ -7,19 +7,21 @@
 //
 
 import Foundation
-import CoreData
 
-@objc(Project)
-public class Project: NSManagedObject {
+public class Project: CustomStringConvertible {
 
-    @NSManaged public var creationDate: NSDate!
-    @NSManaged public var title: String!
-    @NSManaged public var tasks: [TaskItem]?
+    public var creationDate: NSDate
+    public var title: String
+    public var tasks: [TaskItem]
 
-    public static let entityName = "Project"
+    public init(title: String) {
+        self.title = title
+        self.creationDate = NSDate()
+        self.tasks = []
+    }
 
-    public var count: Int {
-        return tasks?.count ?? 0
+    public var description: String {
+        return "\(title): Task Count: \(tasks.count) Created On: \(creationDate)"
     }
 
 }

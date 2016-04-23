@@ -7,10 +7,8 @@
 //
 
 import Foundation
-import CoreData
 
-@objc(TaskItem)
-public class TaskItem: NSManagedObject {
+public class TaskItem {
 
     @NSManaged public var title: String!
     @NSManaged public var isComplete: NSNumber!
@@ -19,7 +17,6 @@ public class TaskItem: NSManagedObject {
     @NSManaged public var startDate: NSDate?
     @NSManaged public var endDate: NSDate?
     @NSManaged public var location: String?
-    @NSManaged public var project: Project?
 
     public static let entityName = "TaskItem"
 

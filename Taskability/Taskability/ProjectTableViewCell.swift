@@ -1,5 +1,5 @@
 //
-//  ProjectCollectionViewCell.swift
+//  ProjectTableViewCell.swift
 //  Taskability
 //
 //  Created by Connor Krupp on 16/04/2016.
@@ -8,6 +8,6 @@
 
 import UIKit
 
-class ProjectCollectionViewCell: UICollectionViewCell {
+class ProjectTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
 }

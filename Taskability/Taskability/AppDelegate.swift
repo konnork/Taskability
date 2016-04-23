@@ -7,20 +7,21 @@
 //
 
 import UIKit
+import TaskabilityKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var dataController: DataController!
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
         UITabBar.appearance().tintColor = UIColor.whiteColor()
-        dataController = DataController()
 
-        let tabBarController = window?.rootViewController as? TaskabilityTabBarController
-        tabBarController?.dataController = dataController
+        let tabBarController = window?.rootViewController as! UITabBarController
+        let navigationController = tabBarController.viewControllers?.first as! UINavigationController
+        let projectsCollectionViewController = navigationController.viewControllers.first as! ProjectsTableViewController
+        projectsCollectionViewController.projectsController = ProjectsController()
         
         return true
     }

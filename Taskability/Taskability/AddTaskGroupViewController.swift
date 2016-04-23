@@ -1,5 +1,5 @@
 //
-//  AddTaskGroupViewController.swift
+//  AddProjectViewController.swift
 //  Taskability
 //
 //  Created by Connor Krupp on 18/04/2016.
@@ -8,22 +8,22 @@
 
 import UIKit
 
-protocol AddTaskGroupViewControllerDelegate: class {
-    func didCancelAddingTaskGroup()
-    func didAddTaskGroupWithTitle(title: String)
+protocol AddProjectViewControllerDelegate: class {
+    func didCancelAddingProject()
+    func didAddProjectWithTitle(title: String)
 }
 
-class AddTaskGroupViewController: UIViewController {
+class AddProjectViewController: UIViewController {
 
-    @IBOutlet weak var taskGroupNameTextField: UITextField!
+    @IBOutlet weak var projectNameTextField: UITextField!
 
-    weak var delegate: AddTaskGroupViewControllerDelegate?
+    weak var delegate: AddProjectViewControllerDelegate?
 
-    @IBAction func cancelAddingTaskGroup() {
-        delegate?.didCancelAddingTaskGroup()
+    @IBAction func cancelAddingProject() {
+        delegate?.didCancelAddingProject()
     }
 
-    @IBAction func addTaskGroup() {
-        delegate?.didAddTaskGroupWithTitle(taskGroupNameTextField.text!)
+    @IBAction func addProject() {
+        delegate?.didAddProjectWithTitle(projectNameTextField.text!)
     }
 }
