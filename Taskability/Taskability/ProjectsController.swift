@@ -10,15 +10,10 @@ import Foundation
 
 public final class ProjectsController {
 
-    var projects = [Project]()
+    private var projects = [Project]()
 
+    // Must have a public initializer
     public init() {
-        // Test Model
-
-        projects.append(Project(title: "EECS 485"))
-        projects.append(Project(title: "Michigan Hackers"))
-        projects.append(Project(title: "MHacks"))
-        projects.append(Project(title: "EECS 388"))
 
     }
 
@@ -28,5 +23,13 @@ public final class ProjectsController {
 
     public subscript(idx: Int) -> Project {
         return projects[idx]
+    }
+
+    public func append(project: Project) {
+        projects.append(project)
+    }
+
+    public func removeProjectAtIndex(index: Int) {
+        projects.removeAtIndex(index)
     }
 }

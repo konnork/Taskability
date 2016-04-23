@@ -5,6 +5,7 @@
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -241,31 +242,50 @@
         <scene sceneID="qMR-dl-Ugc">
             <objects>
                 <tableViewController id="RBA-XV-ymt" customClass="ProjectsTableViewController" customModule="Taskability" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="R41-HJ-LdB">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="150" sectionHeaderHeight="28" sectionFooterHeight="28" id="R41-HJ-LdB">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProjectCell" id="2eu-40-A2Q" customClass="ProjectTableViewCell" customModule="Taskability" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="600" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2eu-40-A2Q" id="hbl-66-VoQ">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="150"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwg-oY-PKV">
-                                            <rect key="frame" x="8" y="11" width="42" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mhackers" translatesAutoresizingMaskIntoConstraints="NO" id="5v6-kS-XJo">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="100" id="hV3-y7-us2"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EECS 485" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwg-oY-PKV">
+                                            <rect key="frame" x="8" y="108" width="76" height="20"/>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="XML Parser due in 4 days" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f56-Po-CsM">
+                                            <rect key="frame" x="8" y="130" width="147" height="15"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="vwg-oY-PKV" firstAttribute="centerY" secondItem="hbl-66-VoQ" secondAttribute="centerY" id="7Vm-gV-Dhj"/>
-                                        <constraint firstAttribute="leadingMargin" secondItem="vwg-oY-PKV" secondAttribute="leading" id="Xls-4f-035"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="vwg-oY-PKV" secondAttribute="leading" id="4cL-6l-NPx"/>
+                                        <constraint firstItem="vwg-oY-PKV" firstAttribute="top" secondItem="5v6-kS-XJo" secondAttribute="bottom" constant="8" id="6OZ-U2-jeu"/>
+                                        <constraint firstItem="5v6-kS-XJo" firstAttribute="top" secondItem="hbl-66-VoQ" secondAttribute="topMargin" constant="-8" id="6nu-r7-cBA"/>
+                                        <constraint firstItem="f56-Po-CsM" firstAttribute="top" secondItem="vwg-oY-PKV" secondAttribute="bottom" constant="2" id="PFN-FJ-vga"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="5v6-kS-XJo" secondAttribute="trailing" constant="-8" id="Q9P-LC-asJ"/>
+                                        <constraint firstItem="5v6-kS-XJo" firstAttribute="leading" secondItem="hbl-66-VoQ" secondAttribute="leadingMargin" constant="-8" id="p5c-sM-tjv"/>
+                                        <constraint firstItem="f56-Po-CsM" firstAttribute="leading" secondItem="vwg-oY-PKV" secondAttribute="leading" id="sc1-fh-4tY"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="nextTaskLabel" destination="f56-Po-CsM" id="3Dr-46-LiQ"/>
+                                    <outlet property="projectImageView" destination="5v6-kS-XJo" id="rmU-NW-Ywc"/>
                                     <outlet property="titleLabel" destination="vwg-oY-PKV" id="xDu-cg-SvG"/>
                                 </connections>
                             </tableViewCell>
@@ -275,7 +295,17 @@
                             <outlet property="delegate" destination="RBA-XV-ymt" id="IXV-Ts-jgS"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Projects" id="K2h-kf-1Zv"/>
+                    <navigationItem key="navigationItem" title="Projects" id="K2h-kf-1Zv">
+                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="C3G-T6-TVu"/>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="Tqr-wQ-B2l">
+                                <connections>
+                                    <segue destination="iUF-n0-3UM" kind="presentation" identifier="ShowAddProject" modalPresentationStyle="overFullScreen" id="UoR-2D-lkt"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="search" id="vX4-0k-Erw"/>
+                        </rightBarButtonItems>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P1m-0Q-fkz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -380,7 +410,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="enD-hz-SS5">
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="enD-hz-SS5">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
@@ -576,6 +606,7 @@
         <image name="date" width="15" height="16"/>
         <image name="group" width="15" height="11"/>
         <image name="groups" width="21" height="19"/>
+        <image name="mhackers" width="375" height="140"/>
         <image name="settings" width="23" height="17"/>
         <image name="staging" width="25" height="23"/>
         <image name="timeline" width="23" height="23"/>

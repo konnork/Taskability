@@ -10,4 +10,6 @@ import UIKit
 
 class ProjectTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var projectImageView: UIImageView!
+    @IBOutlet weak var nextTaskLabel: UILabel!
 }
