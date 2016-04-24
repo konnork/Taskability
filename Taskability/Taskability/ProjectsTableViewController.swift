@@ -9,7 +9,7 @@
 import UIKit
 import TaskabilityKit
 
-class ProjectsTableViewController: UITableViewController, AddProjectViewControllerDelegate, SegueHandlerType {
+class ProjectsTableViewController: UITableViewController, ProjectsControllerDelegate, SegueHandlerType {
 
     // MARK: Types
 
@@ -23,17 +23,19 @@ class ProjectsTableViewController: UITableViewController, AddProjectViewControll
 
     // MARK: Properties
 
-    var projectsController: ProjectsController!
+    var projectsController: ProjectsController! {
+        didSet { projectsController.delegate = self }
+    }
 
     // MARK: View Controller Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        projectsController.append(Project(title: "EECS 485", imageName: "code"))
-        projectsController.append(Project(title: "Michigan Hackers", imageName: "mhackers"))
-        projectsController.append(Project(title: "MHacks", imageName: "mhacks"))
-        projectsController.append(Project(title: "EECS 388", imageName: "code"))
+        projectsController.createProject(Project(title: "EECS 485", imageName: "code"))
+        projectsController.createProject(Project(title: "Michigan Hackers", imageName: "mhackers"))
+        projectsController.createProject(Project(title: "MHacks", imageName: "mhacks"))
+        projectsController.createProject(Project(title: "EECS 388", imageName: "code"))
     }
 
     // MARK: Segue Handling
@@ -43,7 +45,7 @@ class ProjectsTableViewController: UITableViewController, AddProjectViewControll
         switch segueIdentifierForSegue(segue) {
         case .ShowAddProject:
             let addTaskGroupViewController = segue.destinationViewController as! AddProjectViewController
-            addTaskGroupViewController.delegate = self
+            addTaskGroupViewController.projectsController = projectsController
         }
     }
 
@@ -68,14 +70,31 @@ class ProjectsTableViewController: UITableViewController, AddProjectViewControll
         return cell
     }
 
-    // MARK: AddProjectViewControllerDelegate
+    // MARK: ProjectsControllerDelegate
 
-    func didCancelAddingProject() {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    func projectsControllerWillChangeContent(projectsController: ProjectsController) {
+        tableView.beginUpdates()
     }
 
-    func didAddProjectWithTitle(title: String) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    func projectsController(projectsController: ProjectsController, didChangeProject project: Project, atIndex index: Int?, forChangeType changeType: ProjectsControllerChangeType, newIndex: Int?) {
+        switch changeType {
+        case .Insert:
+            let indexPath = NSIndexPath(forRow: newIndex!, inSection: 0)
+            tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        case .Delete:
+            let indexPath = NSIndexPath(forRow: index!, inSection: 0)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        case .Move:
+            let oldIndexPath = NSIndexPath(forRow: index!, inSection: 0)
+            let newIndexPath = NSIndexPath(forRow: newIndex!, inSection: 0)
+            tableView.moveRowAtIndexPath(oldIndexPath, toIndexPath: newIndexPath)
+        case .Update:
+            let indexPath = NSIndexPath(forRow: index!, inSection: 0)
+            tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        }
     }
 
+    func projectsControllerDidFinishChangingContent(projectsController: ProjectsController) {
+        tableView.endUpdates()
+    }
 }

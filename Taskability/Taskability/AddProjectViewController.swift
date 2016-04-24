@@ -7,23 +7,25 @@
 //
 
 import UIKit
-
-protocol AddProjectViewControllerDelegate: class {
-    func didCancelAddingProject()
-    func didAddProjectWithTitle(title: String)
-}
+import TaskabilityKit
 
 class AddProjectViewController: UIViewController {
 
     @IBOutlet weak var projectNameTextField: UITextField!
 
-    weak var delegate: AddProjectViewControllerDelegate?
+    var projectsController: ProjectsController!
 
     @IBAction func cancelAddingProject() {
-        delegate?.didCancelAddingProject()
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 
     @IBAction func addProject() {
-        delegate?.didAddProjectWithTitle(projectNameTextField.text!)
+        if let title = projectNameTextField.text {
+            if projectsController.canCreateProjectWithTitle(title) {
+                let newProject = Project(title: title)
+                projectsController.createProject(newProject)
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
+        }
     }
 }
