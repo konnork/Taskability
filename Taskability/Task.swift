@@ -18,6 +18,7 @@ public class Task: Comparable {
     public init(title: String, isComplete: Bool = false, dueDate: NSDate? = nil) {
         self.title = title
         self.isComplete = isComplete
+        self.dueDate = dueDate
         self.creationDate = NSDate()
     }
 }

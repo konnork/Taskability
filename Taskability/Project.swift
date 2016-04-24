@@ -27,7 +27,8 @@ public class Project: CustomStringConvertible {
     }
 
     public func nextTask() -> Task? {
-        return tasks.minElement()
+        let minTask = tasks.minElement()
+        return minTask?.dueDate != nil ? minTask : nil
     }
 
     public func append(task: Task) {

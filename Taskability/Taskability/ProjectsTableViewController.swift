@@ -33,11 +33,11 @@ class ProjectsTableViewController: UITableViewController, ProjectsControllerDele
         super.viewDidLoad()
 
         // Test Data
-//
 //        projectsController.createProject(Project(title: "EECS 485", imageName: "code"))
 //        projectsController.createProject(Project(title: "Michigan Hackers", imageName: "mhackers"))
 //        projectsController.createProject(Project(title: "MHacks", imageName: "mhacks"))
 //        projectsController.createProject(Project(title: "EECS 388", imageName: "code"))
+
     }
 
     // MARK: Segue Handling
@@ -56,9 +56,10 @@ class ProjectsTableViewController: UITableViewController, ProjectsControllerDele
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
+
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if projectsController.isEmpty {
-            let label = UILabel(frame: CGRectZero)
+            let label = UILabel(frame: CGRect.zero)
             label.text = "You're a wizard Harry"
             label.font = UIFont.systemFontOfSize(20)
             label.numberOfLines = 0
