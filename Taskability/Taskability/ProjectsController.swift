@@ -46,6 +46,10 @@ public final class ProjectsController {
         return projects.count
     }
 
+    public var isEmpty: Bool {
+        return projects.isEmpty
+    }
+
     public subscript(idx: Int) -> Project {
         return projects[idx]
     }

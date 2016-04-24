@@ -32,10 +32,12 @@ class ProjectsTableViewController: UITableViewController, ProjectsControllerDele
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        projectsController.createProject(Project(title: "EECS 485", imageName: "code"))
-        projectsController.createProject(Project(title: "Michigan Hackers", imageName: "mhackers"))
-        projectsController.createProject(Project(title: "MHacks", imageName: "mhacks"))
-        projectsController.createProject(Project(title: "EECS 388", imageName: "code"))
+        // Test Data
+//
+//        projectsController.createProject(Project(title: "EECS 485", imageName: "code"))
+//        projectsController.createProject(Project(title: "Michigan Hackers", imageName: "mhackers"))
+//        projectsController.createProject(Project(title: "MHacks", imageName: "mhacks"))
+//        projectsController.createProject(Project(title: "EECS 388", imageName: "code"))
     }
 
     // MARK: Segue Handling
@@ -51,7 +53,23 @@ class ProjectsTableViewController: UITableViewController, ProjectsControllerDele
 
     // MARK: UITableViewDataSource
 
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if projectsController.isEmpty {
+            let label = UILabel(frame: CGRectZero)
+            label.text = "You're a wizard Harry"
+            label.font = UIFont.systemFontOfSize(20)
+            label.numberOfLines = 0
+            label.textAlignment = .Center
+            label.textColor = UIColor.grayColor()
+            label.sizeToFit()
+
+            self.tableView.backgroundView = label
+        } else {
+            self.tableView.backgroundView = nil
+        }
         return projectsController.count
     }
 
@@ -79,11 +97,17 @@ class ProjectsTableViewController: UITableViewController, ProjectsControllerDele
     func projectsController(projectsController: ProjectsController, didChangeProject project: Project, atIndex index: Int?, forChangeType changeType: ProjectsControllerChangeType, newIndex: Int?) {
         switch changeType {
         case .Insert:
+            if projectsController.isEmpty {
+                tableView.insertSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
+            }
             let indexPath = NSIndexPath(forRow: newIndex!, inSection: 0)
             tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
         case .Delete:
             let indexPath = NSIndexPath(forRow: index!, inSection: 0)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            if projectsController.isEmpty {
+                tableView.deleteSections(NSIndexSet(index: 0) , withRowAnimation: .Automatic)
+            }
         case .Move:
             let oldIndexPath = NSIndexPath(forRow: index!, inSection: 0)
             let newIndexPath = NSIndexPath(forRow: newIndex!, inSection: 0)
