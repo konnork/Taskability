@@ -19,6 +19,7 @@ class ProjectsTableViewController: UITableViewController, ProjectsControllerDele
 
     enum SegueIdentifier: String {
         case ShowAddProject
+        case ShowProjectTasks
     }
 
     // MARK: Properties
@@ -33,10 +34,16 @@ class ProjectsTableViewController: UITableViewController, ProjectsControllerDele
         super.viewDidLoad()
 
         // Test Data
-//        projectsController.createProject(Project(title: "EECS 485", imageName: "code"))
-//        projectsController.createProject(Project(title: "Michigan Hackers", imageName: "mhackers"))
-//        projectsController.createProject(Project(title: "MHacks", imageName: "mhacks"))
-//        projectsController.createProject(Project(title: "EECS 388", imageName: "code"))
+        let project = Project(title: "Michigan Hackers", imageName: "mhackers")
+        project.tasks.append(Task(title: "Contact Google"))
+        project.tasks.append(Task(title: "Email Katie from Microsoft", isComplete: true, dueDate: NSDate(timeIntervalSinceNow: 10000)))
+        project.tasks.append(Task(title: "Get Sweatshirts", isComplete: false, dueDate: NSDate(timeIntervalSinceNow: 8000)))
+        project.tasks.append(Task(title: "Exec Meeting"))
+        
+        projectsController.createProject(Project(title: "EECS 485", imageName: "code"))
+        projectsController.createProject(project)
+        projectsController.createProject(Project(title: "MHacks", imageName: "mhacks"))
+        projectsController.createProject(Project(title: "EECS 388", imageName: "code"))
 
     }
 
@@ -48,6 +55,9 @@ class ProjectsTableViewController: UITableViewController, ProjectsControllerDele
         case .ShowAddProject:
             let addTaskGroupViewController = segue.destinationViewController as! AddProjectViewController
             addTaskGroupViewController.projectsController = projectsController
+        case .ShowProjectTasks:
+            let projectTasksViewController = segue.destinationViewController as! ProjectTasksTableViewController
+            projectTasksViewController.project = projectsController[tableView.indexPathForSelectedRow!.row]
         }
     }
 
@@ -59,15 +69,7 @@ class ProjectsTableViewController: UITableViewController, ProjectsControllerDele
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if projectsController.isEmpty {
-            let label = UILabel(frame: CGRect.zero)
-            label.text = "You're a wizard Harry"
-            label.font = UIFont.systemFontOfSize(20)
-            label.numberOfLines = 0
-            label.textAlignment = .Center
-            label.textColor = UIColor.grayColor()
-            label.sizeToFit()
-
-            self.tableView.backgroundView = label
+            displayEmptyTableMessage()
         } else {
             self.tableView.backgroundView = nil
         }
@@ -81,7 +83,7 @@ class ProjectsTableViewController: UITableViewController, ProjectsControllerDele
         cell.projectImageView.image = UIImage(named: projectsController[indexPath.row].imageName)
 
         if let nextTask = projectsController[indexPath.row].nextTask() {
-            cell.nextTaskLabel.text = "\(nextTask.title) due in \(nextTask.dueDate?.timeIntervalSinceNow)"
+            cell.nextTaskLabel.text = "\(nextTask.title) due on \(formatDate(nextTask.dueDate!))"
         } else {
             cell.nextTaskLabel.text = "No Tasks Due"
         }
@@ -121,5 +123,23 @@ class ProjectsTableViewController: UITableViewController, ProjectsControllerDele
 
     func projectsControllerDidFinishChangingContent(projectsController: ProjectsController) {
         tableView.endUpdates()
+    }
+    
+    // MARK: Helpers
+    
+    func displayEmptyTableMessage() {
+        let label = UILabel(frame: CGRect.zero)
+        label.text = "You're a wizard Harry"
+        label.font = UIFont.systemFontOfSize(20)
+        label.numberOfLines = 0
+        label.textAlignment = .Center
+        label.textColor = UIColor.grayColor()
+        label.sizeToFit()
+        
+        self.tableView.backgroundView = label
+    }
+    
+    func formatDate(date: NSDate) -> String {
+        return NSDateFormatter.localizedStringFromDate(date, dateStyle: .MediumStyle, timeStyle: .ShortStyle)
     }
 }

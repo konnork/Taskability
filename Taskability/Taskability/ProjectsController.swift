@@ -26,6 +26,7 @@ public protocol ProjectsControllerDelegate : class {
 }
 
 public extension ProjectsControllerDelegate {
+    
     func projectsControllerWillChangeContent(projectsController: ProjectsController) { }
 
     func projectsControllerDidFinishChangingContent(projectsController: ProjectsController) { }
@@ -38,9 +39,7 @@ public final class ProjectsController {
     public weak var delegate: ProjectsControllerDelegate?
 
     // Must have a public initializer
-    public init() {
-
-    }
+    public init() { }
 
     public var count: Int {
         return projects.count

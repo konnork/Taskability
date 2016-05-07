@@ -45,13 +45,13 @@ class Checkmark: UIControl {
     // MARK: Drawing
 
     override func drawRect(rect: CGRect) {
-        let border = UIBezierPath(arcCenter: viewCenter, radius: borderRadius, startAngle: 0, endAngle: CGFloat(2*M_PI), clockwise: true)
+        let border = UIBezierPath(roundedRect: rect.insetBy(dx: rect.width/10, dy: rect.width/10), cornerRadius: rect.width/5)
         border.lineWidth = borderWidth
         isChecked ? checkedColor.setFill() : uncheckedColor.setStroke()
         isChecked ? border.fill() : border.stroke()
 
         let checkmarkPath = UIBezierPath()
-        checkmarkPath.lineWidth = 2.0
+        checkmarkPath.lineWidth = 2
         //let offset = borderRadius/4
 
         let offset = 0.2*borderRadius
